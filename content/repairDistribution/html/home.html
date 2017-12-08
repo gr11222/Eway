@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/global.css">
+	<script src="../../../../basic/content/lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../../basic/content/lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">报修人</span>
+				<span>
+					<input type="text" name="manName" id="manName">
+				</span>
+
+				<span class="key-word-style">时间</span>
+				<span>
+					<input type="text" class="input-style"  name="startTime" id="startTime" />
+				</span>
+				<span class="key-word-style">-</span>
+				<span>
+					<input type="text" class="input-style"   name="endTime" id="endTime" />
+				</span>
+				<span style="float: right;padding-right: 20px;">
+					<a class="btn btn-primary" id="btnSearch"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				
+			</div>
+		<!-- 	<div class="btn-items">
+				<div class="position-btn">
+					
+				</div>
+			</div> -->
+			<section class="tab-items" style="height: 40px;">
+					<section class="tab-items-content">
+						<nav class="tab-nav">
+							<ul>
+								<li class="li-table-change li-table-active" thenum='0'>未处理的报修单</li>
+								<li class="li-table-change" thenum='1'>未通过的维修单</li>
+							</ul>
+						</nav>
+						<div class="border-style"></div>
+						<a class="btn btn-danger " style="width: 100px;float: right;margin-top: 2px;position: relative;z-index: 10" id="btnIgnore"><span style="padding-left: 5px;">忽略</span></a>
+						<a class="btn the-btn-hover  color-1" style="width: 100px;float: right;margin-top: 2px;margin-right: 10px;;position: relative;z-index: 10" id="btnAddInfos"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">分配</span></a>
+					</section>
+
+				</section>
+			<div class="data-content" id="ptcontent">
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+		</div>
+	</body>
+	<!-- 分配人modal -->
+	<div class="modal " id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      	<div style="font-weight: bold;font-size: 20px;">
+	      		*分配人员：
+	      	</div>
+	      	<div style="margin-top: 20px;">
+	      		<label for="userName" style="padding-top: 5px">人员名称：
+						<input type="text" name="userName" id="userName">
+				</label>
+				<label for="workName" style="padding-top: 5px">职位：
+						<select id="workName" style="width: 120px;height: 30px;">
+							<option value="-1">请选择</option>
+						</select>
+				</label>
+				<span id="btnModalSearch" class="btn btn-success" style="float: right;margin-right: 20px;">
+					查询
+				</span>
+	      	</div>	
+	      		<div id="modalTable" style="height: 410px;overflow: auto;">
+	      			
+	      		</div>
+	      		<div style="text-align: center;">
+			    	<a  class="btn btn-success" id="btnAddMadeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px" id="btnAddMadeInfoText"></span>确认分配</a>
+	      		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- 忽略modal -->
+	<div class="modal " id="ignoreDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      	<div style="margin-top: 20px;padding: 30px 0px;">
+				<label for="ignore" style="padding-top: 5px">*忽略原因：
+						<select id="ignore" style="width: 400px;height: 30px;">
+							<!-- <option value="-1" disabled="" selected="">请选择</option> -->
+						</select>
+				</label>
+	      	</div>	
+	      		<div style="text-align: center;">
+			    	<a  class="btn btn-success" id="btnIgnoreOK"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px"></span>确认忽略</a>
+	      		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../lib/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../../../../basic/content/lib/area.js" type="text/javascript" charset="utf-8"></script> -->
+	
+	<script src="../../../../basic/content/lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/datepicker/datepicker.css"/>
+	<script src="../../../../basic/content/lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+</html>

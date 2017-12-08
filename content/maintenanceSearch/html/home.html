@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/global.css">
+	<script src="../../../../basic/content/lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../../basic/content/lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">报修人</span>
+				<span>
+					<input type="text" name="manName" id="manName">
+				</span>
+
+				<span class="key-word-style">时间</span>
+				<span>
+					<input type="text" class="input-style"  name="startTime" id="startTime" />
+				</span>
+				<span class="key-word-style">-</span>
+				<span>
+					<input type="text" class="input-style"   name="endTime" id="endTime" />
+				</span>
+				<span style="float: right;padding-right: 20px;">
+					<a class="btn btn-primary" id="btnSearch"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				
+			</div>
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" style="width: 100px;" id="btnPass"><span >验收</span></a>
+					<a class="btn the-btn-hover  btn-danger" style="width: 100px;" id="btnNoPass"><span>验收未通过</span></a>
+				</div>
+			</div>
+			<div class="data-content" id="ptcontent">
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+		</div>
+	</body>
+
+	<script src="../lib/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../../../../basic/content/lib/area.js" type="text/javascript" charset="utf-8"></script> -->
+	
+	<script src="../../../../basic/content/lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../../../basic/content/lib/datepicker/datepicker.css"/>
+	<script src="../../../../basic/content/lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>菜品管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<!--<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>-->
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				菜品类型
+        			</span>
+					<span >
+        		        <select name="foodType" id="foodType" class="select-style">
+        		        	<option value=""></option>
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				菜品名称
+        			</span>
+					<span >
+        		        <!--<select name="foodName" id="foodName" class="select-style">       					
+        				</select>-->
+        				<input type="text"  name="foodName" id="foodName" />
+        			</span>
+					<span class="key-word-style">
+        				价格
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="diPrice" id="diPrice" />
+        				-
+        				<input type="text" class="input-style" name="highPrice" id="highPrice" />
+        			</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchData"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<a class="btn the-btn-hover  color-1" style='width:80px' id="btnAddFood"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新增</span></a>
+			</div>
+			<div class="data-content" id="dataContent">
+				<div style="position:relative;width: 300px;top:40%;font-size: 20px;font-weight: bold;margin: 0 auto">
+					提示：<br />
+					当前条件下无菜品信息！
+				</div>
+			</div>
+			
+		</div>
+	</body>
+
+	<!-- //新增弹出框 -->
+	<div class="modal fade" id="AddDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="foodNameModal" class="col-sm-3 control-label">菜品名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="foodNameModal" placeholder="菜品名称">
+							</div>
+						</div>
+						<!--<div class="form-group" style="margin-top:30px">
+							<label for="foodNameEnModal" class="col-sm-3 control-label">英文名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="foodNameEnModal" placeholder="菜品名称">
+							</div>
+						</div>-->
+						<div class="form-group">
+							<label for="foodTypeModal" class="col-sm-3 control-label">菜品类型</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="foodTypeModal" >
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="foodFromModal" class="col-sm-3 control-label">菜品菜系</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="foodFromModal">
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="foodTestModal" class="col-sm-3 control-label">菜品口味</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="foodTestModal">
+									<option value="">菜品口味</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="foodFromModal" class="col-sm-3 control-label">菜品价格</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+							      <input class="form-control" type="text" id="priceModal" placeholder="菜品价格">
+							      <div class="input-group-addon">元</div>
+							    </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="foodFromModal" class="col-sm-3 control-label">菜品图片</label>
+							<div class="col-sm-9">
+								
+							     <input class="form-control" type="file" name="foodImg" id="foodImg">
+							      
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnAddBtn" style="width: 120px;">确认录入</a>
+							<a class="btn btn-danger"  data-dismiss="modal" style="width: 120px;" id="btnEditBtn">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//设备列表弹出框
+	<div class="modal fade" id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="editfoodNameModal" class="col-sm-3 control-label">菜品名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="editfoodNameModal" placeholder="菜品名称">
+							</div>
+						</div>
+						<!--<div class="form-group" style="margin-top:30px">
+							<label for="editfoodNameEnModal" class="col-sm-3 control-label">英文名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="editfoodNameEnModal" placeholder="菜品名称">
+							</div>
+						</div>-->
+						<div class="form-group">
+							<label for="editfoodTypeModal" class="col-sm-3 control-label">菜品类型</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="editfoodTypeModal" >
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfoodFromModal" class="col-sm-3 control-label">菜品菜系</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="editfoodFromModal">
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfoodTestModal" class="col-sm-3 control-label">菜品口味</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="editfoodTestModal">
+									<option value="">菜品口味</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfoodFromModal" class="col-sm-3 control-label">菜品价格</label>
+							<div class="col-sm-9">
+								<div class="input-group">
+							      <input class="form-control" type="text" id="editpriceModal" placeholder="菜品价格">
+							      <div class="input-group-addon">元</div>
+							    </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfoodFromModal" class="col-sm-3 control-label">菜品图片</label>
+							<div class="col-sm-9">
+								
+							     <input class="form-control" type="file" name="editfoodImg" id="editfoodImg">
+							      
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btneditBtn" style="width: 120px;">确认录入</a>
+							<a class="btn btn-danger"  data-dismiss="modal" style="width: 120px;" id="btnEditBtn">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="../../lib/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
+</html>

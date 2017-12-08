@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-项目管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<div class="search-items-left">
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								项目名称
+							</div>
+							<div class="div-4-right">
+								<input type="text" name="projectName" id="projectName" value="" />
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								开始时间
+							</div>
+							<div class="div-4-right">
+								<input type="text" class="date-picker" id="startTime" value="" placeholder="开始时间"/>
+							</div>
+						</div>
+						
+					</div>
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								结束时间
+							</div>
+							<div class="div-4-right">
+								<input type="text" class="date-picker" id="endTime" value=""  placeholder="结束时间"/>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style="width: 100px;" id="btnSearchRepair"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				
+				</div>
+				
+			</div>
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" style="width: 100px;" id="btnAddInfos"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建</span></a>
+					<!--<a class="btn the-btn-hover color-2" id="btnExportInfos"><span class="glyphicon glyphicon-export"></span><span style="padding-left: 5px;">导出</span></a>-->
+					
+				</div>
+			</div>
+			<div class="data-content" id="ptcontent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+		</div>
+	</body>
+	<!--添加建筑模态窗-->
+	<div class="modal " id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="projectNameCnModal" class="col-sm-3 control-label" style="font-size: 12px;">*项目名称:</label>
+			      <div class="col-sm-9">
+			        <input class="form-control" id="projectNameCnModal" placeholder="项目名称" autofocus="autofocus">
+			      </div>
+			    </div>
+			     <div class="form-group">
+			      <label for="companyModal" class="col-sm-3 control-label" style="font-size: 12px;">*所属公司:</label>
+			      <div class="col-sm-9">
+			       <select class="form-control" id="companyModal" name="companyModal">
+			      			<option value="-1">请选择</option>
+			      		</select>
+			      </div>
+			    </div>
+			   
+			    <div class="form-group" >
+			      <label for="theBuildingModal" class="col-sm-3 control-label" style="font-size: 12px;">*负责建筑:</label>
+			      <div class="col-sm-9">
+			       
+			      		<!--<select class="form-control" id="theBuildingModal" name="theBuildingModal">
+			      		
+			      		</select>-->
+			      		<!---->
+			      		<div class="dropdown">
+						  <button class="btn btn-default" type="button" id="dropdownMenu1"   style="width: 100%;">
+						    建筑列表
+						    <span class="caret"></span>
+						  </button>
+						  <div class="dropdown-menu" id="panelBuild" style="width:100%;">
+						    <div style="min-height:80px;height: auto;max-height: 120px;overflow: auto;padding:0px 3px" id="buildContent">
+						    	
+						    </div>
+						    <div style="height: 20px;line-height: 20px;font-size: 12px;text-align: right;">
+						    	<span style="padding-right: 10px">
+						    		<a href="javascript:void(0)" id="btnSureCheck" style="color: #000000;">确认选择</a>
+						    	</span>
+						    </div>
+						  </div>
+						</div>
+			      		<!---->
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label for="noteModal" class="col-sm-3 control-label" style="font-size: 12px;">备注:</label>
+			      <div class="col-sm-9">
+			        <textarea class="form-control" id="noteModal" placeholder="备注" ></textarea>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnAddMadeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认添加</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	<!--添加建筑模态窗-->
+	
+	<!--修改建筑模态窗-->
+	<div class="modal " id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	         <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="editprojectNameCnModal" class="col-sm-3 control-label" style="font-size: 12px;">*项目名称:</label>
+			      <div class="col-sm-9">
+			        <input class="form-control" id="editprojectNameCnModal" placeholder="项目名称" autofocus="autofocus">
+			      </div>
+			    </div>
+			     <div class="form-group">
+			      <label for="editcompanyModal" class="col-sm-3 control-label" style="font-size: 12px;">*所属公司:</label>
+			      <div class="col-sm-9">
+			       <select class="form-control" id="editcompanyModal" name="editcompanyModal">
+			      			<option value="-1">请选择</option>
+			      		</select>
+			      </div>
+			    </div>
+			   
+			    <div class="form-group" >
+			      <label for="edittheBuildingModal" class="col-sm-3 control-label" style="font-size: 12px;">*负责建筑:</label>
+			      <div class="col-sm-9">
+			       
+			      		<div class="dropdown">
+						  <button class="btn btn-default" type="button" id="theEditBuild"  style="width: 100%;">
+						    建筑列表
+						    <span class="caret"></span>
+						  </button>
+						  <div class="dropdown-menu" id="editpanelBuild" style="width:100%;">
+						    <div style="min-height:80px;height: auto;max-height: 120px;overflow: auto;padding:0px 3px" id="editbuildContent">
+						    	
+						    </div>
+						    <div style="height: 20px;line-height: 20px;font-size: 12px;text-align: right;">
+						    	<span style="padding-right: 10px">
+						    		<a href="javascript:void(0)" id="editbtnSureCheck" style="color: #000000;">确认选择</a>
+						    	</span>
+						    </div>
+						  </div>
+						</div>
+			      </div>
+			    </div>
+			    
+			   
+			    <div class="form-group">
+			      <label for="editnoteModal" class="col-sm-3 control-label" style="font-size: 12px;">备注:</label>
+			      <div class="col-sm-9">
+			        <textarea class="form-control" id="editnoteModal" placeholder="备注" ></textarea>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnEditMadeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认修改</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	<!--修改建筑模态窗-->
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+</html>

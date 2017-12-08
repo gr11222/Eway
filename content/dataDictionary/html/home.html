@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-资产分类管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<!--<span class="key-word-style">关键字</span>
+				<span><input type="text" name="keyWord" id="keyWord" /></span>-->
+				<span class="key-word-style">类型名称</span>
+				<span><input type="text" name="typeName" id="typeName" /></span>
+				<span class="key-word-style">开始时间</span>
+				<span><input type="text" name="startTime" class="the-datepicker" id="startTime" placeholder="开始时间"/></span>
+				<span class="key-word-style">结束时间</span>
+				<span><input type="text" name="startTime" class="the-datepicker" id="endTime" placeholder="结束时间"/></span>
+				
+				<span>
+					<a class="btn btn-primary" id="btnSearData"><span class="glyphicon glyphicon-search"></span><span style="padding-left:5px">查询</span></a>
+					<!--<a class="btn btn-primary" id="btnSearData"><span class="glyphicon glyphicon-search"></span><span style="padding-left:5px">查询</span></a>-->
+					
+						
+					<a class="btn btn-success" id="btnAddInfos"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:5px">新增</span></a>	
+				</span>
+				
+			</div>
+			<div class="data-content" id="dataContent">
+				
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageModal" id="pageModal" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="">
+			      	第1页/共10页
+			      </span>
+			</div>
+		</div>
+		<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+	<!--新增数据字典-->
+	<div class="modal fade" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal" >
+	            <div class="form-group" style="margin-top:30px">
+			      <label for="dataNameModal" class="col-sm-2 control-label">*类型名称</label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="dataNameModal" placeholder="请输入类型名称">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="typeCodeModal" class="col-sm-2 control-label">*类型编号</label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="typeCodeModal" placeholder="类型编号">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="noteModal" class="col-sm-2 control-label">类型说明</label>
+			      <div class="col-sm-10">
+			        <textarea type="text" class="form-control" id="noteModal" style="resize: none;" placeholder="请输入类型说明"></textarea>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" style='margin-top:10px'>
+			    	<a  class="btn btn-success" id="btnAddRealBtn">确认新建</a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--新增数据字典-->
+	<!--修改-->
+	<div class="modal fade" id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal" >
+	            <div class="form-group" style="margin-top:30px">
+			      <label for="editdataNameModal" class="col-sm-2 control-label">*类型名称</label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="editdataNameModal"  disabled="disabled" placeholder="请输入类型名称">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="typeCodeModal" class="col-sm-2 control-label">*类型编号</label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control"  disabled="disabled" id="edittypeCodeModal" placeholder="类型编号">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="editnoteModal" class="col-sm-2 control-label">类型说明</label>
+			      <div class="col-sm-10">
+			        <textarea type="text" class="form-control" id="editnoteModal" style="resize: none;" placeholder="请输入类型说明"></textarea>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" style='margin-top:10px'>
+			    	<a  class="btn btn-success" id="btnEditRealBtn">确认修改</a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

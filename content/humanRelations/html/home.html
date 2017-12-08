@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>用户管理-人事关系</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/fonts.css" />
+	<link rel="stylesheet" href="../css/jquery.orgchart.css">
+	<link rel="stylesheet" type="text/css" href="../css/demo.css">
+
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				账号
+        			</span>
+					<span>
+        		        <input type="text" class="input-style" name="account" id="account" />
+        			</span>
+					<span class="key-word-style">
+        				姓名
+        			</span>
+					<span>
+        		        <input type="text" class="input-style" name="name" id="name" />
+        			</span>
+					<span class="key-word-style">
+        				部门
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="department" id="department" readonly="readonly" placeholder="点击查看部门架构"/>
+        			</span>
+        			<span>
+        				<a style="cursor: pointer;" id="clear">清除</a>
+        			</span>
+					<span class="key-word-style">
+        				职位
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="position" id="position" />
+        		</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchHumanRelations"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<a style='position: absolute;right: 20px;cursor: pointer;' id="btnLook">
+					<p>点击此处以图形模式查看人事关系</p>
+				</a>
+			</div>
+			<div class="data-content" id="data-content">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+					<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+					<span id="">
+			      	页
+			      </span>
+					<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			     </span>
+			</div>
+		</div>
+	</body>
+
+	//设置弹出框
+	<div class="modal fade" id="setModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1100px;">
+			<div class="modal-content">
+				<div  class="clearfix" style="padding: 10px;">
+					<div class="headLine">
+						<span>
+						账号：
+					</span>
+						<span id="useraccount">
+						
+					</span>
+					</div>
+					<div class="headLine">
+						<span>
+						姓名：
+					</span>
+						<span id="username">
+
+					</span>
+					</div>
+					<div class="headLine">
+						<span>
+						部门：
+					</span>
+						<span id="userdepartment">
+					
+					</span>
+					</div>
+					<div class="headLine">
+						<span>
+						职位：
+					</span>
+						<span id="userposition">
+						
+					</span>
+					</div>
+
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="padding: 5px 15px 5px;">
+					<div class="select-content" style="height: 50px;padding: 2px;">
+						<div class="search-items-left">
+							<span class="key-word-style">
+        				账号
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="account1" id="account1" />
+        			</span>
+							<span class="key-word-style">
+        				姓名
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="name1" id="name1" />
+        			</span>
+							<span class="key-word-style">
+        				部门
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="department1" id="department1" readonly="readonly" placeholder="点击查看部门架构"/>
+        			</span>
+        			<span>
+        				<a style="cursor: pointer;" id="clear1">清除</a>
+        			</span>
+							<span class="key-word-style">
+        				职位
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="position1" id="position1" />
+        			</span>
+
+						</div>
+						<div class="search-items-right">
+							<a class="btn btn-primary" style='width:80px' id="btnSearchUncheckedHuman"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+						</div>
+					</div>
+					
+					<div class="all-unchecked" style="width:100%;height:170px;margin-top: 2px;border: 1px solid #DBDBDB;padding: 5px 15px;">
+					<div style="text-align: center;width: 100%;">
+						<p style="margin: 0px;">备选列表</p><hr style="margin: 5px;" />
+					</div>
+					<div class="modal-body" id="uncheckedList" style="width:100%;height:130px;padding: 5px;overflow: auto;">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+
+					</div>
+				</div>
+					<div class="select-content" style="margin-top: 3px;">
+						<div class="search-items-left">
+							<span class="key-word-style">
+        				账号
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="account2" id="account2" />
+        			</span>
+							<span class="key-word-style">
+        				姓名
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="name2" id="name2" />
+        			</span>
+							<span class="key-word-style">
+        				部门
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="department2" id="department2" readonly="readonly" placeholder="点击查看部门架构"/>
+        			</span>
+        			<span>
+        				<a style="cursor: pointer;" id="clear2">清除</a>
+        			</span>
+							<span class="key-word-style">
+        				职位
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="position2" id="position2" />
+        			</span>
+
+						</div>
+						<div class="search-items-right">
+							<a class="btn btn-primary" style='width:80px' id="btnSearchCheckedHuman"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+						</div>
+					</div>
+						<div class="all-checked" style="width:100%;height:170px;margin-top: 2px;border: 1px solid #DBDBDB;padding: 5px 15px;">
+					<div style="text-align: center;width: 100%;">
+						<p style="margin: 0px;">已选列表</p><hr style="margin: 5px;" />
+					</div>
+					<div class="modal-body" id="checkedList" style="width:100%;height:130px;padding: 5px;overflow: auto;">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+
+					</div>
+				</div>
+				
+				</div>
+				<div class="btn-part-two" style="padding: 0px 10px;">
+					<a class="btn the-btn-hover  color-1" style='width:100px' id="btnHROk"><span style="padding-left: 5px;">确定</span></a>
+					<a class="btn the-btn-hover  color-1" style='width:100px' id="btnCancel"><span style="padding-left: 5px;">取消</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div class="theCheckTree">
+		<div class="left-toogle">
+			<span class="glyphicon glyphicon-chevron-right">
+					
+				</span>
+		</div>
+		<div class="right-toogle">
+			<ul class="ztree" id="ztreeOtherGroup">
+
+			</ul>
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="showCheckedModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1100px; height: 400px;">
+			<div class="modal-content" style="width: 100%;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<div class="select-content" style="margin-top: 20px;">
+						<div class="search-items-left">
+							<span class="key-word-style">
+        				账号
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="account3" id="account3" />
+        			</span>
+							<span class="key-word-style">
+        				姓名
+        			</span>
+							<span>
+        		        <input type="text" class="input-style" name="name3" id="name3" />
+        			</span>
+							<span class="key-word-style">
+        				部门
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="department3" id="department3" readonly="readonly" placeholder="点击查看部门架构"/>
+        			</span>
+        			<span>
+        				<a style="cursor: pointer;" id="clear3">清除</a>
+        			</span>
+							<span class="key-word-style">
+        				职位
+        			</span>
+							<span>
+        				<input type="text" class="input-style" name="position3" id="position3" />
+        			</span>
+
+						</div>
+						<div class="search-items-right">
+							<a class="btn btn-primary" style='width:80px' id="btnShowCheckedHuman"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+						</div>
+					</div>
+					<div class="list-content" id="showCheckedList" style="width:100%;height:300px;border: 1px solid #DBDBDB;overflow: auto;padding: 5px 15px;">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--人员关系图-->
+	<div class="modal fade" id="infoModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 1000px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">人员分布图</h4>
+				</div>
+				<div class="modal-body" style="height: 500px;background: #FFFFFF;margin: 0px;padding: 0px;">
+					<div class="modal-body-one">
+						<a class="btn btn-primary btn-search-infos" theEq="0">全部人员</a>
+						<a class="btn btn-default btn-search-infos" theEq="1">自己相关</a>
+					</div>
+					<div class="modal-body-2" id="chartContainer">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" type="text/css" href="../../lib/ztree/css/zTreeStyle/zTreeStyle.css" />
+	<script src="../../lib/ztree/js/jquery.ztree.core-3.5.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/ztree/ztree-st.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../script/html2canvas.js"></script>
+	<script type="text/javascript" src="../script/jquery.orgchart.js"></script>
+
+</html>

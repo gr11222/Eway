@@ -1,0 +1,276 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "microsoft yahei";
+
+}
+
+.body-div-style{
+	
+	width: 100%;
+	width:100%;
+	min-width: 1366px;
+	max-width: 1920px;
+	height: 768px;
+}
+/*页面头部信息*/
+.header-style{
+	position: relative;
+	width:100%;
+	height:75px;
+	background-image: url("../img/header_bg.jpg");
+	background-repeat: repeat-x;
+	box-shadow: 0px 1px 1px #CCCCCC;
+	z-index: 10;
+}
+.logo-style{
+	position:absolute;
+	width: 45px;
+	height: 45px;
+	top:27px;
+	left: 15px;
+}
+.sys-name{
+	position:absolute;
+	width: 205px;
+	height: 45px;
+	line-height: 45px;
+	top:27px;
+	left: 60px;
+	font-size: 18px;
+	font-weight:520 ;
+	color: #666666;
+}
+.head-nav-style{
+	position: absolute;
+	height: 45px;
+	line-height: 45px;
+	top:27px;
+	right: 20px;
+}
+.head-nav-style>ul{
+	margin:0px;padding:0px
+}
+.head-nav-style>ul>li{
+	list-style: none;
+	/*padding-left: 30px;*/
+}
+.head-nav-style>ul>li>a{
+	text-decoration: none;
+	color: #666666;
+}
+/*导航菜单*/
+.real-nav-style{
+	position: absolute;
+	width: 156px;
+	// height: 693px;
+	min-height:693px;
+	background: rgba(31,126,208,1);
+	/*float: left;*/
+	z-index: 11;
+}
+
+.data-content-style{
+	position: absolute;
+	z-index: 9;
+	height: 693px;
+	background: #FFFFFF;
+	left: 156px;
+	padding: 5px 5px;
+	/*float: left;*/	
+}
+
+.left-nav-style{
+	width: 100%;
+	min-height:693px;
+	// height: 663px;
+	padding-top:10px;
+}
+
+.left-nav-style>ul{
+	margin:0px;
+	padding: 0px;
+	
+}
+.left-nav-style>ul>li{
+	position: relative;
+	display: block;
+	width: 90%;
+	min-height: 25px;
+	height: auto;
+	margin: 0px auto;
+	padding: 0px;
+	margin-top:13px
+	/*line-height: 25px;
+	cursor: pointer;
+	border-radius:3px;
+	font-size: 12px;*/
+	
+}
+.second-all-navbar-class{
+	position: relative;
+	top:0px;
+	width: 90%;
+	min-height:0px;
+	height: auto;
+}
+.second-navbar-class{
+	position: relative;
+	top:0px;
+	width: 90%;
+	min-height:0px;
+	height: auto;
+}
+.line-style{
+	position: relative;
+	width:1px;
+	height: 30px;
+	background:#3B95E1 ;
+	left:10px;
+	top:0px
+	/*float: left;*/
+}
+.secnavbar-style{
+	position: absolute;
+	width:5px;
+	height: 5px;
+	border-radius: 5px;
+	background: #FFFFFF;
+	top:15px;
+	left:8px
+}
+.sec-nav-content{
+	position: absolute;
+	width:116px;
+	height: 30px;
+	line-height:30px;
+	top:0px;
+	left:25px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+.sec-nav-content>a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.sec-nav-content>a:hover{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+.sec-nav-content-2{
+	position: absolute;
+	width:116px;
+	height: 30px;
+	line-height:30px;
+	top:0px;
+	left:7.9px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+
+.secnavbar-style-2{
+	position: absolute;
+	width:5px;
+	height: 5px;
+	border-radius: 5px;
+	/*background: #FFFFFF;*/
+	top:13px;
+	left:0px
+}
+/*.sec-nav-content-2:hover{
+	background: #FFFFFF;
+}*/
+.circle-style{
+	background: #88C6F9;
+}
+.circle-active{
+	background: #FFFFFF;
+}
+.secnavbar-style-3{
+	position: absolute;
+	width:116px;
+	height: 30px;
+	line-height:33px;
+	top:0px;
+	left:15px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+.secnavbar-style-3:hover{
+	color: #FFFFFF;
+}
+.secnavbar-style-3-a-active{
+	color: #FFFFFF;
+}
+.secnavbar-style-3-a-unactive{
+	color: #88C6F9;
+}
+.secnavbar-style-3-a-active:hover{
+	color: #FFFFFF;text-decoration: none;
+}
+.secnavbar-style-3-a-unactive:hover{
+	color: #88C6F9;text-decoration: none;
+}
+.secnavbar-style-3>a{
+	text-decoration: none;
+	/*color: #FFFFFF;*/
+}
+/*.secnavbar-style-3>a:hover{
+	text-decoration: none;
+	color: #88C6F9;
+}*/
+.li-active{
+	background: rgba(255,255,255,1);
+	color: rgba(31,126,208,1);
+}
+.li-active:hover{
+	color: rgba(31,126,208,1);
+}
+.li-unactive{
+	background: rgba(59,149,227,1);
+	color: rgba(255,255,255,1);
+	-moz-box-shadow:1px 1px 1px #2E73AE inset;              
+	-webkit-box-shadow:1px 1px 1px #2E73AE inset;            
+	box-shadow:1px 1px 1px #2E73AE inset;                  
+}
+.li-unactive:hover{
+	color: rgba(255,255,255,1);
+}
+.li-a-style{
+	display: block;
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	cursor: pointer;
+	border-radius:3px;
+	font-size: 12px;
+	text-decoration: none;
+}
+.li-a-style:hover{
+	text-decoration: none;
+	
+}
+
+.left-nav-style>ul>li span{
+	padding-left: 10px;
+}
+/*页面右侧*/
+
+.data-content-items{
+	width: 100%;
+	height: 683px;
+	/*background: red;*/
+}
+
+/*页面右侧下方版权信息*/
+.footer-style{
+	width: 100%;
+	height: 23px;
+	text-align: center;
+	line-height: 25px;
+	font-size: 10px;
+	color: #000000;
+	border-top:1px solid #E4E4E4
+}
+
+

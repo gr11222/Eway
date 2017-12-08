@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">关键字</span>
+				<span>
+					<input type="text" name="keyWord" id="keyWord" placeholder="请输入账号或中文名" />
+				</span>
+
+				<span>
+					<a class="btn btn-primary" id="btnSearData"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				<span class="key-word-style hide">按公司筛选</span>
+				<span>
+					<select type="text" name="companySelect" id="companySelect" class="hide"></select>
+				</span>
+				<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-success" id="btnAddUserInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建</span></a>
+					<!--<a class="btn btn-warning" id="btnAddFacData"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">冻结</span></a>
+					<a class="btn btn-primary" id="btnAddFacData"><span class="glyphicon glyphicon-remove"></span><span style="padding-left: 5px;">解冻</span></a>-->
+				</div>
+			</div>
+			<div class="data-content">
+				<section class="tab-items">
+					<section class="tab-items-content">
+						<nav class="tab-nav">
+							<ul>
+								<li class="li-table-change li-table-active" thenum='0'>用户列表</li>
+								<!--<li class="li-table-change"   thenum='1'>待验证用户</li>
+								<li class="li-table-change"   thenum='2'>已驳回用户</li>-->
+							</ul>
+						</nav>
+						<div class="border-style"></div>
+					</section>
+
+				</section>
+				<section class="data-real-content" id="dataRealContent1">
+
+				</section>
+				<section class="data-real-content hide" id="dataRealContent2">
+					2
+				</section>
+				<section class="data-real-content hide" id="dataRealContent3">
+					3
+				</section>
+				<div class="page-content">
+					<div class="page-content">
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+					<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+					<span id="">
+			      	页
+			      </span>
+					<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+				</div>
+				<!--<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择关键字后,点击查询按钮进行查询！
+				</div>-->
+			</div>
+		</div>
+
+	</body>
+
+	<!--添加用户窗口-->
+	<div class="modal" id="lanelModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 380px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">新建用户信息</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="userAccount" class="col-sm-3 control-label">*账号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-basicInfo" id="userAccount" placeholder="账号"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userPassword" class="col-sm-3 control-label">*密码</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control user-basicInfo" id="userPassword" placeholder="密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userPasswordSure" class="col-sm-3 control-label">*确认密码</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control user-basicInfo" id="userPasswordSure" placeholder="确认密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userName" class="col-sm-3 control-label">*姓名</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-basicInfo" id="userName" placeholder="姓名"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userType" class="col-sm-3 control-label">*角色</label>
+							<div class="col-sm-9">
+								<select name="userType" class="form-control user-basicInfo" id="userType">
+
+								</select>
+							</div>
+						</div>
+						<!--<div class="form-group">
+				    <label for="companyModal" class="col-sm-3 control-label">*公司</label>
+				    <div class="col-sm-9">
+				   	  <select name="companyModal" class="form-control user-basicInfo" id="companyModal" >
+				   	 
+				   	  </select>
+				    </div>-->
+						<div class="form-group">
+							<label for="departmentModal" class="col-sm-3 control-label">部门</label>
+							<div class="col-sm-9" style='position: relative;'>
+								<input type="text" style="padding-right: 30px;cursor: pointer;" class="form-control user-basicInfo" id="departmentModal" readonly="readonly" placeholder="点击查看部门架构"/>
+								<div id='btnCreateClear' class="btn" style="position: absolute;right: 15px;top: 0px;">&times;</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="positionModal" class="col-sm-3 control-label">职位</label>
+							<div class="col-sm-9">
+								<select name="positionModal" class="form-control user-basicInfo" id="positionModal">
+
+								</select>
+							</div>
+						</div>
+						<!--<div class="form-group">
+				    <label for="userHeadImg" class="col-sm-3 control-label">头像</label>
+				    <div class="col-sm-9">
+				    	<div style='width:20%;float:left'>
+				    		<div  style="width:35px;height:35px;border-radius:5px;border:1px solid #CFCFCF"/>
+				    		</div>
+				    	</div>
+				        <div style='width:80%;float:left'>
+				      		<input type="file" class="form-control" id="userHeadImg" name="userHeadImg">
+				        </div>
+				      
+				    </div>
+				  </div>-->
+						<div class="form-group text-center">
+							<button type="button" id="btnNextInfoModal" class="btn btn-danger">下一步</button>
+							<button type="button" id="btnRealAddUser" class="btn btn-success">确认添加</button>
+
+						</div>
+						<div class="form-group " style="padding:5px">
+							<strong style="color: red;font-size:12px">提示:如需继续完善资料,请点击下一步;否则点击确认添加按钮添加用户.</strong>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--添加标签窗口-->
+	<!--添加用户窗口2-->
+	<div class="modal " id="lanelModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 380px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h5 class="modal-title" id="exampleModalLabel">联系信息</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="userphone" class="col-sm-3 control-label">固话</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='1' id="userphone" placeholder="固话">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userphone2" class="col-sm-3 control-label">移动电话</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='2' id="userphone2" placeholder="移动电话">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="weixin" class="col-sm-3 control-label">微信</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='4' id="weixin" placeholder="微信">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="weibo" class="col-sm-3 control-label">微博</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='5' id="weibo" placeholder="微博">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="gonggonghao" class="col-sm-3 control-label">公众号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='6' id="gonggonghao" placeholder="公众号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="qqId" class="col-sm-3 control-label">QQ</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='7' id="qqId" placeholder="QQ">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userEmail" class="col-sm-3 control-label">邮箱</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact" theNum='8' id="userEmail" placeholder="邮箱">
+
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<button type="button" id="btnAddUserContact" class="btn btn-success">确认添加</button>
+						</div>
+					</form>
+				</div>
+				<!--<div class="modal-header">
+		        
+		        <h5 class="modal-title" id="exampleModalLabel">其他信息</h5>
+		      </div>-->
+				<!--<div class="modal-body" >
+		        <form class="form-horizontal">
+		          <div class="form-group">
+				    <label for="userphone" class="col-sm-3 control-label">性别</label>
+				    <div class="col-sm-9" style="padding-top:5px">
+				      <input type="radio" id="userSexy1"  name="userSexy" >
+				      	<label for="userSexy1" style="cursor: pointer;">男</label>
+				      <input type="radio" id="userSexy2"  name="userSexy" >
+				      	<label for="userSexy2" style="cursor: pointer;">女</label>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userHeadImg" class="col-sm-3 control-label">头像</label>
+				    <div class="col-sm-9">
+				      <input type="file" class="form-control" id="userHeadImg">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userLabelModal" class="col-sm-3 control-label">个性签名</label>
+				    <div class="col-sm-9">
+				      <textarea class="form-control" id="userLabelModal" placeholder="个性签名"></textarea>
+				    </div>
+				  </div>
+				  
+				  </form>
+		      </div>   -->
+			</div>
+		</div>
+	</div>
+	<!--添加用户窗口2-->
+	<!--修改用户基本信息窗口-->
+	<div class="modal" id="editUserModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 380px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">修改用户基本信息</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="edituserAccount" class="col-sm-3 control-label">*账号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-basicInfo-edit" disabled="disabled" id="edituserAccount" placeholder="账号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edituserPassword" class="col-sm-3 control-label">*密码</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control user-basicInfo-edit" id="edituserPassword" placeholder="密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edituserPasswordSure" class="col-sm-3 control-label">*确认密码</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control user-basicInfo-edit" id="edituserPasswordSure" placeholder="确认密码">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edituserName" class="col-sm-3 control-label">*姓名</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-basicInfo-edit" id="edituserName" placeholder="姓名"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edituserType" class="col-sm-3 control-label">*角色</label>
+							<div class="col-sm-9">
+								<select name="userType" class="form-control user-basicInfo-edit" id="edituserType">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="departmentModal1" class="col-sm-3 control-label">部门</label>
+							<div class="col-sm-9">
+								<input type="text" style="padding-right: 30px;cursor: pointer;" class="form-control user-basicInfo" id="departmentModal1" readonly="readonly" placeholder="点击查看部门架构"/>
+								<div id='btnEditClear' class="btn" style="position: absolute;right: 15px;top: 0px;">&times;</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="positionModal1" class="col-sm-3 control-label">职位</label>
+							<div class="col-sm-9">
+								<select name="positionModal1" class="form-control user-basicInfo" id="positionModal1">
+
+								</select>
+							</div>
+						</div>
+						<!--<div class="form-group">
+				    <label for="editcompanyModal" class="col-sm-3 control-label">公司</label>
+				    <div class="col-sm-9">
+				   	  <select name="companyModal" class="form-control user-basicInfo-edit" id="editcompanyModal" >
+				   	 
+				   	  </select>
+				    </div>
+				  </div>-->
+						<!--<div class="form-group">
+				    <label for="userHeadImg" class="col-sm-3 control-label">头像</label>
+				    <div class="col-sm-9">
+				    	<div style='width:20%;float:left'>
+				    		<div  style="width:35px;height:35px;border-radius:5px;border:1px solid #CFCFCF"/>
+				    		</div>
+				    	</div>
+				        <div style='width:80%;float:left'>
+				      		<input type="file" class="form-control" id="userHeadImg" name="userHeadImg">
+				        </div>
+				      
+				    </div>
+				  </div>-->
+						<div class="form-group text-center">
+							<button type="button" id="btnRealEditBasicUser" class="btn btn-success">确认修改</button>
+
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改用户联系方式-->
+	<div class="modal " id="editUserModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document" style="width: 380px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h5 class="modal-title" id="exampleModalLabel2">联系信息</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="userphone3" class="col-sm-3 control-label">固话</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='1' id="userphone3" placeholder="固话">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userphone4" class="col-sm-3 control-label">移动电话</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='2' id="userphone4" placeholder="移动电话">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="weixin2" class="col-sm-3 control-label">微信</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='4' id="weixin2" placeholder="微信">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="weibo2" class="col-sm-3 control-label">微博</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='5' id="weibo2" placeholder="微博">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="gonggonghao2" class="col-sm-3 control-label">公众号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='6' id="gonggonghao2" placeholder="公众号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="qqId" class="col-sm-3 control-label">QQ</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='7' id="qqId2" placeholder="QQ">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userEmail2" class="col-sm-3 control-label">邮箱</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control user-contact2" theNum='8' id="userEmail2" placeholder="邮箱">
+
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<button type="button" id="btnEditUserContact2" class="btn btn-success">确认修改</button>
+						</div>
+					</form>
+				</div>
+				<!--<div class="modal-header">
+		        
+		        <h5 class="modal-title" id="exampleModalLabel">其他信息</h5>
+		      </div>-->
+				<!--<div class="modal-body" >
+		        <form class="form-horizontal">
+		          <div class="form-group">
+				    <label for="userphone" class="col-sm-3 control-label">性别</label>
+				    <div class="col-sm-9" style="padding-top:5px">
+				      <input type="radio" id="userSexy1"  name="userSexy" >
+				      	<label for="userSexy1" style="cursor: pointer;">男</label>
+				      <input type="radio" id="userSexy2"  name="userSexy" >
+				      	<label for="userSexy2" style="cursor: pointer;">女</label>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userHeadImg" class="col-sm-3 control-label">头像</label>
+				    <div class="col-sm-9">
+				      <input type="file" class="form-control" id="userHeadImg">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userLabelModal" class="col-sm-3 control-label">个性签名</label>
+				    <div class="col-sm-9">
+				      <textarea class="form-control" id="userLabelModal" placeholder="个性签名"></textarea>
+				    </div>
+				  </div>
+				  
+				  </form>
+		      </div>   -->
+			</div>
+		</div>
+	</div>
+	<!--修改用户联系方式-->
+<!--联系信息-->
+<div class="modal fade" id="contactModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; ">
+			<div class="modal-content" style="width: 100%;">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="margin-top: 20px;">
+					<div class="list-content" id="contact" style="width:100%;height:80px;padding: 5px 15px;">
+					
+					</div>				
+				</div>
+			</div>
+		</div>
+	</div>
+<!--联系信息-->
+	<!--组织架构树-->
+	<div class="theCheckTree">
+		<div class="left-toogle">
+			<span class="glyphicon glyphicon-chevron-right">
+					
+				</span>
+		</div>
+		<div class="right-toogle">
+			<ul class="ztree" id="ztreeOtherGroup">
+
+			</ul>
+		</div>
+
+	</div>
+	<!--组织架构树-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/ztree/css/zTreeStyle/zTreeStyle.css" />
+	<script src="../../lib/ztree/js/jquery.ztree.core-3.5.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/ztree/ztree-st.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

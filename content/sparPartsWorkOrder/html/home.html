@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>备品备件-备品备件工单</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+
+			<div class="data-content">
+				<section class="tab-items">
+					<section class="tab-items-content">
+						<nav class="tab-nav">
+							<ul>
+								<li class="li-table-change li-table-active" thenum='0'>出库工单</li>
+								<li class="li-table-change" thenum='1'>采购工单</li>
+								<!--<li class="li-table-change"   thenum='2'>未生成标签资产</li>-->
+							</ul>
+						</nav>
+						<div class="border-style"></div>
+					</section>
+
+				</section>
+				<section class="data-real-content" id="dataRealContent1">
+					<div class="data-content-tab">
+
+						<!---->
+						<div class="search-items">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="companyName" class="col-sm-4 control-label">公司</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="companyName" placeholder="公司">-->
+											<select name="companyName" id="companyName" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="deviceTypeName" class="col-sm-4 control-label">备品类型</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="deviceTypeName" placeholder="资产类型">-->
+											<select name="deviceTypeName" theSecId="beipinModel" thrId="fuwushang" id="deviceTypeName" class="form-control">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="projectName" class="col-sm-4 control-label">项目</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="keyWord" placeholder="关键字">-->
+											<!--<input type="text" class=" form-control"  name="projectName" id="projectName" placeholder="项目" />-->
+											<select name="projectName" id="projectName" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+										</div>
+									</div>
+									<div class="form-group" style="padding-top:0px;">
+										<label for="beipinModel" class="col-sm-4 control-label">备品型号</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control"   name="beipinModel" id="beipinModel"   placeholder="备品型号"/>-->
+											<select name="beipinModel" id="beipinModel" thrId="fuwushang" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+
+									<div class="form-group" style="padding-top:0px;">
+										<label for="workNum" class="col-sm-4 control-label">工单编号</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" name="workNum" id="workNum" />
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="fuwushang" class="col-sm-4 control-label">服务商</label>
+										<div class="col-sm-8">
+											<select name="assetType" id="fuwushang" class="select-style form-control">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="startTime" class="col-sm-4 control-label">开始时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="datepicker-class form-control" name="startTime" id="startTime" placeholder="开始时间" />
+										</div>
+									</div>
+									<div class="form-group" style="padding-top:0px;">
+										<label for="endTime" class="col-sm-4 control-label">结束时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="datepicker-class form-control" name="endTime" id="endTime" placeholder="结束时间" />
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:30px">
+								<form class="form-horizontal">
+									<div class="col-sm-offset-2 col-sm-10">
+										<!--<button type="submit" class="btn btn-default">Sign in</button>-->
+										<a class="btn btn-warning" id="btnSearchBeiPinInfos" style="width: 110px;"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+
+									</div>
+
+								</form>
+							</div>
+						</div>
+
+						<!---->
+						<div class="status-tag">
+							<a class="btn btn-primary btn-hover" theEq="0">草稿</a>
+							<a class="btn btn-default btn-hover" theEq="1">待审核</a>
+							<a class="btn btn-default btn-hover" theEq="2">已驳回</a>
+							<a class="btn btn-default btn-hover" theEq="3">已审核</a>
+							<a class="btn btn-default btn-hover" theEq="4">已完成</a>
+							<div class="btn-items-position">
+								<a class="btn btn-success " id="btnNewInfos"><span class="glyphicon glyphicon-plus"></span><span style='padding-left:5px'>新建</span></a>
+								<a class="btn btn-primary btnSubMitForone" submitNum="1" id=""><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>提交</span></a>
+							</div>
+							<div class="btn-items-position hide">
+								<a class="btn btn-success btnSubMitForone" submitNum="3" id="btnShenHe"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>审核</span></a>
+								<a class="btn btn-primary btnSubMitForone" submitNum="2" id="btnboHui"><span class="glyphicon glyphicon-remove"></span><span style='padding-left:5px'>驳回</span></a>
+							</div>
+							<div class="btn-items-position hide">
+								<a class="btn btn-primary btnSubMitForone" submitNum="1" id="btnSubmit"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>重新提交</span></a>
+
+							</div>
+							<div class="btn-items-position hide">
+								<a class="btn btn-success btnSubMitForone" submitNum="4" id="btnReady"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>已完成</span></a>
+								<a class="btn btn-primary " id="btnPrint"><span class="glyphicon glyphicon-print"></span><span style='padding-left:5px'>打印工单</span></a>
+							</div>
+							<div class="btn-items-position hide">
+							</div>
+						</div>
+						<div class="realDataContent-forData" id="dataContent1">
+							<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+								请选择查询条件后,点击查询按钮进行查询！
+							</div>
+						</div>
+					</div>
+					<div class="page-content">
+						<span id="">
+			      	       <a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			                    </span>
+						<span id="">
+			      	       <a class="btn btn-primary" id="btnPageNext">下一页</a>
+			               </span>
+						<span id="">
+			      	         <a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			            </span>
+						<span id="">
+				      	   <input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+				         </span>
+						<span id="">
+				      	    页
+				          </span>
+						<span id="pageTotalInfo">
+				      	    <!--第1页/共10页-->
+				         </span>
+					</div>
+				</section>
+				<section class="data-real-content hide" id="dataRealContent2">
+					<div class="data-content-tab">
+						<div class="search-items">
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="companyName2" class="col-sm-4 control-label">公司</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="companyName2" placeholder="公司">-->
+											<select name="companyName2" id="companyName2" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="deviceTypeName2" class="col-sm-4 control-label">备品类型</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="deviceTypeName" placeholder="资产类型">-->
+											<select name="deviceTypeName2" id="deviceTypeName2" theSecId="beipinModel2" thrId="fuwushang2" class="form-control">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="projectName2" class="col-sm-4 control-label">项目</label>
+										<div class="col-sm-8">
+											<!--<input type="text" class="form-control" id="keyWord" placeholder="关键字">-->
+											<!--<input type="text" class=" form-control"  name="projectName2" id="projectName" placeholder="项目" />-->
+											<select name="projectName2" id="projectName2" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+										</div>
+									</div>
+
+									<div class="form-group" style="padding-top:0px;">
+										<label for="beipinModel2" class="col-sm-4 control-label">备品型号</label>
+										<div class="col-sm-8">
+											<select name="beipinModel2" id="beipinModel2" thrId="fuwushang2" class="select-style form-control">
+												<option value=""></option>
+											</select>
+
+											<!--<input type="text" class="form-control"   name="beipinModel2" id="beipinModel2"   placeholder="备品型号"/>-->
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="workNum2" class="col-sm-4 control-label">工单编号</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" name="workNum2" id="workNum2" />
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="fuwushang2" class="col-sm-4 control-label">服务商</label>
+										<div class="col-sm-8">
+											<select name="fuwushang2" id="fuwushang2" class="select-style form-control">
+												<option value=""></option>
+											</select>
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+								<form class="form-horizontal" style="padding 0px auto">
+									<div class="form-group" style="padding-top:0px;">
+										<label for="startTime2" class="col-sm-4 control-label">开始时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="datepicker-class form-control" name="startTime2" id="startTime2" placeholder="开始时间" />
+										</div>
+									</div>
+									<div class="form-group" style="padding-top:0px;">
+										<label for="endTime2" class="col-sm-4 control-label">结束时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="datepicker-class form-control" name="endTime2" id="endTime2" placeholder="结束时间" />
+										</div>
+									</div>
+
+								</form>
+							</div>
+							<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:30px">
+								<form class="form-horizontal">
+									<div class="col-sm-offset-2 col-sm-10">
+										<!--<button type="submit" class="btn btn-default">Sign in</button>-->
+										<a class="btn btn-warning" id="btnSearchBeiPinInfos2" style="width: 110px;"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+
+									</div>
+
+								</form>
+							</div>
+						</div>
+						<div class="status-tag">
+							<a class="btn btn-primary btn-hover2" theEq="0">草稿</a>
+							<a class="btn btn-default btn-hover2" theEq="1">待审核</a>
+							<a class="btn btn-default btn-hover2" theEq="2">已驳回</a>
+							<a class="btn btn-default btn-hover2" theEq="3">已审核</a>
+							<a class="btn btn-default btn-hover2" theEq="4">已完成</a>
+							<div class="btn-items-position2">
+								<a class="btn btn-success" id="btnNewInfos2"><span class="glyphicon glyphicon-plus"></span><span style='padding-left:5px'>新建</span></a>
+								<a class="btn btn-primary btnSubMitForone2" submitNum="1" id=""><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>提交</span></a>
+							</div>
+							<div class="btn-items-position2 hide">
+								<a class="btn btn-success btnSubMitForone2" submitNum="3" id="btnShenHe2"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>审核</span></a>
+								<a class="btn btn-primary btnSubMitForone2" submitNum="2" id="btnboHui2"><span class="glyphicon glyphicon-remove"></span><span style='padding-left:5px'>驳回</span></a>
+							</div>
+							<div class="btn-items-position2 hide">
+								<a class="btn btn-primary btnSubMitForone2" submitNum="1" id="btnSubmit2"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>重新提交</span></a>
+
+							</div>
+							<div class="btn-items-position2 hide">
+								<a class="btn btn-success btnSubMitForone2" submitNum="4" id="btnReady2"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:5px'>已完成</span></a>
+								<a class="btn btn-primary " id="btnPrint2"><span class="glyphicon glyphicon-print"></span><span style='padding-left:5px'>打印工单</span></a>
+							</div>
+							<div class="btn-items-position2 hide">
+							</div>
+						</div>
+						<div class="realDataContent-forData" id="dataContent2">
+							<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+								请选择查询条件后,点击查询按钮进行查询！
+							</div>
+						</div>
+					</div>
+					<div class="page-content">
+						<span>
+					      	<a class="btn btn-primary" id="btnPageBefore1">上一页</a>
+				        </span>
+						<span>
+				      	  <a class="btn btn-primary" id="btnPageNext1">下一页</a>
+				        </span>
+						<span>
+				      	   <a class="btn btn-primary" id="btnPageJump1">跳转至</a>
+				        </span>
+						<span id="">
+				      	   <input type="text" name="pageNumId1" id="pageNumId1" style="width:33px;height:33px" />
+				         </span>
+						<span id="">
+				      	    页
+				          </span>
+						<span id="pageTotalInfo1">
+				      	    <!--第1页/共10页-->
+				         </span>
+					</div>
+				</section>
+
+			</div>
+		</div>
+		<!--添加-->
+		<div class="modal fade" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-body" style="padding: 30px;">
+						<form class="form-horizontal">
+							<!--<div class="form-group" style="margin-top:30px">
+				      <label for="workOrderNumModal" class="col-sm-3 control-label">*工单编号</label>
+				      <div class="col-sm-9">
+				       <input type="text" class="form-control" id="workOrderNumModal" readonly placeholder="工单编号">
+				      </div>
+				    </div>-->
+							<!--<div class="form-group" >
+				      <label for="spTypeModal" class="col-sm-3 control-label">*备品类型</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="spTypeModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group" style="margin-top:20px">
+								<label for="beipinTypeModal" class="col-sm-3 control-label">*备品类型</label>
+								<div class="col-sm-9">
+									<select class="form-control" theSecId="spTypeNumModel" thrId="spMadeByModal" id="beipinTypeModal">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="spTypeNumModel" class="col-sm-3 control-label">*备品型号</label>
+								<div class="col-sm-9">
+									<!--<input type="text" class="form-control" id="spTypeNumModel" placeholder="备品型号" >-->
+
+									<select class="form-control" id="spTypeNumModel" thrId="spMadeByModal">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="spMadeByModal" class="col-sm-3 control-label">*服务商</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="spMadeByModal">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<!--<div class="form-group" >
+				      <label for="deviceGiveModal" class="col-sm-3 control-label">*设备提供商</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="deviceGiveModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="spNums" class="col-sm-3 control-label">申请备品件数</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="spNums" placeholder="申请备品件数" value="1">
+								</div>
+							</div>
+
+							<!--<div class="form-group" >
+				      <label for="theAssetModal" class="col-sm-3 control-label">目标资产</label>
+				      <div class="col-sm-9">
+				        <input type="text" class="form-control" id="theAssetModal" placeholder="目标资产">
+				      	<div id="assetIdContent" style='position: absolute;width:93.55%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+				      </div>
+				    </div>
+				     -->
+							<div class="form-group text-center" style='margin-top:10px'>
+								<a class="btn btn-success" id="btnAddForOrder">确认</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--添加-->
+		<!--添加2-->
+		<div class="modal fade" id="addDataModal2" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-body">
+						<form class="form-horizontal">
+							<!--<div class="form-group" style="margin-top:30px">
+				      <label for="workOrderNumModal" class="col-sm-3 control-label">*工单编号</label>
+				      <div class="col-sm-9">
+				       <input type="text" class="form-control" id="workOrderNumModal" readonly placeholder="工单编号">
+				      </div>
+				    </div>-->
+							<!--<div class="form-group" >
+				      <label for="spTypeModal" class="col-sm-3 control-label">*备品类型</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="spTypeModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group" style="margin-top:30px">
+								<label for="beipinTypeModal2" class="col-sm-3 control-label">*备品类型</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="beipinTypeModal2" theSecId="spTypeNumModel2" thrId="spMadeByModal2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="spTypeNumModel2" class="col-sm-3 control-label">*备品型号</label>
+								<div class="col-sm-9">
+									<!--<input type="text" class="form-control" id="spTypeNumModel2" placeholder="备品型号" >-->
+
+									<select class="form-control" id="spTypeNumModel2" thrId="spMadeByModal2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="spMadeByModal2" class="col-sm-3 control-label">*服务商</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="spMadeByModal2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<!--<div class="form-group" >
+				      <label for="deviceGiveModal" class="col-sm-3 control-label">*设备提供商</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="deviceGiveModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="spNums2" class="col-sm-3 control-label">采购备品件数</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="spNums2" placeholder="采购备品件数" value="1">
+								</div>
+							</div>
+
+							<!--<div class="form-group" >
+				      <label for="theAssetModal" class="col-sm-3 control-label">目标资产</label>
+				      <div class="col-sm-9">
+				        <input type="text" class="form-control" id="theAssetModal" placeholder="目标资产">
+				      	<div id="assetIdContent" style='position: absolute;width:93.55%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+				      </div>
+				    </div>
+				     -->
+							<div class="form-group text-center" style='margin-top:10px'>
+								<a class="btn btn-success" id="btnAddForOrder2">确认</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--添加2-->
+		<!--修改1-->
+		<div class="modal fade" id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-body" style="padding: 30px;">
+						<form class="form-horizontal">
+							<!--<div class="form-group" style="margin-top:30px">
+				      <label for="workOrderNumModal" class="col-sm-3 control-label">*工单编号</label>
+				      <div class="col-sm-9">
+				       <input type="text" class="form-control" id="workOrderNumModal" readonly placeholder="工单编号">
+				      </div>
+				    </div>-->
+							<!--<div class="form-group" >
+				      <label for="spTypeModal" class="col-sm-3 control-label">*备品类型</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="spTypeModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="editbeipinTypeModal" class="col-sm-3 control-label">*备品类型</label>
+								<div class="col-sm-9">
+									<select class="form-control" disabled="disabled" id="editbeipinTypeModal">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editspTypeNumModel" class="col-sm-3 control-label">*备品型号</label>
+								<div class="col-sm-9">
+									<!--<input type="text" disabled="disabled" class="form-control" id="editspTypeNumModel" placeholder="备品型号" >-->
+									<select class="form-control" disabled="disabled" id="editspTypeNumModel">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editspMadeByModal" class="col-sm-3 control-label">*服务商</label>
+								<div class="col-sm-9">
+									<select class="form-control" disabled="disabled" id="editspMadeByModal">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<!--<div class="form-group" >
+				      <label for="deviceGiveModal" class="col-sm-3 control-label">*设备提供商</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="deviceGiveModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="editspNums" class="col-sm-3 control-label">申请备品件数</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="editspNums" placeholder="申请备品件数" value="1">
+								</div>
+							</div>
+
+							<!--<div class="form-group" >
+				      <label for="theAssetModal" class="col-sm-3 control-label">目标资产</label>
+				      <div class="col-sm-9">
+				        <input type="text" class="form-control" id="theAssetModal" placeholder="目标资产">
+				      	<div id="assetIdContent" style='position: absolute;width:93.55%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+				      </div>
+				    </div>
+				     -->
+							<div class="form-group text-center" style='margin-top:10px'>
+								<a class="btn btn-success" id="editbtnAddForOrder">确认</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改1-->
+
+		<!--修改2-->
+		<div class="modal fade" id="editDataModal2" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<div class="modal-body" style="padding: 30px;">
+						<form class="form-horizontal">
+							<!--<div class="form-group" style="margin-top:30px">
+				      <label for="workOrderNumModal" class="col-sm-3 control-label">*工单编号</label>
+				      <div class="col-sm-9">
+				       <input type="text" class="form-control" id="workOrderNumModal" readonly placeholder="工单编号">
+				      </div>
+				    </div>-->
+							<!--<div class="form-group" >
+				      <label for="spTypeModal" class="col-sm-3 control-label">*备品类型</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="spTypeModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="editbeipinTypeModal2" class="col-sm-3 control-label">*备品类型</label>
+								<div class="col-sm-9">
+									<select class="form-control" disabled="disabled" id="editbeipinTypeModal2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editspTypeNumModel2" class="col-sm-3 control-label">*备品型号</label>
+								<div class="col-sm-9">
+									<!--<input type="text" class="form-control" id="editspTypeNumModel2" placeholder="备品型号" >-->
+
+									<select class="form-control" disabled="disabled" id="editspTypeNumModel2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="editspMadeByModal2" class="col-sm-3 control-label">*服务商</label>
+								<div class="col-sm-9">
+									<select class="form-control" disabled="disabled" id="editspMadeByModal2">
+										<option value=""></option>
+									</select>
+								</div>
+							</div>
+							<!--<div class="form-group" >
+				      <label for="deviceGiveModal" class="col-sm-3 control-label">*设备提供商</label>
+				      <div class="col-sm-9">
+				        <select class="form-control" id="deviceGiveModal">
+				      		<option value=""></option>
+				      	</select>
+				      </div>
+				    </div>-->
+							<div class="form-group">
+								<label for="editspNums2" class="col-sm-3 control-label">采购备品件数</label>
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="editspNums2" placeholder="采购备品件数" value="1">
+								</div>
+							</div>
+
+							<!--<div class="form-group" >
+				      <label for="theAssetModal" class="col-sm-3 control-label">目标资产</label>
+				      <div class="col-sm-9">
+				        <input type="text" class="form-control" id="theAssetModal" placeholder="目标资产">
+				      	<div id="assetIdContent" style='position: absolute;width:93.55%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+				      </div>
+				    </div>
+				     -->
+							<div class="form-group text-center" style='margin-top:10px'>
+								<a class="btn btn-success" id="editbtnAddForOrder2">确认</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改2-->
+	</body>
+
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src='../script/jquery-migrate-1.1.0.js.js'></script>
+	<script type="text/javascript" src='../script/jquery.jqprint-0.3.js'></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

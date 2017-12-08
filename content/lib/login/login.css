@@ -1,0 +1,84 @@
+﻿body{
+	margin:0px;
+	padding:0px;
+	background: #F2F2F2;
+	font-family: "微软雅黑";
+}
+.all-div{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	min-width: 1366px;
+	min-height: 768px;
+	overflow: hidden;
+}
+.bg-div{
+	position: relative;
+	width: 1366px;
+	height: 768px;
+	background: url("login.jpg");
+	margin: 0 auto;
+}
+.eyebg-div{
+	position: relative;
+	width: 1366px;
+	height: 768px;
+	background: url("eyeLogin.jpg");
+}
+.footer{
+	position: absolute; 
+	bottom: 50px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.text-location{
+	position: absolute;
+	width: 200px;
+	height: 30px;
+	/*background: red;*/
+	left: 822px;
+	padding:0px;
+	font-size: 12px;
+	top:240px;
+	line-height: 30px;
+	color: #D9534F;
+	/* display: none; */
+	
+}
+.username-position{
+	position: absolute;
+	width: 310px;
+	height: 33px;
+	/*background: red;*/
+	top:282px;
+	left: 747px;
+	padding:0px
+}
+.password-position{
+	position: absolute;
+	width: 310px;
+	height: 33px;
+	/*background: red;*/
+	top:331px;
+	left: 747px;
+}
+.btn-position{
+	position: absolute;
+	width: 352px;
+	height: 40px;
+	background: #58A4EF;
+	top:413px;
+	left: 747px;
+	border-radius: 5px;
+	cursor:pointer;
+	color: #FFFFFF;
+	line-height: 40px;
+	text-align: center;
+}
+.btn-position:hover{
+	background: #2A6496;
+}
+.input-style{
+	width: 310px;
+	height: 28px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../lib/setLoading/loadingStart.css"/>
+	<script src="../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/setLoading/loading-start.js" type="text/javascript" charset="utf-8"></script>
+	<body style="margin:0px;padding: 0px;">
+		<div  id="divLoading" style="position: absolute;width: 100%;height: 100%;">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		function setJson(jsonStr, name, value, array)
+		{
+		    if(!jsonStr)jsonStr="{}";
+		    var jsonObj = JSON.parse(jsonStr);
+		    if (array) {
+		        jsonObj[name] = eval("["+value+"]");
+		    }
+		    else {
+		        jsonObj[name] = value;
+		    }
+		    return JSON.stringify(jsonObj) 
+		}
+		function getInfoPara(){
+			var thePath = window.location.href.split("?");
+			var theCompany = thePath[1].split("=");
+			var jsonData = setJson(null,"requestCommand","");
+				jsonData = setJson(jsonData,"responseCommand","");
+				jsonData = setJson(jsonData,"sign",theCompany[1]);
+				jsonData = setJson(jsonData,"servicePath","");
+				jsonData = setJson(jsonData,"htmlPath","");
+				console.log("获取页面的元素传值"+jsonData);
+				
+				return jsonData;
+		}
+		function getInfo(){
+		
+			$.ajax({
+				type:"post",
+				dataType:'json',
+				url:"/DevOpsNoSpring/servlet/DevOpsService?cmd=WeiXinPathSearchCmd",
+				contentType:"application/text,charset=utf-8",
+				data:getInfoPara(),
+				success:function(msg){	
+				console.log(JSON.stringify(msg));	
+			
+					loadingRemove();
+					if(msg.responseCommand.toUpperCase().indexOf("OK") != -1)
+					{
+						var thePath = window.location.href.split("?");
+						
+						window.location.href = msg.htmlPath+"?"+thePath[1]+"?"+thePath[2];
+					}else{
+						alert("交互失败");
+						return;
+						
+					}
+					
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown){
+					loadingRemove();
+					alert("交互失败");
+				}
+			})
+		}
+
+		$(document).ready(function(){
+			loadingStart("divLoading",$("#divLoading").height()+"px");
+			
+			getInfo();
+//			alert(localStorage.getItem("userName"));
+//			if(localStorage.getItem("userName") == "null" || localStorage.getItem("userName") == "undefined")
+//			{
+//				window.location.href = "http://www.tjzhongfa.com/";
+//			}
+		})
+	</script>
+</html>

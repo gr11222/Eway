@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>巡检任务</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">任务名称</span>
+				<span id="selectItems">
+					<input type="text" name="meetingName" id="meetingName">
+				</span>
+				<span class="key-word-style">任务时间</span>
+				<span>
+					<input type="text" class="input-style"  name="startTime" id="startTime" />
+				</span>
+				<span class="key-word-style">-</span>
+				<span>
+					<input type="text" class="input-style"   name="endTime" id="endTime" />
+				</span>
+				<!-- <span class="key-word-style">发起人</span>
+				<span>
+					<select name="meetingStart" id="meetingStart" style="width: 120px;height: 30px;">
+						<option value="-1">请选择</option>
+					</select>
+				</span> -->
+				<span style="float: right;padding-right: 20px;">
+					<a class="btn btn-primary" id="btnSearch"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				
+			</div>
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" style="width: 100px;" id="btnAddInfos"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新增任务</span></a>
+					<!--<a class="btn the-btn-hover color-2" id="btnExportInfos"><span class="glyphicon glyphicon-export"></span><span style="padding-left: 5px;">导出</span></a>-->
+					
+				</div>
+			</div>
+			<div class="data-content" id="ptcontent">
+				<!-- <div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div> -->
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+		</div>
+	</body>
+	<!--添加模态窗-->
+	<div class="modal " id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="addMeetingName" class="col-sm-3 control-label" style="font-size: 12px;">*任务名称:</label>
+			      <div class="col-sm-9">
+			        <input class="form-control" id="addMeetingName" placeholder="任务名称">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="checkCycle" class="col-sm-3 control-label" style="font-size: 12px;">*任务时间类型:</label>
+			      <div class="col-sm-9">
+			       		<select class="form-control" id="checkCycle" name="checkCycle">
+			      			
+			      		</select>
+			      </div>
+			    </div>
+			    <div class="form-group" id="cycleDiv">
+			      
+			    </div>
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnNext"><span>下一步</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- modal2 -->
+	<div class="modal " id="addDataModal2" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      		<div id="setTime" style="margin-top: 20px;" >
+	      			
+	      		</div>
+	      		<div id="setDay" style='margin: 30px 0;' >
+	      			<label style="font-size: 12px;padding-left: 15px">*任务开始日期<input type="text" class="input-style"  name="taskStartTime" id="taskStartTime"></label>
+	      			<label style="font-size: 12px;padding-left: 70px">*任务结束日期<input type="text" class="input-style"  name="taskEndTime" id="taskEndTime"></label>
+	      		</div>
+	      		<div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnBefore2"><span>上一步</span></a>
+			    	<a  class="btn btn-success" id="btnNext2"><span>下一步</span></a>
+			    </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- modal3 -->
+	<div class="modal " id="addDataModal3" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      	<div style="font-weight: bold;font-size: 20px;">
+	      		*巡检路线：
+	      	</div>
+	      	<div style="margin-top: 20px;">
+	      		<label for="userName3" style="padding-top: 5px">路线名称：
+						<input type="text" name="userName3" id="userName3">
+				</label>
+				<span id="btnModalSearch3" class="btn btn-success" style="float: right;margin-right: 20px;">
+					查询
+				</span>
+	      	</div>	
+	      		<div id="modalTable3" style="height: 410px;overflow: auto">
+	      			
+	      		</div>
+	      	<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore2">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext2">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump2">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId2" id="pageNumId2" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo2">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+	      		<div style="text-align: center;">
+	      			<a  class="btn btn-success" id="btnBefore3"><span>上一步</span></a>
+			    	<a  class="btn btn-success" id="btnNext3"><span>下一步</span></a>
+	      		</div>
+	      </div>
+	    </div>
+	  </div>	
+	</div>
+	<!-- modal4 -->
+	<div class="modal " id="addDataModal4" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      	<div style="font-weight: bold;font-size: 20px;">
+	      		*任务执行人：
+	      	</div>
+	      	<div style="margin-top: 20px;">
+	      		<label for="userName4" style="padding-top: 5px">用户名称：
+						<input type="text" name="userName4" id="userName4">
+				</label>
+				<label for="roleName" style="padding-top: 5px">用户角色：
+					<select name="userRole" id="roleName" style="width: 120px;height: 30px;">
+						<option value="-1">请选择</option>
+					</select>
+				</label>
+				<span id="btnModalSearch4" class="btn btn-success" style="float: right;margin-right: 20px;">
+					查询
+				</span>
+	      	</div>	
+	      		<div id="modalTable4" style="height: 410px;overflow: auto">
+	      			
+	      		</div>
+	      	<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore3">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext3">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump3">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId3" id="pageNumId3" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo3">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+	      		<div style="text-align: center;">
+	      			<a  class="btn btn-success" id="btnBefore4"><span>上一步</span></a>
+			    	<a  class="btn btn-success" id="btnAddMadeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px" id="btnAddMadeInfoText"></span></a>
+	      		</div>
+	      </div>
+	    </div>
+	  </div>	
+	</div>	
+
+	<!-- modal5 -->
+	<div class="modal " id="addDataModal5" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" id="checkRoad" style="margin-top: 20px;">
+	      		
+	      </div>
+	    </div>
+	  </div>	
+	</div>
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../lib/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../../../../basic/content/lib/area.js" type="text/javascript" charset="utf-8"></script> -->
+	
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+</html>

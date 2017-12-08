@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>特殊日程-特殊日程设置</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">
+        		执行特殊日程的时间
+        	</span>
+				<span>
+        		<input type="text" class="input-style" name="queryTime" id="queryTime" />
+        	</span>
+
+				<span style='position:absolute;right:20px;top:8px;'>
+				<a class="btn btn-primary" style='width:120px' id="btnSearch"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				<a class="btn btn-primary" id="btnCopy" style='width:120px'><span class="glyphicon glyphicon-list-alt"></span><span style="padding-left: 5px" ;>复制日程</span></a>
+				</span>
+			</div>
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" style='width:120px' id="btnAddTask"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建任务</span></a>
+				</div>
+			</div>
+			<div class="data-content" id="dataContent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择要执行特殊日程的日期！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			    <a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			</span>
+				<span id="">
+			    <a class="btn btn-primary" id="btnPageNext" >下一页</a>
+			</span>
+				<span id="">
+			    <a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			</span>
+				<span id="">
+			    <input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			</span>
+				<span id="">
+			           页
+			</span>
+				<span id="pageTotalInfo">
+			      	
+			</span>
+			</div>
+		</div>
+	</body>
+
+	//新增任务弹出框
+	<div class="modal fade" id="addTaskModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1100px; height: 540px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="margin-top:25px;width: 100%;height:500px ;padding:10px;">
+					<div class="body-left" style="width: 50%;height:100% ;float: left;padding: 5px;">
+						<div class="body-left-top" style="width: 100%;height:80% ;">
+							<div class="btns-content" style="width: 100%;height:10%;text-align: center;">
+								<a class="btn btn-primary btn-hover" theEq="1" style='width:150px'>我创建的任务</a>
+								<a class="btn btn-default btn-hover" theEq="2" style='width:150px'>指派给我的任务</a>
+								<a class="btn btn-default btn-hover" theEq="3" style='width:150px'>我下属的任务</a>
+							</div>
+							<div class="task-content" id="taskContent" style="width: 100%;height:90% ;border: 1px solid #DBDBDB;border-radius: 5px;padding: 5px;overflow: auto;">
+
+							</div>
+						</div>
+						<div class="body-left-bottom" style="width: 100%;height:20% ;text-align: center;line-height: 100px">
+							<a class="btn btn-success" id="btnOk" style="width: 100px;">确定</a>
+							<a class="btn btn-success" id="btnCancle" style="width: 100px;">取消</a>
+						</div>
+					</div>
+					<div class="body-right" style="width: 50%;height:100% ;float: left;padding: 5px;">
+						<div class="body-right-top" style="width: 100%;height:50% ;border: 1px solid #DBDBDB;border-radius: 5px;padding: 5px;">
+							<div style="text-align: center;width: 100%;">
+								<p style="margin: 0px;">设备列表</p>
+								<hr style="margin: 5px;" />
+							</div>
+							<div class="modal-body" id="taskDevice" style="width:100%;height:190px;overflow: auto;padding: 5px;">
+								<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+									请选择任务查看设备内容！
+								</div>
+							</div>
+						</div>
+						<div class="body-right-bottom" style="width: 100%;height:49% ;border: 1px solid #DBDBDB;border-radius: 5px;margin-top: 5px;padding: 5px;">
+							<div style="text-align: center;width: 100%;">
+								<p style="margin: 0px;">人员列表</p>
+								<hr style="margin: 5px;" />
+							</div>
+							<div class="modal-body" id="taskMan" style="width:100%;height:190px;overflow: auto;padding: 5px;">
+								<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+									请选择任务查看人员名单！
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//复制日程弹出框
+	<div class="modal fade" id="copyModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 400px; height: 300px;margin-top: 50px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="dateContent" style="margin-top: 50px;">
+					<div class="">
+						<span class="key-word-style" style="margin-left: 30px;">
+        		将当前日程复制给：
+        	</span>
+						<span>
+        		<input type="text" class="input-style" name="copyQueryTime" id="copyQueryTime" />
+        	</span>
+					</div>
+					<div class="" style="text-align: center;margin-top: 50px;">
+						<a class="btn btn-success" id="btnCopyOk" style="width: 80px;">确定</a>
+						<a class="btn btn-success" id="btnCopyCancel" style="width: 80px;">取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//详情弹出框
+	<div class="modal fade" id="detailModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 400px; margin-top: 100px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="dateContent" style="margin-top: 25px;">
+					<div class="" style="width: 100%;height: 180px;border: 1px solid #DBDBDB;border-radius: 5px;overflow: auto;padding: 5px;" id="deviceCn">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							当前任务未绑定设备！
+						</div>
+					</div>
+					<div class="" style="width: 100%;height: 180px;margin-top: 10px;border: 1px solid #DBDBDB;border-radius: 5px;padding: 5px;overflow: auto;" id="userItem">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							当前任务未分配人员！
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

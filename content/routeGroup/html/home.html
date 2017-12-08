@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>标签管理-自定义分组巡检查询</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../css/tree.css" />
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				公司
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-one" id="company" class="select-style">
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				项目
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-two" id="project" class="select-style">       					
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				分组名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="groupName" id="groupName" />
+        			</span>
+					<span class="key-word-style ">
+							生效时间
+						</span>
+					<span>
+							<input type="text" class="input-style-time input-style"   name="startTime" id="startTime"   placeholder="开始时间 "/>
+						</span>
+					<span>
+							-
+						</span>
+					<span>
+							<input type="text" class="input-style-time input-style"   name="endTime" id="endTime"   placeholder="结束时间 "/>
+						</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchLabelGroup"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<!--<a class="btn the-btn-hover  color-1" style='width:100px;margin-left: 50px;float: left;' id="btnAddGroup"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建分组</span></a>-->
+				<div class="groupInfos">
+					<span id="" style="margin-left: 5px;">
+						分组名称:
+					</span>
+					<span id="groupInfosName">
+						
+					</span>
+					<span id="" style="margin-left: 10px;">
+						备注:
+					</span>
+					<span id="groupInfosNote">
+						
+					</span>
+					<span id="" style="margin-left: 10px;">
+						标签编号:
+					</span>
+					<span id="groupInfosQr">
+						
+					</span>
+				</div>
+				<!--<a class="btn btn-danger" style='width:100px' id="btnDelGroup"><span class="glyphicon glyphicon-minus"></span><span style="padding-left: 5px;">分组失效</span></a>
+				<a class="btn the-btn-hover  color-1" style='width:110px' id="btnAddSubGroup"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建子分组</span></a>
+				<a class="btn the-btn-hover  color-1" style='width:100px' id="btnAddDeviceBtn"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">添加资产</span></a>-->
+
+			</div>
+			<div class="data-content" id="data-content">
+				<div class="leftNav" id="leftNav">
+					<!--------------------------------------------------------------------------------------------------------------->
+
+					<!--<div id="treeRoot" onselectstart="return false" ondragstart="return false">
+						<div class="treeNode">
+							<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+							<span onclick="expandCollapse(this.parentNode)" class="category">分组1 </span>
+							<div class="treeSubnodesHidden">
+
+								<div class="treeNode">
+									<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+									<span onclick="expandCollapse(this.parentNode)" class="category">分组1.1</span>
+									<div class="treeSubnodesHidden">
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.1</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.2</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.3</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.2</a>
+								</div>
+								<div class="treeNode">
+									<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+									<span onclick="expandCollapse(this.parentNode)" class="category">分组1.3</span>
+									<div class="treeSubnodesHidden">
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.3.1</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.3.2</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="treeNode">
+							<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+							<span onclick="expandCollapse(this.parentNode)" class="category">分组2</span>
+							<div class="treeSubnodesHidden">
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.1</a>
+								</div>
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.2</a>
+								</div>
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.3</a>
+								</div>
+							</div>
+						</div>
+						
+					</div>-->
+					<!--------------------------------------------------------------------------------------------------------------------->
+				</div>
+				<div class="data" id="deviceList" style="width: 1000px;margin-left: 200px;height: 510px;padding: 5px;">
+					<div style="position:relative;width:100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+						请选择分组，以查询分组和设备信息！
+					</div>
+				</div>
+
+			</div>
+			<div class="page-content">
+				<div class="page-content">
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+					<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+					<span id="">
+			      	页
+			      </span>
+					<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	//任务路线弹出框
+	<div class="modal fade" id="routeModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; height: 500px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="margin-top:30px">
+					<div class="list-part" id="listPart" style="height: 480px;overflow: auto;width: 980px;margin-top: 15px;">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+					</div>
+					<!--<div class="btn-part-two">
+						<a class="btn the-btn-hover  color-1" style='width:120px' id="btnRIOk"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">确定</span></a>
+					</div>-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+</html>

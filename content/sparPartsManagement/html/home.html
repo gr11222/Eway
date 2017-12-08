@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>备品备件-备品备件管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<!--<div class="search-items">
+				<span class="key-word-style">备品类型</span>
+				<span>
+					<select name="input-style" class="input-style" id="beipinType">
+						
+					</select>
+				</span>
+				<span class="key-word-style">服务商</span>
+				<span>
+					<select name="input-style" class="input-style" id="fuwushangType">
+						
+					</select>
+				</span>
+				<span>
+					<a class="btn btn-primary" id="btnSearchBeiPinInfos"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-success" id="btnAddBeiPin">新增</a>
+					
+				</div>
+			</div>-->
+			<!--查询条件-->
+			<div class="search-items">
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="companyName" class="col-sm-4 control-label">公司</label>
+							<div class="col-sm-8">
+								<!--<input type="text" class="form-control" id="companyName" placeholder="公司">-->
+								<select name="companyName" id="companyName" class="form-control">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="projectName" class="col-sm-4 control-label">项目</label>
+							<div class="col-sm-8">
+								<!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
+								<select name="projectName" id="projectName" class="form-control">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="beipinNum" class="col-sm-4 control-label">备品型号</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="beipinNum" placeholder="备品型号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="beipinType" class="col-sm-4 control-label">备品类型</label>
+							<div class="col-sm-8">
+								<!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
+								<select name="BuildSelect" id="beipinType" class="form-control">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<form class="form-horizontal" style="padding 0px auto">
+
+						<div class="form-group">
+							<label for="fuwuShangSelect" class="col-sm-4 control-label">服务商</label>
+							<div class="col-sm-8">
+								<select name="fuwuShangSelect" id="fuwuShangSelect" class="select-style form-control"></select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="col-sm-offset-2 col-sm-10" style="margin-top: 20px;">
+							<!--<button type="submit" class="btn btn-default">Sign in</button>-->
+							<a class="btn btn-warning" id="btnSearData" style="width: 110px;"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" id="btnAddBeiPin"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">新建</span></a>
+					<a class="btn the-btn-hover color-2" id="btnInsertInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">入库</span></a>
+					<a class="btn the-btn-hover color-3" id="btnOutInfo"><span class="glyphicon glyphicon-minus"></span><span style="padding-left: 5px;">出库</span></a>
+
+				</div>
+			</div>
+			<!--查询条件-->
+			<div class="data-content" id="ptcontent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			</div>
+		</div>
+
+	</body>
+	<div class="modal fade" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="beipinTypeModal" class="col-sm-3 control-label">*备品类型</label>
+							<div class="col-sm-9">
+
+								<select class="form-control init-for-add" id="beipinTypeModal">
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="bpModalNum" class="col-sm-3 control-label">*备品型号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="bpModalNum" placeholder="备品型号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="madeByModal" class="col-sm-3 control-label">*服务商</label>
+							<div class="col-sm-9">
+								<select class="form-control init-for-add" id="madeByModal">
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="bpShuLiangModal" class="col-sm-3 control-label">*备品件数</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="bpShuLiangModal" placeholder="备品件数" value="1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="alarmNumModal" class="col-sm-3 control-label">报警限额</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="alarmNumModal" placeholder="报警限额" value="0">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnAddRealBtn">确认新建</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改信息窗口-->
+	<div class="modal fade" id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">*备品类型</label>
+							<div class="col-sm-9">
+
+								<select class="form-control" id="editbeipinTypeModal" disabled="disabled">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editbpModalNum" class="col-sm-3 control-label">*备品型号</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="editbpModalNum" placeholder="备品型号" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editmadeByModal" class="col-sm-3 control-label">*服务商</label>
+							<div class="col-sm-9">
+								<select class="form-control" id="editmadeByModal" disabled="disabled">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="editbpShuLiangModal" class="col-sm-3 control-label">*备品件数</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="editbpShuLiangModal" placeholder="备品件数" value="1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editalarmNumModal" class="col-sm-3 control-label">报警限额</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="editalarmNumModal" placeholder="报警限额" value="0">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnEditRealBtn">确认修改</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改信息窗口-->
+	<!--判断是否入库窗口-->
+	<div class="modal fade bs-example-modal-sm" id="isInsetCangKuModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">是否入库</h4>
+				</div>
+
+				<div class="modal-footer" style="text-align: center;">
+					<button type="button" class="btn btn-primary" id="btnAckedRuKu">是</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">否</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--判断是否入库窗口-->
+	<!--入库窗口-->
+	<div class="modal fade" id="ruKuModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal" id="rukuContent">
+						<div class="form-group" style="margin-top:30px;">
+							<label for="" class="col-sm-3 control-label">备品类型：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="beipinTypeModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">备品型号：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="beipinnumModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">服务商：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="fuwushangModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">入库数量：</label>
+							<div class="col-sm-9" style="line-height: 30px;">
+								<input type="text" class="form-control" id="ruKubpShuLiangModal" placeholder="入库数量" value="1">
+							</div>
+						</div>
+
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnSureRuku">确认</a>
+							<a class="btn btn-danger" data-dismiss="modal">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--入库窗口-->
+	<!--出库窗口-->
+	<div class="modal fade" id="chuKuModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal" id="rukuContent">
+						<div class="form-group" style="margin-top:30px;">
+							<label for="" class="col-sm-3 control-label">备品类型：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="outbeipinTypeModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">备品型号：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="outbeipinnumModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">服务商：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="outfuwushangModalText"></div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">出库数量：</label>
+							<div class="col-sm-9" style="line-height: 30px;">
+								<input type="text" class="form-control" id="outruKubpShuLiangModal" placeholder="出库数量" value="1">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">所属项目：</label>
+							<div class="col-sm-9" style="line-height: 30px;">
+								<select name="editProtect" id="editProtect" class="form-control">
+									<!-- <option value=""></option> -->
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editbeipinTypeModal" class="col-sm-3 control-label">库存：</label>
+							<div class="col-sm-9" style="line-height: 30px;" id="totalNumInput">asdasd</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="outbtnSureRuku">确认</a>
+							<a class="btn btn-danger" data-dismiss="modal">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--出库窗口-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

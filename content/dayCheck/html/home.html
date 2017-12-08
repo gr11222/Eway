@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+   <script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+    
+	<body>
+		<div class="body-div-style">
+        <div class="search-items">
+        	<span class="key-word-style">
+        		类型
+        	</span>
+        	<span id="selectItems">
+        		<select name="selectoptions" id="selectoptions">
+        			<option value="subwayData">地铁算法表</option>
+        			<!--<option value="b">弱电系统巡查记录b</option>
+        			<option value="c">弱电系统巡查记录c</option>
+        			<option value="d">弱电系统巡查记录d</option>-->
+        		</select>
+        	</span>
+        	
+        	<span class="key-word-style">
+        		时间
+        	</span>
+        	<span >
+        		<input type="text" class="input-style" name="startTime4" id="startTime4" />
+        	</span>
+        	
+        	<span class="key-word-style">
+        		-
+        	</span>
+        	<span >
+        		<input type="text" class="input-style" name="endTime4" id="endTime4" />
+        	</span>
+        	
+        	<span style='position:absolute;right:50px;top:8px'>
+        		<a class="btn btn-primary" id="searchbtn"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px";>查询</span></a>
+        	</span>      	
+        </div>
+        <div class="btn-items" >
+        	<div class="position-btn">
+					<a class="btn the-btn-hover  color-4" style='width:130px' id="btnPrint3"><span class="glyphicon glyphicon-print"></span><span style="padding-left: 5px;">打印</span></a>
+					<a class="btn the-btn-hover  color-5" style='width:130px' id="btnExportDayCheck"><span class="glyphicon glyphicon-file"></span><span style="padding-left: 5px;">导出</span></a>
+			</div>					
+		</div>
+        <div class="data-content" id="dataContent">
+        	<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+			</div>
+        </div>
+        <div class="page-content">
+        	<span id="">
+			    <a class="btn btn-primary" id="btnPageBefore4">上一页</a>
+			</span>
+			<span id="">
+			    <a class="btn btn-primary" id="btnPageNext4" >下一页</a>
+			</span>
+			<span id="">
+			    <a class="btn btn-primary" id="btnPageJump4">跳转至</a>
+			</span>
+		    <span id="">
+			    <input type="text" name="pageNumId4" id="pageNumId4" style="width:33px;height:33px" />
+			</span>
+			<span id="">
+			           页
+			</span>
+			<span id="pageTotalInfo4">
+			      	
+			</span>
+        </div>
+		</div>
+	</body>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+</html>

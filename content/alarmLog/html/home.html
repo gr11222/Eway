@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>报警日志</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<div class="search-items-left">
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								公司
+							</div>
+							<div class="div-4-right">
+								<select name="company" id="company">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="div-4-left">
+								报警编号
+							</div>
+							<div class="div-4-right">
+								<input type="text" id="theAssetCode" value="" />
+								<div id="assetCodeContent" style="position: absolute;width: 150px;min-height: 0px;max-height: 90px;overflow: auto;z-index: 200;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none">
+								
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								项目
+							</div>
+							<div class="div-4-right">
+								<select name="projectName" id="projectName">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="div-4-left">
+								报警人
+							</div>
+							<div class="div-4-right">
+								<input type="text" id="alarmMan" value="" />
+							
+							</div>
+						</div>
+						
+					</div>
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								报警状态
+							</div>
+							<div class="div-4-right">
+								<!--<input type="text" id="alarmStatus" value="" />-->
+								<select name="alarmStatus"  id="alarmStatus">
+									<option value="">请选择</option>
+									<option value="已响应">已响应</option>
+									<option value="未响应">未响应</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="div-4-left">
+								报警时间
+							</div>
+							<div class="div-4-right">
+								<input type="text" id="startTime" class="input-style" value="" style="width: 41%;font-size: 10px;" placeholder="开始时间"/>
+								-
+								<input type="text" id="endTime" class="input-style" value="" style="width: 41%;font-size: 10px;" placeholder="结束时间"/>
+							</div>
+						</div>
+					</div>
+					<div class="div-4">
+						<div>
+							<div class="div-4-left">
+								所属建筑
+							</div>
+							<div class="div-4-right">
+								<select id = "building" name="building">
+									<!-- <option value="-1">请选择</option> -->
+								</select>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" id="btnSearchRepair"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				
+				</div>
+				
+			</div>
+			
+			<div class="data-content" id="ptcontent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+		</div>
+	</body>
+	<!--图表-->
+	<div class="modal fade" id="lanelModal" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 700px;">
+	    <div class="modal-content" >
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">报修单</h4>
+	      </div>
+	      <div class="modal-body" style="height:380px">
+	       	<div class="modal-div-1">
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修人</div>
+	       			<div class="add-input-input"><input type="text" id="baoxiuMan" value="" /></div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修电话</div>
+	       			<div class="add-input-input"><input type="text" id="baoxiuPhone" value="" /></div>
+	       		
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">接待人</div>
+	       			<div class="add-input-input"><input disabled type="text" id="jieDaiRen" value="" /></div>
+	       		</div>
+	       	</div>
+	       	<div class="modal-div-2" style="margin-top:20px">
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修设备名称</div>
+	       			<div class="add-input-input">
+	       				<input type="text" id="deviceName" value="" />
+	       				<div id="assetIdContent" style='position: absolute;width:16%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+	       			</div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修设备编号</div>
+	       			<div class="add-input-input">
+	       				<input type="text" id="deviceNum" />
+	       				<div id="deviceNumContent" style='position: absolute;width:16%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+	       			</div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">设备所属建筑</div>
+	       			<div class="add-input-input"><input type="text" id="deviceBuilding" value="" /></div>
+	       		</div>
+	       	</div>
+	       	<div class="modal-div-3" style="clear:both;padding-top:20px">
+       			<div class="add-input-textarea">故障描述</div>
+       			<div class="add-input-inputtextarea"><textarea  id="guzhangText" value="" style="width: 100%;" ></textarea></div>
+	       	</div>
+	       	<div class="modal-div-4" style="clear:both;padding-top:10px">
+       			<div class="add-input-textarea">安装位置</div>
+       			<div class="add-input-inputtextarea"><textarea  id="anzhuangPosition" value="" style="width: 100%;" ></textarea></div>
+	       	</div>
+	       	<div class="modal-div-4" style="clear:both;padding-top:10px">
+       			<div class="add-input-text-4">指派维修人员</div>
+       			<div class="add-input-input-4">
+       				<input type="text" name="weixiuRen" id="weixiuRenweixiuRen" style="width: 30%;height: 30px;" />
+       				<div id="weixiuRenContent" style='position: absolute;width:23.8%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+			      	</div>
+       			</div>
+	       	</div>
+	       	<div class="modal-div-5" style="clear:both;padding-top:20px">
+       			<a class="btn btn-success" id="btnAddCaoGao">
+       				<span class="glyphicon glyphicon-ok"></span>
+       				<span>保存为草稿</span>
+       			</a>
+       			<a class="btn btn-success" id="btnAddSubmit">
+       				<span class="glyphicon glyphicon-ok"></span>
+       				<span>提交</span>
+       			</a>
+	       	</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--图表-->
+	<!--修改信息-->
+	<div class="modal fade" id="editlanelModal" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 700px;">
+	    <div class="modal-content" >
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">修改报修单</h4>
+	      </div>
+	      <div class="modal-body" style="height:380px">
+	       	<div class="modal-div-1">
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修人</div>
+	       			<div class="add-input-input"><input class="init-value" type="text" id="editbaoxiuMan" value="" /></div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修电话</div>
+	       			<div class="add-input-input"><input type="text" class="init-value" id="editbaoxiuPhone" value="" /></div>
+	       		
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">接待人</div>
+	       			<div class="add-input-input"><input class="init-value" disabled type="text" id="editjieDaiRen" value="" /></div>
+	       		</div>
+	       	</div>
+	       	<div class="modal-div-2" style="margin-top:20px">
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修设备名称</div>
+	       			<div class="add-input-input">
+	       				<input type="text" id="editdeviceName" value="" />
+	       				<div id="editassetIdContent" class="init-value" style='position: absolute;width:16%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+	       			</div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">报修设备编号</div>
+	       			<div class="add-input-input">
+	       				<input type="text" id="editdeviceNum" />
+	       				<div id="editdeviceNumContent" class="init-value" style='position: absolute;width:16%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+				      	</div>
+	       			</div>
+	       		</div>
+	       		<div class="add-input">
+	       			<div class="add-input-text">设备所属建筑</div>
+	       			<div class="add-input-input"><input class="init-value" type="text" id="editdeviceBuilding" value="" /></div>
+	       		</div>
+	       	</div>
+	       	<div class="modal-div-3" style="clear:both;padding-top:20px">
+       			<div class="add-input-textarea">故障描述</div>
+       			<div class="add-input-inputtextarea"><textarea class="init-value"  id="editguzhangText" value="" style="width: 100%;" ></textarea></div>
+	       	</div>
+	       	<div class="modal-div-4" style="clear:both;padding-top:10px">
+       			<div class="add-input-textarea">安装位置</div>
+       			<div class="add-input-inputtextarea"><textarea class="init-value"  id="editanzhuangPosition" value="" style="width: 100%;" ></textarea></div>
+	       	</div>
+	       	<div class="modal-div-4" style="clear:both;padding-top:10px">
+       			<div class="add-input-text-4">指派维修人员</div>
+       			<div class="add-input-input-4">
+       				<input type="text" name="editweixiuRen" class="init-value" id="editweixiuRenweixiuRen" style="width: 30%;height: 30px;" />
+       				<div id="editweixiuRenContent" style='position: absolute;width:23.8%;min-height:0px;max-height:70px;overflow:auto;background:#FFFFFF;border:1px solid #CFCFCF;border-top:none'>
+				      		
+			      	</div>
+       			</div>
+	       	</div>
+	       	<div class="modal-div-5" style="clear:both;padding-top:20px">
+       			<a class="btn btn-success" id="btneditCaoGao">
+       				<span class="glyphicon glyphicon-ok"></span>
+       				<span>保存为草稿</span>
+       			</a>
+       			<a class="btn btn-success" id="btneditSubmit">
+       				<span class="glyphicon glyphicon-ok"></span>
+       				<span>提交</span>
+       			</a>
+	       	</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!--修改信息-->
+	<!--报修单详情-->
+	<div class="modal fade" id="lanelModalInfos" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 700px;">
+	    <div class="modal-content" >
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">查看报修单</h4>
+	      </div>
+	      <div class="modal-body" style="height:310px;padding:5px;overflow: auto;" id="infoContent">
+	       	
+	       	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--报修单详情-->
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+</html>

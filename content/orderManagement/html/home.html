@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>菜品管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>-->
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			
+			<div class="nav-items">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li role="presentation" theNum='0'  class="active li-click"><a href="#todayRecord" role="tab" data-toggle="tab">今日订单</a></li>
+				  <li role="presentation" theNum='1' class=" li-click"><a href="#lastRecord" role="tab" data-toggle="tab">往期订单</a></li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				 <div role="tabpanel" class="tab-pane active tabPane-content" id="todayRecord" >
+				 	<div class="search-items-1">
+				 		<div class="search-items-1-1">
+				 			<span  style="padding: 5px;" id="timeInfos"></span>
+				 		</div>
+				 		<div class="search-items-1-2">
+				 			<span >
+				 				订单编号
+				 			</span>
+				 			<span id="">
+				 				<input type="text" id="recordNum" class="input-date-style" placeholder="订单编号" />
+				 			</span>
+				 			<span >
+				 				手机号码
+				 			</span>
+				 			<span id="">
+				 				<input type="text" id="phone" class="input-date-style" placeholder="手机号码" />
+				 			</span>
+				 			<span >
+				 				订单人
+				 			</span>
+				 			<span id="">
+				 				<input type="text" id="thePeople" class="input-date-style" placeholder="订单人" />
+				 			</span>
+				 			<span >
+				 				订单状态
+				 			</span>
+				 			<span id="">
+				 				<select type="text" id="recordStatus" class="input-date-style"  />
+				 					<option value="-1">全部</option>
+				 					<option value="0">未失效</option>
+				 					<option value="1">已失效</option>
+				 					<option value="2">已处理</option>
+				 				</select>
+				 			</span>
+				 			<span>
+				 				<a class="btn btn-primary" id="btnSearchInfos" style="margin-top:-3px;width: 80px;">查询</a>
+				 			</span>
+				 		</div>
+				 	</div>
+				 	<div class="content-items" id="todayDataContent">
+				 		
+				 	</div>
+				 </div>
+				 <div role="tabpanel" class="tab-pane tabPane-content" id="lastRecord">
+				 	<div class="search-items">
+				 		<span>
+				 			时间范围
+				 		</span>
+				 		<span>
+				 			<input type="text" id="startDate" class="input-date-style time-picker" />
+				 			-
+				 			<input type="text" id="endDate" class="input-date-style time-picker" />
+				 		</span>
+				 		<span >
+			 				订单编号
+			 			</span>
+			 			<span id="">
+			 				<input type="text" id="lastrecordNum" class="input-date-style" placeholder="订单编号" />
+			 			</span>
+			 			<span >
+			 				手机号码
+			 			</span>
+			 			<span id="">
+			 				<input type="text" id="lastphone" class="input-date-style" placeholder="手机号码" />
+			 			</span>
+			 			<span >
+			 				订单人
+			 			</span>
+			 			<span id="">
+			 				<input type="text" id="lastthePeople" class="input-date-style" placeholder="订单人" />
+			 			</span>
+			 			<span >
+			 				订单状态
+			 			</span>
+			 			<span id="">
+			 				<select type="text" id="lastrecordStatus" class="input-date-style"  />
+			 					<option value="-1">全部</option>
+			 					<option value="0">未失效</option>
+			 					<option value="1">已失效</option>
+			 					<option value="2">已处理</option>
+			 				</select>
+			 			</span>
+			 			<span>
+			 				<a class="btn btn-primary" id="btnlastSearchInfos" style="margin-top:-5px;width: 60px;">查询</a>
+			 			</span>
+				 	</div>
+				 	<div class="content-items-2" id="lastDataContent">
+				 		
+				 	</div>
+				 	<div class="page-content">
+					    <span id="">
+				      	    <a class="btn btn-primary" id="btnPageBefore">上一页</a>
+					      </span>
+							<span id="">
+					      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+					      </span>
+							<span id="">
+					      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+					      </span>
+							<span id="">
+					      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+					      </span>
+							<span id="">
+					      	页
+					      </span>
+							<span id="pageTotalInfo">
+					      	<!--第1页/共10页-->
+					      </span>
+					</div>
+				 </div>
+			</div>
+		</div>
+	</body>
+
+	
+	
+</html>

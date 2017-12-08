@@ -1,0 +1,167 @@
+*{
+	margin:0px;
+	padding: 0px;
+}
+body{
+	font-family: "微软雅黑",SimSun, Verdana, Arial, Helvetica, sans-serif;
+    width:99%;
+    min-width: 1600px;
+}
+.top{
+	margin-top: 20px;
+	padding-top: 10px;
+	border:1px solid #cccccc;
+	/*background-color: #ECF5FC;*/
+	border-radius: 10px 10px;
+	width:99%;	
+}
+
+
+.tbl-title{
+	
+	font-size:20px;
+	width:99%;
+	text-align: center;
+	
+}
+.addSmallCate{
+	margin-top:40px;
+	border-top:1px solid #cccccc;;
+	padding:10px 50px; 
+}
+
+.addSmallCate li{
+	margin: 10px;
+}
+.tbl-title td{
+	width: 290px;
+}
+
+#searchRole th,#searchRole  td{
+	text-align: center;
+}
+
+
+.imgHover{
+    cursor:pointer;	
+}
+
+.tpl{
+	margin: 2px 20px; 
+	
+	border-top:1px solid #cccccc;
+}
+
+.role_title{
+	margin-top:20px;
+
+	border-left:4px solid #1F7ED0;
+	padding-left: 10px;
+	color:#1F7ED0;
+	font-size: 16px;
+}
+.role_content{
+	margin-top:20px;
+	border-right: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+
+}
+
+ul[name="myTab"] a{
+	color: #000000;
+}
+
+div[name="smallCate"] li{
+	position:relative; 
+}
+ul[name="myTab"] span,div[name="smallCate"] span{
+	position:absolute; 
+	right:0px; 
+	cursor:pointer;
+}
+
+ul[name="myTab"] li{
+	border-right: 1px solid #cccccc;
+}
+
+.no_border{
+	border: hidden;
+	background-color: white;
+}
+
+
+select{
+	width:300px;
+	height:40px;
+	border-radius: 10px 10px;
+}
+
+input[type="text"]{
+	width:300px;
+	height:40px;
+	border-radius: 10px 10px;	
+}
+
+
+ li[name="smallCate"]{
+	margin-right: 20px;
+	padding:5px 20px;
+	background-color: #9CA3B5;
+	height:30px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 10px 10px;	
+}
+
+ li[name="userCate"]{
+	margin-right: 20px;
+	padding:5px 20px;
+	background-color: #3C95E0;
+	height:30px;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 10px 10px;	
+}
+
+ul{
+	list-style:none;
+}
+
+li{
+	float:left;
+} 
+
+.modeal_size{
+	width:500px;
+}
+
+.selectBigCate{
+	margin-top:20px;
+	border:1px solid #cccccc;
+}
+
+.addBigCat{
+	padding:20px 40px;
+}
+
+#bigCatList{
+	
+
+}
+div[name="choiceBigCate"] li{
+	margin-right: 20px;
+	padding:5px 10px;
+	
+	text-align: center;
+	font-size: 16px;
+	border-radius: 10px 10px;	
+}
+
+.center{
+	padding: 0 auto;
+}
+
+.right{
+	float:right;
+}

@@ -1,0 +1,178 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "microsoft yahei";
+
+}
+/*html{
+	font-size: 62.5%;
+}*/
+.body-div-style{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+}
+/*#deviceTYpeSearch,#deviceBuilding,#startTime,#endTime{
+	width: 150px;
+	height: 30px;
+}*/
+/*.search-items{
+	
+	width: 100%;
+	height: 50px;
+	padding:10px 0px ;
+
+}*/
+.search-items{
+	
+	width: 100%;
+	height:110px;
+	padding:10px 0px ;
+	background: #ECF5FC;
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+
+}
+.search-items .form-group{
+	margin-top:0px;
+	
+}
+.form-group>label{
+	font-size: 10px;
+	padding:5px
+}
+.key-word-style{
+	font-weight: bold;
+}
+.search-items>span{
+	padding-left: 5px;
+}
+#btnSearData{}
+/*#keyWord{
+	width: 150px;
+	height: 30px;
+}*/
+.data-content{
+	width: 100%;
+	height: 500px;
+	
+}
+textarea{
+	resize: none;
+}
+.form-factory>.form-group{
+	padding:0px 20px
+}
+/*.search-items input{
+	width: 150px;
+	height:30px;
+}*/
+.tab-items{
+	position: relative;
+	width: 100%;
+	height: 40px;
+	z-index: 8;
+	background: #FFFFFF;
+	
+	
+}
+.data-real-content{
+	position: relative;
+	width: 100%;
+	height: 460px;
+	padding: 5px;
+	overflow: auto;
+	/*background: yellowgreen;*/
+}
+.page-content{
+	width: 100%;
+	height: 50px;
+	/*background: blue;*/
+	text-align: center;
+	padding-top:3px;
+}
+.tab-items-content{
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	left:0px;
+	border-bottom: 1px solid #E4E4E4;
+}
+
+.tab-nav{
+	position: absolute;
+	width: 100%;
+	height: 38px;
+	margin: 0px;
+	padding: 0px;
+	
+}
+.tab-nav>ul{
+	margin:0px;
+	padding:0px
+}
+.tab-nav>ul>li{
+	list-style: none;
+	width: 120px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	float:left;
+	cursor: pointer;
+}
+.border-style{
+	position: absolute;
+	width: 120px;
+	height: 2px;
+	background: #3598DB;
+	top:38px;
+	left:0px
+}
+.li-table-active{
+	/*color: #3598DB;*/
+}
+/*滚动条*/
+::-webkit-scrollbar {width: 6px;height: 6px;}
+::-webkit-scrollbar-track-piece{
+	
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {   
+	 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+     cursor: pointer;  
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {   
+	  border-radius: 10px;   
+	  background: #404040;
+	 
+	  background: rgba(64,64,64,0.85);    
+	  /*-webkit-box-shadow: inset 0 0 6px rgba(77,76,75,1);*/
+}
+::-webkit-scrollbar-thumb:horizontal{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+::-webkit-scrollbar-thumb:vertical{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+/*::-webkit-scrollbar-thumb:window-inactive {
+	    background: rgba(255,0,0,0.4);
+}*/
+
+.td-width{
+	width:8.1%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.td-width-2{
+	width: 8.8%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+

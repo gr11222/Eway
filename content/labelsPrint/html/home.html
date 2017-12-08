@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>标签管理-标签打印</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<div class="search-items-left" style="width: 90%;">
+					
+					<div class="search-items-left-one" style="float: left;width: 23%;">
+						<div class="top" >
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;line-height: 30px;">
+								<label for="companyName">公司</label>
+							</div>
+							<div class="right" >
+								<select name="companyName" id="companyName" class="form-control" style="width: 150px;">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div class="bottom">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;line-height: 30px;">
+                                <label for="facSelect" class="">资产类型</label>
+							</div>
+							<div class="right" >
+                                 <select name="assetType" id="assetType" class="select-style form-control" style="width: 150px;">
+                                 </select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="search-items-left-two" style="float: left;width: 23%">
+						<div class="top">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+								<label for="projectName" class="">项目</label>
+							</div>
+							<div class="right">
+								<select name="projectName" id="projectName" class="form-control" style="width: 150px;">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div class="bottom">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+                                <label for="facilitator" class="">服务商</label>
+							</div>
+							<div class="right">
+                               <select name="facilitator" id="facilitator" class="select-style form-control" style="width: 150px;">
+                                 </select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="search-items-left-three" style="float: left;width: 23%">
+						<div class="top">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+								<label for="assetName" class="">资产名称</label>
+							</div>
+							<div class="right">
+								<input type="text" id="assetName" value=""  style="width: 150px;"/>
+							</div>
+						</div>
+						<div class="bottom">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+                             <label for="assetModel" class="">资产型号</label>
+							</div>
+							<div class="right">
+                                <input type="text" id="assetModel" value="" style="width: 150px;" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="search-items-left-four" style="float: left;width: 31%">
+						<div class="top">
+							<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+                            <label for="effectTime" class="">生效时间</label>
+							</div>
+							<div class="right">
+								<span>
+                   	                <input type="text" class="time-picker" name="startTime" id="startTime" placeholder="开始时间" style="width: 100px;"/>
+                               </span>
+								<span>
+                                	-
+                                </span>
+								<span>
+                   	            <input type="text" class="time-picker" name="endTime" id="endTime" placeholder="结束时间" style="width: 100px;"/>
+                                </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="search-items-right" style="width: 10%;float: left;height: 80px;line-height: 80px;padding-left: 10px;">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchLablesPrint"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			
+			</div>
+			
+			<!--按钮行-->
+			<div class="btns-content" style="margin-top: 10px;">
+				<a class="btn btn-primary btn-hover " theEq="-1" style='width:80px'>全部</a>
+				<a class="btn btn-default btn-hover " theEq="1" style='width:100px'>已打印标签</a>
+				<a class="btn btn-default btn-hover " theEq="0" style='width:100px'>未打印标签</a>
+				<div class="btn-print" >
+					<a class="btn btn-success " id="btnPrintLabel" style='width:140px'>批量打印标签</a>
+				</div>
+			</div>
+			<div class="data-content" id="dataContent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择企业类型后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageModal" id="pageModal" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="">
+			      	第1页/共10页
+			      </span>
+			</div>
+		</div>
+	</body>
+
+	<!--标签详细信息-->
+	<div class="modal " id="labelInfosModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width:170px">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body text-center" style="padding-top:40px">
+					<img src="" width="139" height="139" id="qrcodeWatch" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--标签纸张大小选择-->
+	<div class="modal fade" id="pageSizeModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">选择纸张型号</h4>
+				</div>
+				<div class="modal-body" style="height: 80px;">
+					<div class="form-group">
+						<label for="pageSize" class="col-sm-2 control-label">纸张型号</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="pageSize">
+								<option value="1">40mm*60mm</option>
+								<option value="2">75mm*100mm</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-primary" id="btnForPrintLabel">确认打印</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--标签纸张大小选择-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/jquery.jqprint-0.3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/jquery-migrate-1.1.0.js.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

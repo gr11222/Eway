@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>食谱管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+
+	<body>
+		<div class="body-div-style">
+			
+			<div class="nav-items">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li role="presentation" theNum='0'  class="active li-click"><a href="#todayRecord" role="tab" data-toggle="tab">当前食谱</a></li>
+				  <li role="presentation" theNum='1' class=" li-click"><a href="#lastRecord" role="tab" data-toggle="tab">往期食谱</a></li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				 <div role="tabpanel" class="tab-pane active tabPane-content" id="todayRecord" >
+				 	<div style="position: absolute;right: 30px;top:75px;">
+				 		<a class="btn btn-danger" id="btnAddFondInfo">添加食谱</a>
+				 	</div>
+				 	<div class="search-items-1">
+				 		<div class="search-items-1-1">
+				 			<span  style="padding: 5px;" id="timeInfos"></span>
+				 		</div>
+				 		<div class="search-items-1-2">
+				 			<div class="checkbox" style="padding:0px;float: left;;margin-left: 10px">
+							    <label>
+							      <input type="checkbox" checked="checked" theNum='0' class="dinner-type" id="mfood"> 早餐食谱
+							    </label>
+							  </div>
+				 			<div class="checkbox"  style="padding-top:14px;float: left;margin-left: 10px;">
+							    <label>
+							      <input type="checkbox" checked="checked" theNum='1' class="dinner-type"   id="dfood"> 中餐食谱
+							    </label>
+							</div> 
+				 			<div class="checkbox"  style="padding:14px;float: left;margin-left: 0px">
+							    <label>
+							      <input type="checkbox" checked="checked" theNum='2' class="dinner-type"   id="efood"> 晚餐食谱
+							    </label>
+							</div> 
+				 		</div>
+				 	</div>
+				 	<div class="content-items content_main" id="todayDataContent">
+				 		
+				 	</div>
+				 </div>
+				 <div role="tabpanel" class="tab-pane tabPane-content" id="lastRecord">
+				 	<div class="search-items">
+				 		<span>
+				 			<label for="mfood2" style="cursor: pointer;"><input type="checkbox" theNum='0' checked="checked" class="dinner-type-2" id="mfood2"> 早餐食谱</label> 
+				 		</span>
+			 			<span>
+			 				<label for="dfood2" style="cursor: pointer;"><input type="checkbox" theNum='1' checked="checked" class="dinner-type-2"   id="dfood2"> 中餐食谱</label> 
+			 			</span>
+			 			<span>
+			 				 <label for="efood2" style="cursor: pointer;"><input type="checkbox" theNum='2' checked="checked" class="dinner-type-2"   id="efood2"> 晚餐食谱</label> 
+			 			</span>
+				 		<span style="font-weight: bold;">
+				 			时间范围
+				 		</span>
+				 		<span>
+				 			<input type="text" id="startDate" class="input-date-style time-picker" />
+				 			-
+				 			<input type="text" id="endDate" class="input-date-style time-picker" />
+				 		</span>
+				 		
+			 			<span>
+			 				<a class="btn btn-primary" id="btnlastSearchInfos" style="margin-top:-5px;width: 60px;">查询</a>	
+			 			</span>
+				 	</div>
+				 	<div class="content-items-2 content_main" style="margin-top:10px" id="lastDataContent">
+				 		
+				 	</div>
+				 	
+				 </div>
+			</div>
+		</div>
+	</body>
+	
+	<!--创建食谱莫泰创-->
+	
+	<div class="modal fade" id="FoodModal" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 1150px;">
+	    <div class="modal-content" >
+	      <div class="modal-header">
+	        <button type="button" class="close" onclick="$('#theDataContent').html('')" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="userEditModal">创建食谱</h4>
+	      </div>
+	      <div class="modal-body" style="height: 480px;">
+	        <div style="width: 100%;height: 40px;">
+	        	<form class="form-horizontal">
+		          <div class="form-group">
+				    <label for="userAccount" class="col-sm-1 control-label">时间</label>
+				    <div class="col-sm-3">
+				      <input type="text" class="form-control time-picker" id="startFoodTime"   >
+				       <!--<input type="text" class="form-control time-picker" id="endFoodTime"  style="width: 48%;float: left;margin-left:2%"  >-->
+				    </div>
+				    <div class="col-sm-3">
+				      <a class="btn btn-primary" id="benStartMake">确认</a>
+				    </div>
+				  </div>
+				  
+		        </form>
+	        </div>
+	        <div  style="width: 100%;height: 420px;" id="theDataContent">
+	        	
+	        </div>
+	      </div>
+	       <div class="modal-footer " style="text-align: center;">
+	       
+	        <button type="button" class="btn btn-primary" id="btnSureFood">确认创建</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- <script src="../lib/zchk_map.js" type="text/javascript" charset="utf-8"></script> -->
+	
+</html>

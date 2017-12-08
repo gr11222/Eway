@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">关键字</span>
+				<span>
+					<input type="text" name="keyWord" id="keyWord" value="" />
+				</span>
+				<span>
+					<a class="btn btn-primary" id="btnSearData"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				<span class="key-word-style">按公司筛选</span>
+				<span>
+					<select  name="companyType" id="companyType" />
+						
+					</select>
+				</span>
+				<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-success" id="btnAddFacData"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建</span></a>
+					<a class="btn btn-warning" id="btnAddJueSe"><span class="glyphicon glyphicon-user"></span><span style="padding-left: 5px;">新增相似角色</span></a>
+				</div>
+			</div>
+			<div class="data-content">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择企业类型后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageModal" id="pageModal" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="">
+			      	第1页/共10页
+			      </span>
+			</div>
+		</div>
+		<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+	<!--添加角色窗口-->
+		<div class="modal" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+		      <div class="modal-body" > <!--	style="height: 450px;"-->
+		        <ul class="nav nav-pills" style="padding: 0px;height:20px">
+				  <li role="presentation" class="tab-click-class active" theNum="0"><a style="cursor: pointer;">手机端</a></li>
+				  <li role="presentation" class="tab-click-class"  theNum="1"><a style="cursor: pointer;">后台</a></li>
+				</ul>
+		        
+		            <div class="eq-content">
+		            	<form class="form-horizontal" >
+			            	<div class="form-group" style="margin-top:30px">
+						      <label for="jueSeNameModal" class="col-sm-2 control-label" style="font-size: 12px;">角色名称</label>
+						      <div class="col-sm-10">
+						        <input type="text" class="form-control" name="jueSeNameModal" id="jueSeNameModal" value="" />
+						      </div>
+						    </div>
+						    <div class="form-group" >
+						      <label for="jueSeTextModal" class="col-sm-2 control-label" style="font-size: 12px;">角色备注</label>
+						      <div class="col-sm-10">
+						        <textarea  class="form-control" name="jueSeTextModal" id="jueSeTextModal" value=""></textarea>
+						      </div>
+						    </div>
+						    <div  style="width:100%;height:239px;padding:0px ;overflow: auto;">
+						     	<div class="panel panel-default" style="margin: 0px;" >
+								  <div class="panel-heading">点检</div>
+								  <div class="panel-body" style="height: 60px;position:relative;padding:0px">
+								    <div class="btn-style-circle btn-change-click">
+								    	<div class='text-tip-1'>扫一扫</div>	
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										
+								    </div>
+								    <div class="btn-style-circle-1 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>查询</div>	
+								    </div>
+								    <div class="btn-style-circle-2 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn" >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>提交</div>	
+								    </div>
+								    <div class="btn-style-circle-3 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>手动录入</div>	
+								    </div>
+								  </div>
+								</div>
+								<div class="panel panel-default"  style="margin: 10px 0px;">
+								  <div class="panel-heading">维保</div>
+								  <div class="panel-body" style="height: 60px;position:relative;padding:0px">
+								    <div class="btn-style-circle btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>扫一扫</div>	
+								    </div>
+								    <div class="btn-style-circle-1 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>查询</div>	
+								    </div>
+								    <div class="btn-style-circle-2 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn" >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>提交</div>	
+								    </div>
+								    <div class="btn-style-circle-3 btn-change-click">
+								    	<div class="circle-outside btnCircleChange" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1'>手动录入</div>	
+								    </div>
+								  </div>
+								</div>
+						    </div>
+						    <div class="form-group text-center" style="margin-top:10px">
+							    	<a  class="btn btn-success" id="btnAddWuYe"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:10px'>保存</span></a>
+						    </div>
+				        </form>
+		            </div>
+		            <!--后台-->
+		            <div class="eq-content hide">
+		            	<form class="form-horizontal" >
+			            	<div class="form-group" style="margin-top:30px">
+						      <label for="jueSeNameModal" class="col-sm-2 control-label" style="font-size: 12px;">角色名称</label>
+						      <div class="col-sm-10">
+						        <input type="text" class="form-control" name="jueSeNameModal" id="jueSeNameModal" value="" />
+						      </div>
+						    </div>
+						    <div class="form-group" >
+						      <label for="jueSeTextModal" class="col-sm-2 control-label" style="font-size: 12px;">角色备注</label>
+						      <div class="col-sm-10">
+						        <textarea  class="form-control" name="jueSeTextModal" id="jueSeTextModal" value=""></textarea>
+						      </div>
+						    </div>
+						    <div  style="width:100%;height:239px;padding:0px ;overflow: auto;">
+						     	<div class="panel panel-default" style="margin: 10px 0px;" >
+								  <div class="panel-heading">点检</div>
+								  <div class="panel-body" style="height: 60px;position:relative;padding:0px">
+								    <div class="btn-style-circle btn-change-click">
+								    	<div class='text-tip-1'>数据字典管理</div>	
+								    	<div class="circle-outside  btnCircleChange other-circle" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										
+								    </div>
+								    <div class="btn-style-circle-1 btn-change-click">
+								    	<div class="circle-outside btnCircleChange other-circle" id=""  changeStatus="0">
+											<div class="circle-inside   ">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1' style="left:30px">企业管理</div>	
+								    </div>
+								    
+								  </div>
+								</div>
+								<div class="panel panel-default"  style="margin: 10px 0px;">
+								  <div class="panel-heading">维保</div>
+								  <div class="panel-body" style="height: 60px;position:relative;padding:0px">
+								    <div class="btn-style-circle btn-change-click">
+								    	<div class='text-tip-1'>资产维护</div>	
+								    	<div class="circle-outside  btnCircleChange other-circle" id=""  changeStatus="0">
+											<div class="circle-inside">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										
+								    </div>
+								    <div class="btn-style-circle-1 btn-change-click">
+								    	<div class="circle-outside btnCircleChange other-circle" id=""  changeStatus="0">
+											<div class="circle-inside   ">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1' style="left:30px">标签打印</div>	
+								    </div>
+								    <div class="btn-style-circle-1 btn-change-click" style="left: 50%;">
+								    	<div class="circle-outside btnCircleChange other-circle" id=""  changeStatus="0">
+											<div class="circle-inside   ">
+												<div class="circle-btn"  >
+													
+												</div>
+											</div>
+										</div>
+										<div class='text-tip-1' style="left:30px">标签关联</div>	
+								    </div>
+								  </div>
+								</div>
+						    </div>
+						    <div class="form-group text-center" style="margin-top:10px">
+							    	<a  class="btn btn-success" id="btnAddWuYe"><span class="glyphicon glyphicon-ok"></span><span style='padding-left:10px'>保存</span></a>
+						    </div>
+				        </form>
+		            </div>
+		            <!--后台-->
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	
+</html>

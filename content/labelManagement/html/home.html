@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">关键字</span>
+				<span>
+					<input type="text"  name="keyWord" id="keyWord" />
+				</span>
+				<span>
+					<a class="btn btn-primary" id="btnSearData"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				<span class="key-word-style">按所属工厂筛选</span>
+				<span>
+					<select name="facSelect" id="facSelect" class="select-style"></select>
+				</span>
+				<span class="key-word-style">按资产类型筛选</span>
+				<span>
+					<select name="assetType" id="assetType" class="select-style"></select>
+				</span>
+				<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-primary" id="btnPrintLabel"><span class="glyphicon glyphicon-print"></span><span style="padding-left: 5px;">打印标签</span></a>
+				</div>
+			</div>
+			<div class="data-content">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择企业类型后,点击查询按钮进行查询！
+				</div>
+			</div>
+		</div>
+		<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+	<!--新增企业类型-->
+	<div class="modal" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" style="width: 400px;">
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" style="height: 150px;">
+	        <form class="form-horizontal" >
+	            <div class="form-group" style="margin-top:30px">
+			      <label for="dataNameModal" class="col-sm-5 control-label" style="font-size: 12px;">请选择要新增的企业类型</label>
+			      <div class="col-sm-7">
+			        <select class="form-control" id="companyTypeModal" >
+			        	<option value="">请选择</option>
+						<option value="0">工厂</option>
+						<option value="1">物业公司</option>
+						<option value="2">服务商</option>
+			        </select>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" style='margin-top:10px'>
+			    	<a  class="btn btn-success" id="btnAddCompany">下一步</a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--新增企业类型-->
+	<!--下一步1-->
+	<div class="modal " id="addDataModal2" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="companyNameModal" class="col-sm-2 control-label" style="font-size: 12px;">工厂名称:</label>
+			      <div class="col-sm-10">
+			        <input class="form-control" id="companyNameModal" placeholder="请输入工厂名称" autofocus="autofocus">
+			      	
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="factoryShengModal" class="col-sm-2 control-label" style="font-size: 12px;">所属省份:</label>
+			      <div class="col-sm-10">
+			        <!--<input class="form-control" id="factoryShengModal" placeholder="所属省份" >-->
+			      		<select class="form-control" id="factoryShengModal" name="factoryShengModal">
+			      		
+			      		</select>
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="factoryCityModal" class="col-sm-2 control-label" style="font-size: 12px;">所属城市:</label>
+			      <div class="col-sm-10">
+			        <!--<input class="form-control" id="factoryCityModal" placeholder="所属城市" >-->
+			      	<select class="form-control" id="factoryCityModal" name="factoryCityModal">
+			      		
+			      		</select>
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="factoryAreaModal" class="col-sm-2 control-label" style="font-size: 12px;">所属区县:</label>
+			      <div class="col-sm-10">
+			        <!--<input class="form-control" id="factoryAreaModal" placeholder="所属区县" >-->
+			      	<select class="form-control" id="factoryAreaModal" name="factoryAreaModal">
+			      		
+			      		</select>
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="factoryAddrModal" class="col-sm-2 control-label" style="font-size: 12px;">详细地址:</label>
+			      <div class="col-sm-10">
+			        <input class="form-control" id="factoryAddrModal" placeholder="详细地址" >
+			      </div>
+			    </div>
+			    
+			    <div class="form-group" >
+			      <label for="factoryInfosModal" class="col-sm-2 control-label" style="font-size: 12px;">备注:</label>
+			      <div class="col-sm-10">
+			        <textarea class="form-control" id="factoryInfosModal" placeholder="备注" ></textarea>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnAddFactory"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认添加</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--下一步2-->
+	<div class="modal " id="addDataModal3" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="wuyeNameModal" class="col-sm-2 control-label" style="font-size: 12px;">物业名称:</label>
+			      <div class="col-sm-10">
+			        <input class="form-control" id="wuyeNameModal" placeholder="请输入物业名称" autofocus="autofocus">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="wuyeTypeModal" class="col-sm-2 control-label" style="font-size: 12px;">物业类型:</label>
+			      <div class="col-sm-10">
+			        <select class="form-control" id="wuyeTypeModal" >
+			        	<option value="0">工厂物业</option>
+			        	<option value="1">普通物业公司</option>
+			        </select>
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="wuYeInfosModal" class="col-sm-2 control-label" style="font-size: 12px;">备注:</label>
+			      <div class="col-sm-10">
+			        <textarea class="form-control" id="wuYeInfosModal" placeholder="备注" ></textarea>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnAddWuYeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认添加</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--下一步3-->
+	<div class="modal " id="addDataModal4" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	        <form class="form-horizontal form-factory" >
+	            <div class="form-group" style="margin-top:20px;">
+			      <label for="madeNameModal" class="col-sm-3 control-label" style="font-size: 12px;">制造商名称:</label>
+			      <div class="col-sm-9">
+			        <input class="form-control" id="madeNameModal" placeholder="请输入制造商名称" autofocus="autofocus">
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="madeTypeModal" class="col-sm-3 control-label" style="font-size: 12px;">物业类型:</label>
+			      <div class="col-sm-9">
+			        <select class="form-control" id="madeTypeModal" >
+			        	<option value="0">设备提供商</option>
+			        	<option value="1">服务提供商</option>
+			        </select>
+			      </div>
+			    </div>
+			    <div class="form-group" >
+			      <label for="madeInfosModalInfosModal" class="col-sm-3 control-label" style="font-size: 12px;">备注:</label>
+			      <div class="col-sm-9">
+			        <textarea class="form-control" id="madeInfosModal" placeholder="备注" ></textarea>
+			      </div>
+			    </div>
+			    <div class="form-group text-center" >
+			    	<a  class="btn btn-success" id="btnAddMadeInfo"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认添加</span></a>
+			    </div>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+</html>

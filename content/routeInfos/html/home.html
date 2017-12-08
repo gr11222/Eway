@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>任务信息</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				公司
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-one" id="select-company" class="select-style">
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				项目
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-two" id="select-project" class="select-style">       					
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				任务名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="routename" id="routename" />
+        			</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchRouteInfos"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<a class="btn the-btn-hover  color-1" style='width:80px' id="btnRIAdd"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新增</span></a>
+			</div>
+			<div class="data-content" id="data-content">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			</div>
+		</div>
+	</body>
+
+	//新增任务弹出框
+	<div class="modal fade" id="addDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="project" class="col-sm-3 control-label">*所属项目</label>
+							<div class="col-sm-9">
+								<select name="project" id="project" class="form-control">
+								</select>
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:30px">
+							<label for="bpShuLiangModal" class="col-sm-3 control-label">*任务名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="routename1" placeholder="任务名称">
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:30px">
+							<label for="bpShuLiangModal" class="col-sm-3 control-label">*预计完成时间</label>
+							<div class="col-sm-9">
+
+								<div class="input-group">
+									<input type="text" class="form-control init-for-add" id="workTime" placeholder="预计完成时间">
+									<span class="input-group-addon">分钟</span>
+									<!--<input type="text" class="form-control init-for-add" id="routename1" style="width: 50%;" placeholder="预计完成时间">-->
+								</div>
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:30px">
+							<label for="alarmNumModal" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="note" placeholder="备注">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnAddRealBtn" style="width: 100px;">下一步</a>
+							<a class="btn btn-success" id="btnAddOkBtn" style="width: 100px;">确定</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- //绑定设备查询弹出框 -->
+	<div class="modal fade" id="searchDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; ">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="margin-top:25px">
+					<div class="query-part">
+						<div class="query-part-top">
+							<div class="query-part-top1">
+								<div class="query-part-top1-left key-word-style">
+									所属建筑
+								</div>
+								<div class="query-part-top1-right">
+									<select name="selectoptions-one" id="option-belongto" class="select-style1">
+									</select>
+								</div>
+							</div>
+							<div class="query-part-top2">
+								<div class="query-part-top2-left key-word-style">
+									类型
+								</div>
+								<div class="query-part-top2-right">
+									<select name="selectoptions-one" id="option-type" class="select-style1">
+									</select>
+								</div>
+							</div>
+							<div class="query-part-top3">
+								<div class="query-part-top3-left key-word-style">
+									名称
+								</div>
+								<div class="query-part-top3-right">
+									<input type="text" class="input-style" name="option-keyWord" id="option-keyWord" style="width: 200px;" />
+								</div>
+							</div>
+						</div>
+						<div class="query-part-bottom">
+							<div class="query-part-bottom-left">
+								<span class="key-word-style">
+        					时间
+        				</span>
+								<span>
+        					<input type="text" class="input-style-time" name="startTime" id="startTime" style="margin-left: 45px;z-index: 99;" placeholder="开始时间" />
+        				</span>
+								<span class="key-word-style">
+        					-
+        				</span>
+								<span>
+        					<input type="text" class="input-style-time" name="endTime" id="endTime"  placeholder="结束时间" />
+        				</span>
+							</div>
+							<div class="query-part-bottom-right">
+								<a class="btn the-btn-hover  color-1" style='width:80px' id="btnRISearch1"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+							</div>
+						</div>
+					</div>
+					<div class="list -part" id="listPart" style="height: 410px;margin-top: 5px;">
+
+						<div class="modal-body" style="width:100%;height:190px;margin-top: 5px;border: 1px solid #DBDBDB;padding: 5px;">
+							<div style="text-align: center;width: 100%;">
+								<p style="margin: 0px;">备选列表</p>
+								<hr style="margin: 5px;" />
+							</div>
+							<div class="modal-body" id="uncheckedList" style="width:950px;height:150px;padding: 0px;overflow: auto;">
+							</div>
+						</div>
+
+						<div class="modal-body" id="List" style="width:100%;height:215px;margin-top: 5px;border: 1px solid #DBDBDB;padding: 5px">
+
+							<div style="text-align: center;width: 100%;">
+								<p style="margin: 0px;">已选列表</p>
+								<hr style="margin: 5px;" />
+							</div>
+							<div class="operation-content" style="width: 100%;height: 30px;">
+								<div class="op">
+									<a class="btn the-btn-hover  blue" style='width:200px;height: 30px;padding: 4px;' id="top"><span><img src="../img/top.png"/></span><span style="padding-left: 10px;">置顶</span></a>
+								</div>
+								<div class="op">
+									<a class="btn the-btn-hover  green" style='width:200px;height: 30px;padding: 4px;' id="up"><span><img src="../img/up.png"/></span><span style="padding-left: 10px;">上移</span></a>
+								</div>
+								<div class="op">
+									<a class="btn the-btn-hover  green" style='width:200px;height: 30px;padding: 4px;' id="down"><span><img src="../img/down.png"/></span><span style="padding-left: 10px;">下移</span></a>
+								</div>
+								<div class="op">
+									<a class="btn the-btn-hover  blue" style='width:200px;height: 30px;padding: 4px;' id="bottom"><span><img src="../img/bottom.png"/></span><span style="padding-left: 10px;">置底</span></a>
+								</div>
+							</div>
+							<div class="modal-body" id="checkedList" style="width:100%;height:140px;padding: 0px;overflow: auto;margin-top: 5px;">
+								<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+									请选择查询条件后,点击查询按钮进行查询！
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="btn-part-two">
+						<a class="btn the-btn-hover  color-1" style='width:100px' id="btnRIOk"><span style="padding-left: 5px;">确定</span></a>
+						<a class="btn the-btn-hover  color-1" style='width:100px' id="btnCancel"><span style="padding-left: 5px;">取消</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//任务修改弹出框
+	<div class="modal fade" id="editDataModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="bpShuLiangModal" class="col-sm-3 control-label">*任务名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="routename2" placeholder="任务名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="alarmNumModal" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="note1" placeholder="备注">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnEditBtn" style="width: 80px;">修改</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- //设备列表弹出框 -->
+	<div class="modal fade" id="deviceModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 800px; height: 400px;margin-top: 50px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="deviceList" style="margin-top: 50px;">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

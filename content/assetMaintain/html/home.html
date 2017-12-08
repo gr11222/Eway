@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>资产信息管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+
+			<div class="search-items">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="companyName" class="col-sm-4 control-label">公司</label>
+							<div class="col-sm-8">
+								<!-- <input type="text" class="form-control" id="companyName" placeholder="公司"> -->
+								<select id="companyName" class="form-control">
+									<option value="-1">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="deviceTypeName" class="col-sm-4 control-label">资产类型</label>
+							<div class="col-sm-8">
+								<!--<input type="text" class="form-control" id="deviceTypeName" placeholder="资产类型">-->
+								<select name="deviceTypeName" id="deviceTypeName" class="form-control">
+									<option value="-1">请选择</option>
+								</select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="projectName" class="col-sm-4 control-label">项目</label>
+							<div class="col-sm-8">
+								<!--<input type="text" class="form-control" id="keyWord" placeholder="关键字">-->
+								<!--<input type="text" class=" form-control"  name="projectName" id="projectName" placeholder="项目" />-->
+								<select class=" form-control" name="projectName" id="projectName">
+									<option value="-1">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="facSelect" class="col-sm-4 control-label">所属建筑</label>
+							<div class="col-sm-8">
+								<select name="assetType" id="buildingowner" class="select-style form-control">
+									<option value="-1">请选择</option>
+								</select>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="startTime" class="col-sm-4 control-label">开始时间</label>
+							<div class="col-sm-8">
+								<input type="text" class="time-picker form-control" name="startTime" id="startTime" placeholder="开始时间" />
+							</div>
+						</div>
+						<div class="form-group" style="padding-top:0px;">
+							<label for="keyWord" class="col-sm-4 control-label">关键字</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" name="keyWord" id="keyWord" placeholder="ID或名称" />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+						<div class="form-group" style="padding-top:0px;">
+							<label for="endTime" class="col-sm-4 control-label">结束时间</label>
+							<div class="col-sm-8">
+								<input type="text" class="time-picker form-control" name="endTime" id="endTime" placeholder="结束时间" />
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin-top:30px">
+					<form class="form-horizontal">
+						<div class="col-sm-offset-2 col-sm-10">
+							<!--<button type="submit" class="btn btn-default">Sign in</button>-->
+							<a class="btn btn-warning" id="btnSearData" style="width: 110px;"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div style='position:absolute;right:15px;top:113px;z-index: 200;'>
+				<span>
+					<a class="btn btn-danger" id="btnAddFacData"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新增</span></a>
+				</span>
+				<span>
+					<a class="btn btn-primary" id="btnTiHuanDeviceData"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">替换</span></a>
+				</span>
+				<span>
+					<a class="btn btn-success" id="btnPrintQrcodeInfos"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">批量生成二维码</span></a>
+				</span>
+			</div>
+			<div class="data-content">
+				<section class="tab-items">
+					<section class="tab-items-content">
+						<nav class="tab-nav">
+							<ul>
+								<li class="li-table-change li-table-active" thenum='0'>全部资产</li>
+								<li class="li-table-change" thenum='1'>已生成标签资产</li>
+								<li class="li-table-change" thenum='2'>未生成标签资产</li>
+							</ul>
+						</nav>
+						<div class="border-style"></div>
+					</section>
+
+				</section>
+				<section class="data-real-content" id="dataRealContent1">
+					<div style="position: relative;top:30%;width:100%;text-align: center;font-size: 25px;font-weight: bold;">
+						点击查询按钮查询资产信息
+					</div>
+				</section>
+				<section class="data-real-content hide" id="dataRealContent2">
+					<div style="position: relative;top:30%;width:100%;text-align: center;font-size: 25px;font-weight: bold;">
+						点击查询按钮查询资产信息
+					</div>
+				</section>
+				<section class="data-real-content hide" id="dataRealContent3">
+					<div style="position: relative;top:30%;width:100%;text-align: center;font-size: 25px;font-weight: bold;">
+						点击查询按钮查询资产信息
+					</div>
+				</section>
+				<div class="page-content">
+					<div class="page-content">
+						<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+						<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+						<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+						<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+						<span id="">
+			      	页
+			      </span>
+						<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+					</div>
+				</div>
+				<!--<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择关键字后,点击查询按钮进行查询！
+				</div>-->
+			</div>
+		</div>
+		<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+	
+	<!--添加资产-->
+	<div class="modal " id="addAssetModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal form-factory">
+						<div class="form-group" style="margin-top:20px;">
+							<label for="assetNameModal" class="col-sm-2 control-label" style="font-size: 12px;">*中文名称:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="assetNameModal" placeholder="请输入资产中文名称" autofocus="autofocus">
+
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:20px;">
+							<label for="assetNameEnModal" class="col-sm-2 control-label" style="font-size: 12px;">*英文名称:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="assetNameEnModal" placeholder="请输入资产英文名称">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="assetTypeModal" class="col-sm-2 control-label" style="font-size: 12px;">*资产类型:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="factoryShengModal" placeholder="所属省份" >-->
+								<select class="form-control" id="assetTypeModal" name="assetTypeModal">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="assetDevice" class="col-sm-2 control-label" style="font-size: 12px;">*资产型号:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="assetDevice" placeholder="资产型号" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="fuwushangModal" class="col-sm-2 control-label" style="font-size: 12px;">*服务商:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="factoryCityModal" placeholder="所属城市" >-->
+								<select class="form-control" id="fuwushangModal" name="fuwushangModal">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="buildingModal" class="col-sm-2 control-label" style="font-size: 12px;">*所属建筑:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="factoryAreaModal" placeholder="所属区县" >-->
+								<select class="form-control" id="buildingModal" name="factoryModal">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="position" class="col-sm-2 control-label" style="font-size: 12px;">安装位置:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="position" placeholder="安装位置" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="idOfProject" class="col-sm-2 control-label" style="font-size: 12px;">*所属项目:</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="idOfProject" name="factoryModal">
+										<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="assetNum" class="col-sm-2 control-label" style="font-size: 12px;">*资产数量:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="assetNum" value="1" placeholder="资产数量" />
+							</div>
+						</div>
+						<!--<div class="form-group" >
+			      <label for="assetAddrModal" class="col-sm-2 control-label" style="font-size: 12px;">资产位置:</label>
+			      <div class="col-sm-10">
+			        <input class="form-control" id="assetAddrModal" placeholder="资产位置" >
+			      </div>
+			    </div>-->
+						<div class="form-group text-center">
+							<a class="btn btn-success" id="btnAddFactory"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认添加</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--修改资产-->
+	<div class="modal " id="editAssetModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal form-factory">
+						<div class="form-group" style="margin-top:20px;">
+							<label for="editassetNameModal" class="col-sm-2 control-label" style="font-size: 12px;">*中文名称:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="editassetNameModal" placeholder="请输入资产中文名称" autofocus="autofocus">
+
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:20px;">
+							<label for="editassetNameEnModal" class="col-sm-2 control-label" style="font-size: 12px;">*英文名称:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="editassetNameEnModal" placeholder="请输入资产英文名称">
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editassetTypeModal" class="col-sm-2 control-label" style="font-size: 12px;">*资产类型:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="factoryShengModal" placeholder="所属省份" >-->
+								<select class="form-control" id="editassetTypeModal" name="editassetTypeModal" disabled="disabled">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editAssetDevice" class="col-sm-2 control-label" style="font-size: 12px;">*资产型号:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="editAssetDevice" placeholder="资产型号" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfuwushangModal" class="col-sm-2 control-label" style="font-size: 12px;">*服务商:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="factoryCityModal" placeholder="所属城市" >-->
+								<select class="form-control" id="editfuwushangModal" name="fuwushangModal" disabled="disabled">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editfactoryModal" class="col-sm-2 control-label" style="font-size: 12px;">*所属建筑:</label>
+							<div class="col-sm-10">
+								<!--<input class="form-control" id="editfactoryAreaModal" placeholder="所属建筑" >-->
+								<select class="form-control" id="editfactoryAreaModal" name="factoryModal">
+									<!-- <option value=""></option> -->
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="assetAddrModal" class="col-sm-2 control-label" style="font-size: 12px;">安装位置:</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="assetAddrModal" placeholder="安装位置">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editIdOfproject" class="col-sm-2 control-label" style="font-size: 12px;">*所属项目:</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="editIdOfproject" name="factoryModal">
+									<!-- <option value=""></option> -->
+								</select>
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<a class="btn btn-success" id="btneditFactory"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认修改</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--替换-->
+	<div class="modal " id="tiHuanAssetModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding:10px;margin: 0px;">
+					<h4>替换设备</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal form-factory">
+						<div class="form-group" style="margin-top:20px;">
+							<label for="replaceDeviceNameModal" class="col-sm-2 control-label" style="font-size: 12px;">设备:</label>
+							<div class="col-sm-10">
+								<select class="form-control" id="replaceDeviceNameModal">
+									<option value=""></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<a class="btn btn-success" id="btnTiHuanDevice"><span class="glyphicon glyphicon-plus"></span><span style="padding-left:10px">确认替换</span></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

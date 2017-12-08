@@ -1,0 +1,79 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+.body-div-style{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+}
+.search-items{	
+	width: 100%;
+	height: 50px;
+	padding: 10px 0px;
+	border-radius: 5px;
+	border: 1px solid #DBDBDB;
+	background: #ECF5FC;
+}
+.key-word-style{
+	font-weight: bold;
+}
+.search-items>span{
+	padding-left: 10px;
+}#keyWord{
+	width: 260px;
+	height: 30px;
+}
+.search-items select{
+	width: 150px;
+	height: 30px;
+}
+.select-style{
+	width: 200px;
+	height: 30px;
+}
+.input-style{
+	width: 160px;
+	height: 30px;
+}
+.btn-items{
+	position: relative;
+	width: 100%;
+	height: 50px;
+	padding:10px 0px ;
+}
+.position-btn{
+	position: absolute;
+	right: 20px;
+}
+.position-btn>a{
+	margin-left: 10px;
+	width: 60px;
+}
+.color-4{
+	background:#4DBE58;
+	color: #FFFFFF;
+}
+.color-5{
+	background:#429FE4;
+	color: #FFFFFF;
+}
+.the-btn-hover:hover{
+	color: #FFFFFF;
+}
+.data-content{
+	position: relative;
+	width: 100%;
+	height: 510px;
+	/*background: yellowgreen;*/
+	overflow: auto;
+}
+.page-content{
+	width: 100%;
+	height: 50px;
+	/*background: blue;*/
+	text-align: center;
+	padding-top:8px;
+}

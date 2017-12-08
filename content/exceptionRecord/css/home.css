@@ -1,0 +1,129 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "microsoft yahei";
+
+}
+/*html{
+	font-size: 62.5%;
+}*/
+.body-div-style{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+}
+.search-items{
+	
+	width: 100%;
+	height: 50px;
+	padding:10px 0px ;
+
+}
+.key-word-style{
+	font-weight: bold;
+}
+.search-items>span{
+	padding-left: 5px;
+}
+#btnSearData{}
+#keyWord{
+	width: 260px;
+	height: 30px;
+}
+.search-items select{
+	width: 120px;
+	height: 30px;
+}
+.select-style{
+	width: 120px;
+	height: 30px;
+}
+.input-style{
+	width: 120px;
+	height: 30px;
+}
+.data-content{
+	position: relative;
+	width: 100%;
+	height: 560px;
+	/*background: yellowgreen;*/
+	overflow: auto;
+}
+.page-content{
+	width: 100%;
+	height: 50px;
+	/*background: blue;*/
+	text-align: center;
+	padding-top:8px;
+}
+.page-content-2{
+	position:relative;
+	width:100%;height:30px;color:#BEBEBE;
+}
+.page-content-2-content{
+	position: absolute;
+	right: 10px;
+	width: 160px;
+	height:30px;
+	top:5px;
+}
+textarea{
+	resize: none;
+}
+.form-factory>.form-group{
+	padding:0px 20px;
+}
+/*滚动条*/
+::-webkit-scrollbar {width: 6px;height: 6px;}
+::-webkit-scrollbar-track-piece{
+	
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {   
+	 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+     cursor: pointer;  
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {   
+	  border-radius: 10px;   
+	  background: #404040;
+	 
+	  background: rgba(64,64,64,0.85);    
+	  /*-webkit-box-shadow: inset 0 0 6px rgba(77,76,75,1);*/
+}
+::-webkit-scrollbar-thumb:horizontal{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+::-webkit-scrollbar-thumb:vertical{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+/*::-webkit-scrollbar-thumb:window-inactive {
+	    background: rgba(255,0,0,0.4);
+}*/
+
+.td-width{
+	width: 11%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.td-width-2{
+	width: 14%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+#table td{
+	text-align: center;
+}
+#table th{
+	text-align: center;
+}
+.message-div span{
+	margin-left: 80px;
+}

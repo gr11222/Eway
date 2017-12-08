@@ -1,0 +1,239 @@
+@charset"utf-8";
+
+/*---------------------------样式归零 By 天涯浅唱 QQ：122452357----------------------*/
+
+.demo abbr,
+.demo address,
+.demo article,
+.demo aside,
+.demo audio,
+.demo b,
+.demo blockquote,
+.demo body,
+.demo canvas,
+.demo caption,
+.demo cite,
+.demo code,
+.demo dd,
+.demo del,
+.demo details,
+.demo dfn,
+.demo div,
+.demo dl,
+.demo dt,
+.demo em,
+.demo fieldset,
+.demo figcaption,
+.demo figure,
+.demo footer,
+.demo form,
+.demo h1,
+.demo h2,
+.demo h3,
+.demo h4,
+.demo h5,
+.demo h6,
+.demo header,
+.demo hgroup,
+.demo html,
+.demo i,
+.demo frame,
+.demo img,
+.demo ins,
+.demo kbd,
+.demo label,
+.demo legend,
+.demo li,
+.demo mark,
+.demo menu,
+.demo nav,
+.demo object,
+.demo ol,
+.demo p,
+.demo pre,
+.demo q,
+.demo samp,
+.demo section,
+.demo small,
+.demo span,
+.demo strong,
+.demo sub,
+.demo summary,
+.demo sup,
+.demo table,
+.demo tbody,
+.demo td,
+.demo tfoot,
+.demo th,
+.demo thead,
+.demo time,
+.demo tr,
+.demo ul,
+.demo var,
+/*有问题*/
+.demo video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	background: 0 0;
+	font-weight: 400;
+	font-style: inherit;
+	font-family: inherit;
+	vertical-align: top
+}
+
+
+.demo article,
+.demo aside,
+.demo details,
+.demo figcaption,
+.demo figure,
+.demo footer,
+.demo header,
+.demo hgroup,
+.demo hr,
+.demo menu,
+.demo nav,
+.demo section {
+	display: block
+}
+
+.demo nav ul,
+.demo ol,
+.demo ul {
+	list-style: none
+}
+
+:focus
+.demo a.control{
+	outline: 0
+}
+
+.demo a.control {
+	margin: 0;
+	font-size:10%;
+	vertical-align: baseline;
+	background: 0 0;
+	blr: expression(this.onFocus=this.blur())
+}
+
+.demo a.control,
+ins {
+	text-decoration: none
+}
+
+.demo a.control,
+.demo hr {
+	padding: 0
+}
+
+.demo ins,
+.demo mark {
+	background-color: #ff9;
+	color: #000
+}
+
+.demo mark {
+	font-weight: 700
+}
+
+.demo blockquote,
+.demo q {
+	quotes: none
+}
+
+.demo blockquote:after,
+.demo blockquote:before,
+.demo q:after,
+.demo q:before {
+	content: '';
+	content: none
+}
+
+.demo del {
+	text-decoration: line-through
+}
+
+.demo abbr[title],
+.demo dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help
+}
+
+.demo table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.demo caption,
+.demo td,
+.demo th {
+	text-align: left;
+	font-weight: 400
+}
+
+.demo hr {
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #cccccc;
+	margin: 1em 0
+}
+
+.demo input,
+.demo select {
+	vertical-align: middle;
+	border: 0
+}
+
+
+/*-------------------------归零样式END，请于样式表最前面调用-------------------------*/
+
+
+/*-----------------自定义按钮样式，移动端不需要，PC端根据实际情况选择----------------*/
+
+.demo {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.demo a.control {
+	position: absolute;
+	display: block;
+	top: 50%;
+	margin-top: -30px;
+	width: 76px;
+	height: 112px;
+	cursor: pointer;
+	z-index: 2;
+	background: url(../img/buttons.png) no-repeat;
+	font-size: 20px;
+	color: #BCE8F1;
+	}
+
+.demo a.prev {
+	left: 0;
+	background-position: 0 0
+}
+
+.demo a.next {
+	right: 0;
+	background-position: -76px 0
+}
+
+.demo a.prev:hover {
+	background-position: 0 -112px
+}
+
+.demo a.next:hover {
+	background-position: -76px -112px
+}
+
+
+/*----------------------------为保证最佳效果，建议设置如下样式------------------------*/
+
+.slider {
+	display: none;
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<!--页面头部开始-->
+			<header class="header-style">
+				<div class="logo-style">
+					<img src="../img/logo.png" width="40" height="40"/>
+				</div>
+				<div class="sys-name">
+					E维管家后台管理系统
+				</div>
+				<nav class="head-nav-style">
+					<ul>
+						<li>
+							<a href="javascript:void(0)" id="btnLogOut">
+								<span class="glyphicon glyphicon-log-out"></span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!--页面头部结束-->
+			<!--页面中部-->
+			<section class="real-nav-style">
+				<nav class="left-nav-style">
+					<ul>
+						<li class="li-unactive nav-click" imgname="label" linkHref="/html/content/LabelManagement/html/home.html">
+							<span>
+								<img src="../img/label.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								标签管理
+							</span>
+						</li>
+						<li linkHref="/html/content/statisticalAnalysis/html/home.html" class="li-unactive  nav-click" imgname="total" style="margin-top:20px">
+							<span>
+								<img src="../img/total.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								统计分析
+							</span>
+						</li>
+						<li linkHref="/html/content/basicUser/html/home.html" class="li-active  nav-click" imgname="user"  style="margin-top:20px">
+							<span>
+								<img src="../img/user_active.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								用户管理
+							</span>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			<section class="data-content-style">
+				<script type="text/javascript">
+					$(".data-content-style").width($(".body-div-style").width() - 156);
+				</script>
+				<article class="search-items">
+					<!--<form class="form-inline" >-->
+					  <div class="" style="width: 240px;">
+					    <a class="btn btn-success" type="button" id="btnAddNewLabel" style="padding-top:4px">
+					    	<span class="glyphicon glyphicon-plus"></span>
+					    	<span>添加用户</span>
+					    </a>
+					    <a class="btn btn-danger" type="button" id="btnSearchUserInfos" style="padding-top:4px">
+					    	<span class="glyphicon glyphicon-search"></span>
+					    	<span>查询用户</span>
+					    </a>
+					  </div>
+					  
+					  
+					<!--</form>-->
+				</article>
+				<!--<div id="totalTip">1023条</div>-->
+				<section class="data-content-items">
+					<section class="real-content" id="userDataContent">
+						<div style="position:relative;width:300px;top:30%;margin:0px auto;font-size:15px;font-weight: bold;">
+							提示:<br/>
+							用户可以点击上方添加用户按钮向系统中添加用户;
+							用户可以点击上方查询用户按钮查询系统中的用户。
+						</div>
+					</section>
+					<section class="page-content">
+						<div class="page-left">
+							
+						</div>
+						<div class="page-mid">
+							
+								<span >
+									<a class="btn btn-primary" id="btnPageBefore">
+										<span class="glyphicon glyphicon-arrow-left"></span>
+									</a>
+									<a class="btn btn-primary" id="btnPageNext">
+										<span class="glyphicon glyphicon-arrow-right"></span>
+									</a>
+								</span>
+								
+								
+						</div>
+						<div class="page-right" style="line-height:40px">
+							<span >
+								<a class="btn btn-primary" id="btnPageJump">
+									跳转至
+								</a>
+								<input type="text" id="pageNumId" style="width:40px;display: inline;" class="form-control"/>
+								页
+							</span>
+							<span id="pageTotalInfo" style="padding-left:10px"></span>
+						</div>
+					</section>
+				</section>
+				<footer style="clear: both;" class="footer-style">
+					Copyright &copy; 2016 实想科技 All Rights Reserved
+				</footer>
+			</section>
+			
+			
+		</div>
+		<!--添加标签窗口-->
+		<div class="modal fade" id="lanelModal" tabindex="-1" role="dialog" >
+		  <div class="modal-dialog" role="document" style="width: 350px;">
+		    <div class="modal-content" >
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="exampleModalLabel">新建用户信息</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form class="form-horizontal">
+		          <div class="form-group">
+				    <label for="userAccount" class="col-sm-3 control-label">账号</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="userAccount" placeholder="账号">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userPassword" class="col-sm-3 control-label">密码</label>
+				    <div class="col-sm-9">
+				      <input type="password" class="form-control" id="userPassword" placeholder="密码">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userPasswordSure" class="col-sm-3 control-label">确认密码</label>
+				    <div class="col-sm-9">
+				      <input type="password" class="form-control" id="userPasswordSure" placeholder="确认密码">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userName" class="col-sm-3 control-label">姓名</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="userName" placeholder="姓名">
+				    </div>
+				  </div>
+				   <div class="form-group">
+				    <label for="userType" class="col-sm-3 control-label">角色</label>
+				    <div class="col-sm-9">
+				   	  <select name="userType" class="form-control" id="userType" >
+				   	  	<option value="2">普通用户</option>
+				   	  	<option value="1">管理员</option>
+				   	  </select>
+				    </div>
+				  </div>
+				   <!--<div class="form-group">
+				    <label for="forFactory" class="col-sm-3 control-label">所属工厂</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="forFactory" placeholder="所属工厂">
+				    </div>
+				  </div>
+				   <div class="form-group">
+				    <label for="userPhone" class="col-sm-3 control-label">联系方式</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="userPhone" placeholder="联系方式">
+				    </div>
+				  </div>-->
+				   
+				  <div class="form-group text-center">
+				    
+				      <button type="button" id="btnRealAddUser" class="btn btn-success">确认添加</button>
+				    
+				  </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--添加标签窗口-->
+		<!--修改用户窗口-->
+		<div class="modal fade" id="userEditModal" tabindex="-1" role="dialog" >
+		  <div class="modal-dialog" role="document" style="width: 350px;">
+		    <div class="modal-content" >
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="userEditModal">修改用户信息</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form class="form-horizontal">
+		          <div class="form-group">
+				    <label for="userAccountEdit" class="col-sm-3 control-label">账号</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="userAccountEdit" placeholder="账号">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userPasswordEdit" class="col-sm-3 control-label">密码</label>
+				    <div class="col-sm-9">
+				      <input type="password" class="form-control" id="userPasswordEdit" placeholder="密码">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userPasswordSureEdit" class="col-sm-3 control-label">确认密码</label>
+				    <div class="col-sm-9">
+				      <input type="password" class="form-control" id="userPasswordSureEdit" placeholder="确认密码">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="userNameEdit" class="col-sm-3 control-label">姓名</label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="userNameEdit" placeholder="姓名">
+				    </div>
+				  </div>
+				   <div class="form-group">
+				    <label for="userTypeEdit" class="col-sm-3 control-label">角色</label>
+				    <div class="col-sm-9">
+				   	  <select name="userType" class="form-control" id="userTypeEdit" >
+				   	  	<option value="2">普通用户</option>
+				   	  	<option value="1">管理员</option>
+				   	  </select>
+				    </div>
+				  </div>
+				  <div class="form-group text-center">
+				    
+				      <button type="button" id="btnRealEditUser" class="btn btn-success">确认添加</button>
+				    
+				  </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--修改用户窗口-->
+		<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+		<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>备品备件-备品备件报警</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<div class="search-items-top">
+					<div class="div-4-top">
+						<div class="div-4-top-left">
+							公司
+						</div>
+						<div class="div-4-top-right">
+							<select name="companyName1" id="companyName1">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="div-4-top">
+						<div class="div-4-top-left">
+							项目
+						</div>
+						<div class="div-4-top-right">
+							<select name="projectName1" id="projectName1">
+							</select>
+						</div>
+					</div>
+					<div class="div-4-top">
+						<div class="div-4-top-left">
+							报警状态
+						</div>
+						<div class="div-4-top-right">
+							<select name="alarmCondition" id="alarmCondition">
+								<option value="">请选择</option>
+								<option value="已响应">已响应</option>
+								<option value="未响应">未响应</option>
+							</select>
+						</div>
+					</div>
+					<span>
+                   	报警时间
+                   </span>
+					<span>
+                   	<input type="text" class="input-style" name="startTime5" id="startTime5" placeholder="开始时间"/>
+                   </span>
+					<span>
+                   	-
+                   </span>
+					<span>
+                   	<input type="text" class="input-style" name="endTime5" id="endTime5" placeholder="结束时间"/>
+                  </span>
+				</div>
+				<div class="search-items-bottom">
+					<span class="span">
+                   	备品型号
+                   </span>
+					<span class="span">
+                   	<input type="text" id="model" value="" />
+                   </span class="span">
+                   <span  style="margin-left: 14px;">
+                   	备品类型
+                   </span>
+					<span class="span">
+                   	<select name="toolStyle" id="toolStyle">
+					</select>
+                   </span class="span">
+                   <span  style="margin-left: 30px;">
+                   	服务商
+                   </span>
+					<span class="span">
+                   	<select name="facilitator" id="facilitator">
+					</select>
+                   </span>
+					<span class="div-4-bottom-btn">
+                   	<a class="btn btn-primary" style='width:80px' id="btnSearchSparPartsAlarm"><span class="glyphicon glyphicon-search"></span style="padding-left: 5px;"><span >查询</span></a>
+					</span>
+				</div>
+				<!--<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-primary" id="btnSetAlarmSource">设置发送源</a>
+					<a class="btn btn-primary" id="btnSetEmail">报警邮箱设置</a>	
+				</div>-->
+			</div>
+			<!--<div class="data-content" id="ptcontent">
+				
+			</div>-->
+			<div class="btn-items">
+				<div class="position-btn">
+					<a class="btn the-btn-hover  color-1" style='width:80px' id="btnSPAalarm"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">响应</span></a>
+				</div>
+			</div>
+			<div class="data-content" id="spacontent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			</div>
+		</div>
+
+	</body>
+	<div class="modal fade" id="SetAlarmSpurceModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal" style="margin-top:40px">
+
+						<div class="form-group">
+							<label for="emailModal" class="col-sm-2 control-label">邮箱</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="emailModal" placeholder="邮箱">
+							</div>
+						</div>
+
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnAddRealBtn" style="width:120px">确定</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--设置报警邮箱-->
+	<div class="modal fade" id="SetAlarmEmailModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="max-height: 300px;overflow: auto;">
+					<form class="form-horizontal" style="margin-top:40px" id="emailContent">
+
+						<div class="form-group">
+
+							<div class="col-sm-10">
+								<input type="text" class="form-control emal-tetx" placeholder="邮箱">
+							</div>
+							<div class="col-sm-2 text-center">
+								<a class="btn btn-success" id="btnAddEmailInput">添加</a>
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<div style="width: 100%;">
+					<div class="form-group text-center" style='margin-top:10px'>
+						<a class="btn btn-success" id="btnAddRealBtn" style="width:120px">确定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--设置报警邮箱-->
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

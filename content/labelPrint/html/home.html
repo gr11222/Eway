@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+					  <div class="form-group" style="padding-top:0px;">
+					    <label for="companyName" class="col-sm-4 control-label">公司</label>
+					    <div class="col-sm-8">
+					      <!--<input type="text" class="form-control" id="companyName" placeholder="公司">-->
+					   	  <select name="companyName" id="companyName" class="form-control">
+					   	  	<option value=""></option>
+					   	  </select>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="projectName" class="col-sm-4 control-label">项目</label>
+					    <div class="col-sm-8">
+					      <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
+					      <select name="projectName" id="projectName" class="form-control">
+					      	<option value=""></option>
+					      </select>
+					    </div>
+					  </div>
+					  
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+					  <div class="form-group" style="padding-top:0px;">
+					    <label for="keyWord" class="col-sm-4 control-label">关键字</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" id="keyWord" placeholder="编号或名称">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="BuildSelect" class="col-sm-4 control-label">所属建筑</label>
+					    <div class="col-sm-8">
+					      <!--<input type="password" class="form-control" id="inputPassword3" placeholder="Password">-->
+					      <select name="BuildSelect" id="BuildSelect" class="form-control">
+					      	<option value=""></option>
+					      </select>
+					    </div>
+					  </div>
+					  
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+					  <div class="form-group" style="padding-top:0px;">
+					    <label for="keyWord" class="col-sm-4 control-label">开始时间</label>
+					    <div class="col-sm-8">
+					      <!--<input type="text" class="form-control" id="keyWord" placeholder="关键字">-->
+					      <input type="text" class="time-picker form-control"  name="startTime" id="startTime" placeholder="开始时间" />
+				
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="facSelect" class="col-sm-4 control-label">资产类型</label>
+					    <div class="col-sm-8">
+					      <select name="assetType" id="assetType" class="select-style form-control"></select>
+					    </div>
+					  </div>
+					  
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+					  <div class="form-group" style="padding-top:0px;">
+					    <label for="keyWord" class="col-sm-4 control-label">结束时间</label>
+					    <div class="col-sm-8">
+					      <input type="text" class="time-picker form-control"   name="endTime" id="endTime"   placeholder="结束时间"/>
+					    </div>
+					  </div>
+					</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<form class="form-horizontal" style="padding 0px auto">
+					  <div class="col-sm-offset-2 col-sm-10">
+					      <!--<button type="submit" class="btn btn-default">Sign in</button>-->
+				      	  <a class="btn btn-warning" id="btnSearData" style="width: 110px;"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				
+					  </div>
+				      <div class="col-sm-offset-2 col-sm-10" style="padding-top:15px">
+					      <!--<button type="submit" class="btn btn-default">Sign in</button>-->
+				      	  <a class="btn btn-danger" id="btnPrintLabel" style="width: 110px;"><span class="glyphicon glyphicon-print"></span><span style="padding-left: 5px;">打印标签</span></a>			
+				      </div>
+					</form>
+				</div>
+			</div>
+			<div class="data-content" id="dataContent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择企业类型后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<div class="page-content">
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+					<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+					<span id="">
+			      	页
+			      </span>
+					<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<!--标签详细信息-->
+	<div class="modal " id="labelInfosModal" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" style="width:170px">
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body text-center" style="padding-top:40px" >
+	        <img src="" width="139" height="139" id="qrcodeWatch"/>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--标签纸张大小选择-->
+	<div class="modal fade" id="pageSizeModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">选择纸张型号</h4>
+	      </div>
+	      <div class="modal-body" style="height: 80px;">
+	       	<div class="form-group">
+	            <label for="pageSize" class="col-sm-2 control-label">纸张型号</label>
+			    <div class="col-sm-10">
+			      <select  class="form-control" id="pageSize" >
+			      	<option value="1">40mm*60mm</option>
+		      		<option value="2">75mm*100mm</option>
+			      </select>
+			    </div>
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	       
+	        <button type="button" class="btn btn-primary" id="btnForPrintLabel">确认打印</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--标签纸张大小选择-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/jquery.jqprint-0.3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lib/jquery-migrate-1.1.0.js.js" type="text/javascript" charset="utf-8"></script>
+</html>

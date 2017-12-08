@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>E维管家后台管理系统</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../script/YuxiSlider.jQuery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<!--页面头部开始-->
+			<header class="header-style">
+				<!--<div class="logo-style">
+					<img src="../img/eyelogo.png" width="200" height="40"/>
+				</div>-->
+				<header class="header-style">
+				<div class="logo-style">
+					<img id='logo' src=""/>
+				</div>
+				<div class="sys-name">
+					<!-- E维管家后台管理系统 -->
+				</div>
+				<!--<div class="sys-name">
+					E维管家后台管理系统
+				</div>-->
+				<nav class="head-nav-style">
+					<ul>
+						<li style="float:left;width:150px;padding: 0px 5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+							<a href="javascript:void(0)" id="userNameContent">
+								<span class="glyphicon glyphicon-user"></span>
+								<span id="userRealName"></span>
+							</a>
+						</li>
+						<li style="float:left">
+							<a href="javascript:void(0)" id="btnLogOut">
+								<span class="glyphicon glyphicon-log-out"></span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!--页面头部结束-->
+			<!--新加-->
+			<div style='width: 100%;position: relative;height: 693px;'>
+				<!---->
+					<!--页面左侧菜单-->
+				<section class="real-nav-style">
+					<nav class="left-nav-style">
+						<ul id="navItems">
+						</ul>
+					</nav>
+				</section>
+				<!--右侧iframe和版权-->
+				<section class="data-content-style">
+					<script type="text/javascript">
+						$(".data-content-style").width($(".body-div-style").width() - 166);
+					</script>
+					<section class="data-content-items">
+						<iframe src="" name="iframeContent" width="100%" height="100%" frameborder="no" scrolling="no"></iframe>					
+					</section>
+					<!-- <footer style="clear: both;" class="footer-style">
+						Copyright &copy; 2017 中创华科 All Rights Reserved
+					</footer> -->
+				</section>
+				<!---->
+			</div>
+			<!--新加-->
+		</div>
+		<div id="changeImg" class="hide"  style="position: fixed;width: 100%;height: 100%;top:0px;left:0px;z-index:10000;background-color: rgba(0,0,0,0.7);">
+			
+	        	
+	        
+		</div>
+	</body>
+	
+</html>

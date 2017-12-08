@@ -1,0 +1,185 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+
+}
+/*html{
+	font-size: 62.5%;
+}*/
+.body-div-style{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	
+}
+.search-items{
+	
+	width: 100%;
+	height:100px;
+	padding:10px 0px ;
+	background: #ECF5FC;
+	border-radius: 5px;
+	border: 1px solid #CCCCCC;
+
+}
+.search-items .form-group{
+	margin-top:0px;
+	
+}
+.key-word-style{
+	font-weight: bold;
+}
+/*.search-items>span{
+	padding-left: 5px;
+}*/
+#btnSearData{}
+/*#keyWord,#startTime,#endTime{
+	width: 120px;
+	height: 30px;
+}
+.select-style{
+	width: 100px;
+	height: 30px;
+}*/
+.data-content{
+	position: relative;
+	width: 100%;
+	height: 460px;
+	padding: 5px 0px;
+	overflow: auto;
+}
+.form-group>label{
+	font-size: 10px;
+	padding:5px
+}
+.page-content{
+	width: 100%;
+	height: 50px;
+	/*background: blue;*/
+	text-align: center;
+	padding-top:8px;
+}
+textarea{
+	resize: none;
+}
+.form-factory>.form-group{
+	padding:0px 20px
+}
+.label-body-style{
+	position: relative;
+	width:20%;
+	height: 191px;
+	padding: 5px;
+	
+	float:left
+}
+.label-body-style-div{
+	position:absolute;
+	width: 98%;
+	height: 171px;
+	/*background: red;*/
+	border:1px solid #E3E3E3;
+	left:0px;
+	top:10px;
+	cursor: default;
+	z-index: 1;
+	
+}
+.label-body-style-close-2{
+	position:absolute;
+	width: 18px;
+	height: 18px;
+	border-radius: 18px;
+	top:0px;
+	right:1px;
+	background: rgba(0,0,0,0.5);
+	cursor: pointer;
+	font-size: 10px;
+	color: #FFFFFF;
+	text-align: center;
+	z-index: 2;
+}
+.label-header{
+	position: relative;
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	font-size: 10px;
+	/*top:20px;*/
+	line-height: 20px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: default;
+}
+.label-qrcode{
+	position: relative;
+	margin: 0px auto;
+	width: 120px;
+	height: 120px;
+	text-align: center;
+	/*background: blue;*/
+	
+}
+/*滚动条*/
+::-webkit-scrollbar {width: 6px;height: 6px;}
+::-webkit-scrollbar-track-piece{
+	
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {   
+	 -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+     cursor: pointer;  
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {   
+	  border-radius: 10px;   
+	  background: #404040;
+	 
+	  background: rgba(64,64,64,0.85);    
+	  /*-webkit-box-shadow: inset 0 0 6px rgba(77,76,75,1);*/
+}
+::-webkit-scrollbar-thumb:horizontal{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+::-webkit-scrollbar-thumb:vertical{
+	 width: 6px;
+	 border-radius: 10px; 
+	 cursor: pointer;  
+}
+/*::-webkit-scrollbar-thumb:window-inactive {
+	    background: rgba(255,0,0,0.4);
+}*/
+
+.td-width{
+	width: 11%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+.td-width-2{
+	width: 14%;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.top{
+	height: 40px;
+}
+
+.left{
+	float: left;
+	width: 30%;
+	text-align: right;
+	padding-right: 10px;
+	line-height: 30px;
+}
+
+.btn-print{
+	position: absolute;
+	right: 10px;
+	top: 110px;
+}

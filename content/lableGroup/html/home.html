@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>标签管理-标签分组</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../css/tree.css" />
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				公司
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-one" id="company" class="select-style">
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				项目
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-two" id="project" class="select-style">       					
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				分组名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="groupName" id="groupName" />
+        			</span>
+					<span class="key-word-style ">
+							生效时间
+						</span>
+					<span>
+							<input type="text" class="input-style-time input-style"   name="startTime" id="startTime"   placeholder="开始时间 "/>
+						</span>
+					<span>
+							-
+						</span>
+					<span>
+							<input type="text" class="input-style-time input-style"   name="endTime" id="endTime"   placeholder="结束时间 "/>
+						</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchLabelGroup"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<a class="btn the-btn-hover  color-1" style='width:100px;margin-left: 50px;float: left;' id="btnAddGroup"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建分组</span></a>
+				<div class="groupInfos">
+					<span id="" style="margin-left: 5px;">
+						分组名称:
+					</span>
+					<span id="groupInfosName">
+						
+					</span>
+					<span id="" style="margin-left: 10px;">
+						备注:
+					</span>
+					<span id="groupInfosNote">
+						
+					</span>
+					<span id="" style="margin-left: 10px;">
+						标签编号:
+					</span>
+					<span id="groupInfosQr">
+						
+					</span>
+				</div>
+				<a class="btn btn-danger" style='width:100px' id="btnDelGroup"><span class="glyphicon glyphicon-minus"></span><span style="padding-left: 5px;">分组失效</span></a>
+				<a class="btn the-btn-hover  color-1" style='width:110px' id="btnAddSubGroup"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">新建子分组</span></a>
+				<a class="btn the-btn-hover  color-1" style='width:100px' id="btnAddDeviceBtn"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">添加资产</span></a>
+
+			</div>
+			<div class="data-content" id="data-content">
+				<div class="leftNav" id="leftNav" style='overflow-y: auto'>
+<!-- 
+
+					<div id="treeRoot" onselectstart="return false" ondragstart="return false">
+						<div class="treeNode">
+							<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+							<span onclick="expandCollapse(this.parentNode)" class="category">分组1 </span>
+							<div class="treeSubnodesHidden">
+
+								<div class="treeNode">
+									<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+									<span onclick="expandCollapse(this.parentNode)" class="category">分组1.1</span>
+									<div class="treeSubnodesHidden">
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.1</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.2</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.1.3</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.2</a>
+								</div>
+								<div class="treeNode">
+									<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+									<span onclick="expandCollapse(this.parentNode)" class="category">分组1.3</span>
+									<div class="treeSubnodesHidden">
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.3.1</a>
+										</div>
+										<div class="treeNode">
+											<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组1.3.2</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="treeNode">
+							<img src="../img/right.png" onclick="expandCollapse(this.parentNode)" class="treeLinkImage">
+							<span onclick="expandCollapse(this.parentNode)" class="category">分组2</span>
+							<div class="treeSubnodesHidden">
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.1</a>
+								</div>
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.2</a>
+								</div>
+								<div class="treeNode">
+									<a href="#" class="treeUnselected" onclick="clickAnchor(this)">分组2.3</a>
+								</div>
+							</div>
+						</div>
+						
+					</div> -->
+
+				</div>
+				<div class="data" id="deviceList" style="overflow:auto;min-width: 800px;margin-left: 200px;height: 510px;padding: 5px;">
+					<div style="width:100%;padding-top:20%;font-size: 30px;font-weight: bold;text-align:center;">
+						请选择分组，以查询分组和设备信息！
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+	</body>
+
+	<div class="modal fade" id="addGroupModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+
+						<div class="form-group" style="margin-top:30px">
+							<label for="addPprojectName" class="col-sm-3 control-label">*所属项目</label>
+							<div class="col-sm-9">
+								<select name="addProjectName" class="form-control" id="addProjectName" >
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="GroupName" class="col-sm-3 control-label">*分组名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="addGroupName" placeholder="分组名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="note" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="addNote" placeholder="备注">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnNext">下一步</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal " id="addGroupModal2" role="dialog" aria-labelledby="exampleModalLabel">
+	  <div class="modal-dialog" role="document" >
+	    <div class="modal-content">
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+	      <div class="modal-body" >
+	      	<div style="font-weight: bold;font-size: 20px;">
+	      		*资产类型：
+	      	</div>
+	      	<div style="margin-top: 20px;">
+	      		<label for="userName" style="padding-top: 5px">资产名称：
+						<input type="text" name="userName3" id="userName">
+				</label>
+				<span id="btnModalSearch3" class="btn btn-success" style="float: right;margin-right: 20px;">
+					查询
+				</span>
+	      	</div>	
+	      		<div id="modalTable2" style="height: 410px;overflow: auto">
+	      			
+	      		</div>
+
+	      		<div style="text-align: center;margin-top:10px">
+						<!-- <a class="btn btn-success" id="btnCancelAdd">上一步</a> -->
+	      				<a class="btn btn-success" id="btnAddRealBtn">确定</a>
+	      		</div>
+	      </div>
+	    </div>
+	  </div>	
+	</div>
+
+	//新建子分组弹出框
+	<div class="modal fade" id="addSubGroupModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group" style="margin-top:30px">
+							<label for="bpShuLiangModal" class="col-sm-3 control-label">上级分组</label>
+							<div class="col-sm-9">
+								<p id="parentGroup" style="margin: 6px 15px;">分组一</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addGroupName" class="col-sm-3 control-label">*分组名称</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="addSubGroupName" placeholder="分组名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="addNote" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control init-for-add" id="addSubNote" placeholder="备注">
+							</div>
+						</div>
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnNext2">下一步</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//添加资产弹出框
+	<div class="modal fade" id="addDeviceModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; height: 500px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" style="margin-top:30px">
+					<div class="query-part">
+						<div class="search-items-left" style="width: 100%;">
+
+							<div class="search-items-left-one" style="float: left;width: 22%;">
+								<div class="top">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;line-height: 30px;">
+										<label for="companyName">公司</label>
+									</div>
+									<div class="right">
+										<select name="companyName" id="companyName" class="select-style-s form-control">
+											<option value=""></option>
+										</select>
+									</div>
+								</div>
+								<div class="bottom">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;line-height: 30px;">
+										<label for="facSelect" class="">资产类型</label>
+									</div>
+									<div class="right">
+										<select name="assetType" id="assetType" class="select-style-s form-control">
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="search-items-left-two" style="float: left;width: 22%">
+								<div class="top">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;">
+										<label for="assetName" class="">资产名称</label>
+									</div>
+									<div class="right">
+										<input type="text" id="assetName" value="" placeholder="资产名称" class="input-style-s" />
+									</div>
+								</div>
+								<div class="bottom">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;">
+										<label for="facilitator" class="">服务商</label>
+									</div>
+									<div class="right">
+										<select name="facilitator" id="facilitator" class="select-style-s form-control">
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="search-items-left-three" style="float: left;width: 22%">
+								<!-- <div class="top">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;">
+										<label for="assetName" class="">资产名称</label>
+									</div>
+									<div class="right">
+										<input type="text" id="assetName" value="" placeholder="资产名称" class="input-style-s" />
+									</div>
+								</div> -->
+								<div class="bottom">
+									<div class="left" style="float: left;width: 40%;text-align: right;padding-right: 10px;">
+										<label for="assetModel" class="">资产型号</label>
+									</div>
+									<div class="right">
+										<input type="text" id="assetModel" value="" placeholder="资产型号" class="input-style-s" />
+									</div>
+								</div>
+							</div>
+
+							<div class="search-items-left-four" style="float: left;width: 34%">
+								<div class="top">
+									<div class="left" style="float: left;width: 30%;text-align: right;padding-right: 10px;">
+										<label for="effectTime" class="">生效时间</label>
+									</div>
+									<div class="right">
+										<span>
+                   	                <input type="text" class="input-style-time" name="startTime" id="startTime1" placeholder="开始时间" style="width: 100px;height: 35px;"/>
+                               </span>
+										<span>
+                                	-
+                                </span>
+										<span>
+                   	            <input type="text" class="input-style-time" placeholder="结束时间" name="endTime" id="endTime1" style="width: 100px;height: 35px"/>
+                                </span>
+									</div>
+								</div>
+							</div>
+							<div class="search-items-btn">
+								<a class="btn btn-primary" style='width:80px' id="btnSearchDevice"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+							</div>
+						</div>
+
+					</div>
+					<div class="btn-part-one">
+						<a class="btn the-btn-hover  color-1" style='width:100px' id="btnAddDevice"><span class="glyphicon glyphicon-list-alt"></span><span style="padding-left: 5px;">添加</span></a>
+						<a class="btn the-btn-hover  color-1" style='width:100px' id="btnClose"><span class="glyphicon glyphicon-list-alt"></span><span style="padding-left: 5px;">关闭</span></a>
+					</div>
+					<div class="list-part" id="listPart" style="height: 300px;overflow: auto;width: 980px;">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+					</div>
+					<!--<div class="btn-part-two">
+						<a class="btn the-btn-hover  color-1" style='width:120px' id="btnRIOk"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">确定</span></a>
+					</div>-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+</html>

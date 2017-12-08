@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>基础数据管理-企业管理</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../lib/area.js" type="text/javascript" charset="utf-8"></script>-->
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="search-items">
+				<span class="key-word-style">类型</span>
+				<span id="selectItems">
+					<select name="thePointDeviceType" id="thePointDeviceType">
+						
+					</select>
+					<select name="theDeviceSelect" id="theDeviceSelect">
+						
+					</select>
+				</span>
+				<span class="key-word-style">巡检人</span>
+				<span>
+					<select name="checkUser" id="checkUser" style="width: 120px;height: 30px;">
+						
+					</select>
+				</span>
+				<span class="key-word-style">开始时间</span>
+				<span>
+					<input type="text" class="input-style"  name="startTime" id="startTime" />
+				</span>
+				<span class="key-word-style">结束时间</span>
+				<span>
+					<input type="text" class="input-style"   name="endTime" id="endTime" />
+				</span>
+				
+				<span>
+					<a class="btn btn-primary" id="btnSearchDianJian"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</span>
+				
+				<div style='position:absolute;right:5px;top:11px'>
+					<a class="btn btn-success hide" id="btnShowChartsDianJian">曲线图</a>
+					<a class="btn btn-warning" id="btnPrintDianJian">打印</a>
+					<a class="btn btn-danger" id="btnExportDianJian">导出</a>
+				</div>
+			</div>
+			<div class="data-content" id="ptcontent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content" >
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+			      <span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+			       <span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+			       <span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+			      <span id="">
+			      	页
+			      </span>
+			       <span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			     
+			</div>
+			
+		      <div class="page-content-2 hide">
+		      	<div class="page-content-2-content"  id="isInsertDIv">
+		      		<div class="checkbox">
+			      		<label for="isInsert">
+			      		<input type="checkbox" name="isInsert" id="isInsert" value="" />
+			      		数据自动补齐</label>
+			      	</div>
+		      	</div>
+		      </div>
+		</div>
+		<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+	<!--图表-->
+	<div class="modal fade" id="lanelModal" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 1120px;">
+	    <div class="modal-content" >
+	      <div class="modal-body" style="height:420px">
+	        <div style="width: 100%;height: 20px;">
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        </div>
+	         <div style="width:1100px;height: 370px;" id="chartContent">
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--图表-->
+	<!--<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/highcharts/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/highcharts/highcharts-more.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../lib/jquery-migrate-1.1.0.js.js"></script>
+	<script type="text/javascript" src="../lib/jquery.jqprint-0.3.js"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	
+</html>

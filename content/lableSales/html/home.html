@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>标签管理-标签销售</title>
+	</head>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<!--搜索行-->
+			<div class="select-content">
+				<div class="select-content-left">
+					<div class="select-content-left-one" style="float: left;">
+						<span class="key-word-style" style="margin-left: 10px;">
+							PA
+						</span>
+						<span style="margin-left: 10px;">
+							<select name="selectPA" class="select-style" id="selectPA">
+							</select>
+						</span>
+					</div>
+					<div class="select-content-left-two" style="float: left;">
+						<span class="key-word-style" style="margin-left: 30px;">
+							购买方
+						</span>
+						<span style="margin-left: 10px;">
+							<select name="selectBuyer" class="select-style" id="selectBuyer">
+							</select>
+						</span>
+					</div>
+					<div class="select-content-left-three" style="float: left;">
+						<span class="key-word-style" style="margin-left: 30px;">
+							生效时间
+						</span>
+						<span style="margin-left: 10px;">
+							<input type="text" class="input-style"   name="startTime" id="startTime"   placeholder="开始时间"/>
+						</span>
+						<span style="margin-left: 10px;">
+							-
+						</span>
+						<span style="margin-left: 10px;">
+							<input type="text" class="input-style"   name="endTime" id="endTime"   placeholder="结束时间"/>
+						</span>
+					</div>
+				</div>
+				<div class="select-content-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchLableSales"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+
+			<!--按钮行-->
+			<div class="btns-content">
+				<a class="btn btn-primary btn-hover" theEq="-1" style='width:80px'>全部</a>
+				<a class="btn btn-default btn-hover" theEq="0" style='width:80px'>草稿</a>
+				<a class="btn btn-default btn-hover" theEq="1" style='width:80px'>已提交</a>
+				<a class="btn btn-default btn-hover" theEq="3" style='width:80px'>已审核</a>
+				<a class="btn btn-default btn-hover" theEq="2" style='width:80px'>已驳回</a>
+				<div class="btn-add">
+					<a class="btn btn-success " id="btnLablesApply" style='width:120px'><span class="glyphicon glyphicon-plus"></span><span style='padding-left:5px'>申请标签</span></a>
+				</div>
+
+			</div>
+
+			<!--表格-->
+			<div class="table-content" id="dataContent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+
+			<!--合计-->
+			<div class="total-tip">
+				<span>共有</span><span id="total">0</span><span >个已申请到的标签</span>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			</div>
+		</div>
+	</body>
+	<!--申请标签弹出框-->
+	<div class="modal fade" id="lablesApplyModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">申请标签</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="yibiaoValue" class="col-sm-3 control-label">申请人</label>
+							<div class="col-sm-9">
+								<p id="applyMan" style="margin: 6px 15px;"></p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="runStatus" class="col-sm-3 control-label">*购买方</label>
+							<div class="col-sm-9">
+
+								<select name="buyer" class="form-control" id="buyer">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="yibiaoValue" class="col-sm-3 control-label">*申请数量</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="applyNum" placeholder="申请数量">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="pointCheckResult" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" id="note"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnSaveBtn" style="width:120px">保存草稿</a>
+							<a class="btn btn-success" id="btnApplyBtn" style="width:120px">确定</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--修改弹出框-->
+	<div class="modal fade" id="editLablesModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">修改标签</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="editApplyMan" class="col-sm-3 control-label">申请人</label>
+							<div class="col-sm-9">
+								<p id="editApplyMan" style="margin: 6px 15px;"></p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editBuyer" class="col-sm-3 control-label">购买方</label>
+							<div class="col-sm-9">
+
+								<select name="editBuyer" class="form-control" id="editBuyer">
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editApplyNum" class="col-sm-3 control-label">申请数量</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="editApplyNum" placeholder="申请数量">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="editNote" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" id="editNote"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnEditSaveBtn" style="width:120px">保存草稿</a>
+							<a class="btn btn-success" id="btnEditApplyBtn" style="width:120px">提交</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--重新提交弹出框-->
+	<div class="modal fade" id="reSubLablesModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="exampleModalLabel">再次申请</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="reSubApplyMan" class="col-sm-3 control-label">申请人</label>
+							<div class="col-sm-9">
+								<p id="reSubApplyMan" style="margin: 6px 15px;"></p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="reSubBuyer" class="col-sm-3 control-label">购买方</label>
+							<div class="col-sm-9">
+								<p id="reSubBuyer" style="margin: 6px 15px;"></p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="reSubApplyNum" class="col-sm-3 control-label">申请数量</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="reSubApplyNum" placeholder="申请数量">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="reSubNote" class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-9">
+								<textarea class="form-control" id="reSubNote"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group text-center" style='margin-top:10px'>
+							<a class="btn btn-success" id="btnReSubSaveBtn" style="width:120px">保存草稿</a>
+							<a class="btn btn-success" id="btnReSubApplyBtn" style="width:120px">提交</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</html>

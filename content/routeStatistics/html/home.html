@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>用户管理-巡检分页统计</title>
+	</head>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/highcharts/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/highcharts/highcharts-more.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<!--搜索行-->
+			<div class="select-content">
+				<div class="select-content-left">
+					<div class="select-content-left-one" style="float: left;">
+						<span class="key-word-style" style="margin-left: 30px;">
+							用户名
+						</span>
+						<span style="margin-left: 10px;">
+							<select name="userName" class="select-style" id="userName">
+							</select>
+						</span>
+					</div>
+					<div>
+						<span class="key-word-style" style="margin-left: 30px;">
+						排序
+						</span>
+						<select name="orderBy" class="select-style" id="orderBy" style="margin-left: 10px;">
+							<option value="0">降序</option>
+							<option value="1">升序</option>
+						</select>
+					</div>
+				</div>
+				<div class="select-content-right">
+					<a class="btn btn-primary" style='width:80px;margin-right: 10px;' id="btnBarChart">柱状图</a>
+					<a class="btn btn-primary" style='width:80px' id="btnSearchRouteStatistics"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+
+			<!--表格-->
+			<div class="table-content" id="dataContent">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+				<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+				<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+				<span id="">
+			      	页
+			      </span>
+				<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+			</div>
+		</div>
+	</body>
+
+	//柱状图弹出框
+	<div class="modal fade" id="barChartModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; height: 500px;">
+			<div class="modal-content" style="width: 100%;height: 500px;">
+				<!--<div class="modal-header" style="padding:10px;margin: 0px;">
+					<h4 style="text-align: center;" id="headLine">巡检情况统计</h4>-->
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<!--</div>-->
+				<div class="modal-body">
+					<div class="barChart" id="barChart" style="height: 450px;overflow: auto;width: 970px;margin-top: 30px;">
+						
+
+					</div>
+					<!--<div class="btn-part-two">
+						<a class="btn the-btn-hover  color-1" style='width:120px' id="btnRIOk"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">确定</span></a>
+					</div>-->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	//饼图弹出框
+	<div class="modal fade" id="pieChartModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px; height: 480px;">
+			<div class="modal-content" style="width: 100%;height: 480px;">
+				<!--<div class="modal-header" style="padding:10px;margin: 0px;">
+					<h4 style="text-align: center;" id="headLine">巡检情况统计</h4>-->
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:10000000;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<!--</div>-->
+				<div class="modal-body">
+					<div class="pieChart" id="pieChart" style="height: 450px;overflow: auto;width: 970px;margin-top: 30px;">
+						<div class="div-left" id="pieChartOne" style="margin-left:1%;width: 48%;height: 100%;float: left;">
+							
+						</div>
+						<div class="div-right" id="pieChartTwo" style="margin-left:2%;width: 48%;height: 100%;float: left;">
+							
+						</div>
+
+					</div>
+					<!--<div class="btn-part-two">
+						<a class="btn the-btn-hover  color-1" style='width:120px' id="btnRIOk"><span class="glyphicon glyphicon-ok"></span><span style="padding-left: 5px;">确定</span></a>
+					</div>-->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--<div class="modal fade" id="lanelModal" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document" style="width: 1120px;">
+	    <div class="modal-content" >
+	      <div class="modal-body" style="height:420px">
+	        <div style="width: 100%;height: 20px;">
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        </div>
+	         <div style="width:1100px;height: 370px;" id="chartContent">
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>-->
+</html>

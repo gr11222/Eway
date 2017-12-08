@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>任务分配</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/global.css">
+	<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css" />
+	<script src="../../lib/datepicker/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+
+	<body>
+		<div class="body-div-style">
+			<div class="select-content">
+				<div class="search-items-left">
+					<span class="key-word-style">
+        				公司
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-one" id="selectCompany" class="select-style">
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				项目
+        			</span>
+					<span id="selectItems">
+        		        <select name="selectoptions-two" id="selectProject" class="select-style">       					
+        				</select>
+        			</span>
+					<span class="key-word-style">
+        				任务名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="routename" id="routename" />
+        			</span>
+				</div>
+				<div class="search-items-right">
+					<a class="btn btn-primary" style='width:80px' id="btnSearchUserInfos"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+			</div>
+			<div class="btn-content">
+				<a class="btn the-btn-hover  color-1" style='width:120px' id="btnFenPei"><span class="glyphicon glyphicon-plus"></span><span style="padding-left: 5px;">指派人员</span></a>
+				<a class="btn btn-danger" style='width:120px' id="btnCancle"><span class="glyphicon glyphicon-minus"></span><span style="padding-left: 5px;">取消指派</span></a>
+			</div>
+			<div class="data-content" id="dataContent1">
+				<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+					请选择查询条件后,点击查询按钮进行查询！
+				</div>
+			</div>
+			<div class="page-content">
+				<div class="page-content">
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageBefore">上一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageNext">下一页</a>
+			      </span>
+					<span id="">
+			      	<a class="btn btn-primary" id="btnPageJump">跳转至</a>
+			      </span>
+					<span id="">
+			      	<input type="text" name="pageNumId" id="pageNumId" style="width:33px;height:33px" />
+			      </span>
+					<span id="">
+			      	页
+			      </span>
+					<span id="pageTotalInfo">
+			      	<!--第1页/共10页-->
+			      </span>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	//分配
+	<div class="modal fade" id="setRoutInfoModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">分配任务信息</h4>
+				</div>
+				<div class="modal-body" id="routeInfoData" style="position:relative;height: 400px;overflow: auto;padding: 5px;">
+
+				</div>
+				<!--<button type="button" id="btnSureSetRote" class="btn btn-primary">确认分配</button>-->
+				<div class="form-group text-center" style='margin-top:15px'>
+					<a class="btn btn-success" id="btnSureSetRote" style="width:120px">确认分配</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//修改
+	<div class="modal fade" id="editRoutInfoModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 1000px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">修改任务信息</h4>
+				</div>
+				<div class="modal-body" id="routeInfoEditData" style="position:relative;height: 400px;overflow: auto;padding: 5px;">
+
+				</div>
+				<!--<button type="button" id="btnSureSetRote" class="btn btn-primary">确认分配</button>-->
+				<div class="form-group text-center" style='margin-top:15px'>
+					<a class="btn btn-success" id="btnEditRoute" style="width:120px">确认修改</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//设备列表弹出框
+	<div class="modal fade" id="deviceModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 800px; height: 400px;margin-top: 50px;">
+			<div class="modal-content">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="checkedList" style="margin-top: 50px;">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//新增人员列表弹出框
+	<div class="modal fade" id="addManModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 800px; height: 400px;margin-top: 50px;">
+			<div class="modal-content" style="padding: 10px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="queryPart" style="width:100%;height:50px;margin-top: 25px;border: 1px solid #DBDBDB;border-radius: 5px; padding: 7px 15px;background: #ECF5FC;">
+					<span class="key-word-style">
+        				用户名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="userNameforSearch" id="userNameforSearch" />
+        			</span>
+					<span class="key-word-style">
+        				角色
+        			</span>
+					<span id="selectItems">
+        				<select name="userTypeforSearch" id="userTypeforSearch" class="select-style">
+        					
+        				</select>
+        			</span>
+					<a class="btn btn-primary" style='position:absolute;right:20px ; width:80px' id="btnSearchMan"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+				<div class="modal-body" id="manList">
+					<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+						请选择查询条件后,点击查询按钮进行查询！
+					</div>
+				</div>
+				<div class="form-group text-center" style='margin-top:10px;margin-bottom: 5px;'>
+					<a class="btn btn-success" id="btnAddMan" style="width: 120px;">确认指派</a>
+					<a class="btn btn-success" id="btnCancle1" style="width: 120px;">取消</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	//修改人员列表弹出框
+	<div class="modal fade" id="editManModal" role="dialog" aria-labelledby="exampleModalLabel">
+		<div class="modal-dialog" role="document" style="width: 800px; height: 500px;margin-top: 20px;">
+			<div class="modal-content" style="padding: 10px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:absolute;z-index:5;right:10px;top:10px"><span aria-hidden="true">&times;</span></button>
+				<div class="modal-body" id="queryPart" style="width:100%;height:50px;margin-top: 25px;border: 1px solid #DBDBDB;border-radius: 5px; padding: 7px 15px;background: #ECF5FC;">
+					<span class="key-word-style">
+        				用户名称
+        			</span>
+					<span>
+        				<input type="text" class="input-style" name="userNameforSearch1" id="userNameforSearch1" />
+        			</span>
+					<span class="key-word-style">
+        				角色
+        			</span>
+					<span id="selectItems">
+        				<select name="userTypeforSearch1" id="userTypeforSearch1" class="select-style">
+        					
+        				</select>
+        			</span>
+					<a class="btn btn-primary" style='position:absolute;right:20px ; width:80px' id="btnEditSearchMan"><span class="glyphicon glyphicon-search"></span><span style="padding-left: 5px;">查询</span></a>
+				</div>
+				<div class="all-unchecked">
+					<div style="text-align: center;width: 100%;">
+						<p style="margin: 0px;">未选列表</p>
+						<hr style="margin: 5px;" />
+					</div>
+					<div class="modal-body" id="manUncheckedList">
+						<div style="position:relative;width: 100%;top:40%;font-size: 30px;font-weight: bold;text-align:center;">
+							请选择查询条件后,点击查询按钮进行查询！
+						</div>
+					</div>
+				</div>
+				<div class="all-checked" style="width:100%;height:180px;margin-top: 5px;padding:5px;border: 1px solid #DBDBDB;overflow: auto;">
+					<div style="text-align: center;width: 100%;">
+						<p style="margin: 0px;">已选列表</p>
+						<hr style="margin: 5px;" />
+					</div>
+					<div class="modal-body" id="manCheckedList" style="width:100%;height:130px;overflow: auto;padding:5px">
+					</div>
+				</div>
+				<div class="form-group text-center" style='margin-top:5px;margin-bottom: 5px;'>
+					<a class="btn btn-success" id="btnEditMan" style="width: 120px;">确认修改</a>
+					<a class="btn btn-success" id="btnCancle2" style="width: 120px;">取消</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</html>

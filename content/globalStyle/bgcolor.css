@@ -1,0 +1,45 @@
+:root {
+  --background-color: #2a303c;/*整体背景色*/
+  --header-bg-color:#353c47;/*头部背景颜色*/
+  --table-header-color: #414650;/*表头颜色*/
+  --table-header-font-color: #000;/*表头字体颜色*/
+  --table-body-color: #373c46;/*表体颜色*/
+  --font-color:#EBEBEB;/*字体颜色*/
+  --input-color:#4b5161;/*输入框颜色*/
+  --btn-color:#000;/*按键颜色*/
+  --input-font-color:red;/*输入框字体颜色*/
+  --sidebar-background:#000;/*导航栏背景色*/
+  --header-color:#000;/*头部字体色*/
+}
+
+.btn{background: var(--btn-color);color:var(--font-color);border:none}
+.footer-style{background: var(--background-color);border-top:0px;color:var(--font-color)}/*页脚背景色*/
+.data-content-style{background: var(--background-color)}
+/*导航栏*/
+.real-nav-style{background: var(--sidebar-background)}/*导航栏背景色*/
+.li-active{background: rgba(255,255,255,1);color: rgba(31,126,208,1);}/*菜单一级标题激活样式*/
+.li-unactive{background: rgba(59,149,227,1);color: rgba(255,255,255,1);}/*菜单一级标题未激活样式*/
+.line-style{background: #3B95E1}/*二级标题左侧竖线颜色*/
+.circle-active{background:#FFFFFF}/*二级标题左侧圆形激活颜色*/
+.circle-style{background:#88C6F9}/*二级标题左侧圆形未激活颜色*/
+.secnavbar-style-3{color: #FFFFFF}/*二级标题激活字体颜色*/
+.secnavbar-style-3-a-unactive{color: #88C6F9}/*二级标题未激活字体颜色*/
+/*导航栏end*/
+.sys-name{color:var(--header-color)}/*title颜色*/
+.header-style{background:var(--header-bg-color);box-shadow: none;color:var(--header-color)}/*头部背景色*/
+.head-nav-style>ul>li>a{background:var(--background-color);padding: 5px 12px;border-radius: 6px;color:var(--header-color)}/*登陆人背景色*/
+.body-div-style{background: var(--background-color)}/*右侧部分背景色*/
+.form-control,input,select{background:var(--input-color);border:none;outline: none;color:var(--input-font-color) !important}/*select和input背景色*/
+.body-div-style{color:var(--font-color)}/*右侧部分字体色*/
+.table thead{background:var(--table-header-color);color:var(--table-header-font-color)}/*表头颜色*/
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td{border:none}
+.table-striped>tbody>tr:nth-child(odd),.table-striped>tbody>tr:nth-child(even){background:var(--table-body-color);border-top:1px solid #3d333d}/*表格背景色*/
+.table-bordered{border:none}
+.groupInfos,.select-content,.search-items{background: var(--background-color);border:none}/*搜索项背景色*/
+.tab-items{background: var(--background-color);border:none}/*tab-items项背景色*/
+.modal-content{background: var(--background-color);color:var(--font-color)}/*模态框背景色*/
+.ztree span{color: var(--font-color)}/*树型插件字体颜色*/
+::-webkit-input-placeholder { /* WebKit browsers */color:var(--input-font-color);}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */color:var(--input-font-color);}
+::-moz-placeholder { /* Mozilla Firefox 19+ */color:var(--input-font-color);}
+:-ms-input-placeholder { /* Internet Explorer 10+ */color:var(--input-font-color);}

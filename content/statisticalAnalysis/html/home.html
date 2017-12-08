@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>统计分析</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/home.css"/>
+	<script src="../../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../lib/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../script/home.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../../globalStyle/bgcolor.css">
+	
+	<body>
+		<div class="body-div-style">
+			<!--页面头部开始-->
+			<header class="header-style">
+				<div class="logo-style">
+					<img src="../img/logo.png" width="40" height="40"/>
+				</div>
+				<div class="sys-name">
+					E维管家后台管理系统
+				</div>
+				<nav class="head-nav-style">
+					<ul>
+						<li>
+							<a href="javascript:void(0)" id="btnLogOut">
+								<span class="glyphicon glyphicon-log-out"></span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!--页面头部结束-->
+			<!--页面中部-->
+			<section class="real-nav-style">
+				<nav class="left-nav-style">
+					<ul>
+						<li class="li-unactive nav-click" imgname="label" linkHref="/html/content/LabelManagement/html/home.html">
+							<span>
+								<img src="../img/label.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								标签管理
+							</span>
+						</li>
+						<li linkHref="/html/content/statisticalAnalysis/html/home.html" class="li-active  nav-click" imgname="total" style="margin-top:20px">
+							<span>
+								<img src="../img/total_active.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								统计分析
+							</span>
+						</li>
+						<li linkHref="/html/content/basicUser/html/home.html" class="li-unactive  nav-click" imgname="user"  style="margin-top:20px">
+							<span>
+								<img src="../img/user.png" width="18" height="18" style="margin-top:-3px"/>
+							</span>
+							<span>
+								用户管理
+							</span>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			<section class="data-content-style">
+				<script type="text/javascript">
+					$(".data-content-style").width($(".body-div-style").width() - 156);
+				</script>
+				<!--标签-->
+				<section class="tab-items">
+					<section class="tab-items-content">
+						<nav class="tab-nav">
+							<ul>
+								<li class="li-table-change li-table-active" thenum='0'>点检记录统计</li>
+								<li class="li-table-change"   thenum='1'>维保记录统计</li>
+							</ul>
+						</nav>
+						<div class="border-style"></div>
+					</section>
+					
+				</section>
+				<section class="content-for-animate">
+					<!--1-->
+					<section class="tab-namate-content content-1" style='filter: (opacity=100);opacity: 1;background:#FFFFFF'>
+						<!--原内容-->
+						<article class="search-items ">
+						  <div class=" ">
+					        <div class="label-left">
+					         	开始时间
+					         </div>
+						    <div class="input-left">
+						    	<input type="text" id="startTime" class="form-control">
+						    </div>
+						  </div>
+						  <div class=""  style="margin-left:20px">
+						    <div class="label-left" >
+						         	结束时间
+					         </div>
+						    <div class="input-left">
+						    	<input type="text" id="endTime" class="form-control">
+						    </div>
+						  </div>
+						   <div style="margin-left:20px;width: 280px;" >
+						   	 <div class="label-left" style="width: 60px;">
+					         	关键字
+					         </div>
+						    <div class="input-left" style="width: 220px;">
+						    	<input type="text" id="searchTip" class="form-control" placeholder="可输入标签ID、名称、操作人">
+						    </div>
+						   </div>
+						   <div style="margin-left: 10px;">
+							   <a type="button" id="btnSearchDianJian" class="btn btn-primary" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-search"></span>
+							  	<span>搜索</span>
+							  </a>
+							  <a type="button" id="btnPrintDianJian" class="btn btn-success" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-print"></span>
+							  	<span>打印</span>
+							  </a>
+							  <a type="button" id="btnExportDianJian"  class="btn btn-danger" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-open"></span>
+							  	<span>导出</span>
+							  </a>
+						   </div>
+						</article>
+						<section class="data-content-items">
+							<section class="real-content" id="ptcontent" >
+								<div style="position:relative;width:300px;top:30%;margin:0px auto;font-size:15px;font-weight: bold;">
+									提示:<br/>
+									用户可以点击上方点检记录统计和维保记录统计进行板块切换;
+									用户可以在对应的板块中进行搜索、打印和导出功能。
+								</div>
+							</section>
+							<section class="page-content">
+								<div class="page-left">
+							
+								</div>
+								<div class="page-mid">
+									
+										<span >
+											<a class="btn btn-primary" id="btnPageBefore">
+												<span class="glyphicon glyphicon-arrow-left"></span>
+											</a>
+											<a class="btn btn-primary" id="btnPageNext">
+												<span class="glyphicon glyphicon-arrow-right"></span>
+											</a>
+										</span>
+										
+										
+								</div>
+								<div class="page-right" style="line-height:40px">
+									<span >
+										<a class="btn btn-primary" id="btnPageJump">
+											跳转至
+										</a>
+										<input type="text" id="pageNumId" style="width:40px;display: inline;" class="form-control"/>
+										页
+									</span>
+									<span id="pageTotalInfo" style="padding-left:10px"></span>
+								</div>
+							</section>
+						</section>
+						<!--原内容-->
+					</section>
+					<!--1-->
+					<!--2-->
+					<section class="tab-namate-content-2 content-1">
+						<!--原内容-->
+						<article class="search-items">
+						  <div class=" ">
+					        <div class="label-left">
+					         	开始时间
+					         </div>
+						    <div class="input-left">
+						    	<input type="text" id="startTime2" class="form-control">
+						    </div>
+						  </div>
+						  <div class=""  style="margin-left:20px">
+						    <div class="label-left" >
+						         	结束时间
+					         </div>
+						    <div class="input-left">
+						    	<input type="text" id="endTime2" class="form-control">
+						    </div>
+						  </div>
+						   <div style="margin-left:20px;width: 280px;" >
+						   	 <div class="label-left" style="width: 60px;">
+					         	关键字
+					         </div>
+						    <div class="input-left" style="width: 220px;">
+						    	<input type="text" id="searchTip2" class="form-control" placeholder="可输入标签ID、名称、操作人">
+						    </div>
+						   </div>
+						   <div style="margin-left: 10px;">
+							   <a type="button" id="btnSearchWeiBao" class="btn btn-primary" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-search"></span>
+							  	<span>搜索</span>
+							  </a>
+							  <a type="button" id="btnPrintWeiBao" class="btn btn-success" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-print"></span>
+							  	<span>打印</span>
+							  </a>
+							   <a type="button" id="btnExportWeiBao"  class="btn btn-danger" style="padding-top:4px">
+							  	<span class="glyphicon glyphicon-open"></span>
+							  	<span>导出</span>
+							  </a>
+						   </div>
+						</article>
+						<section class="data-content-items">
+							<section class="real-content" id="weibaoDataContent">
+								<div style="position:relative;width:300px;top:30%;margin:0px auto;font-size:15px;font-weight: bold;">
+									提示:<br/>
+									用户可以点击上方点检记录统计和维保记录统计进行板块切换;
+									用户可以在对应的板块中进行搜索、打印和导出功能。
+								</div>
+							</section>
+							<section class="page-content">
+								<div class="page-left">
+							
+								</div>
+								<div class="page-mid">
+									
+										<span >
+											<a class="btn btn-primary" id="btnPageBefore2">
+												<span class="glyphicon glyphicon-arrow-left"></span>
+											</a>
+											<a class="btn btn-primary" id="btnPageNext2">
+												<span class="glyphicon glyphicon-arrow-right"></span>
+											</a>
+										</span>
+										
+										
+								</div>
+								<div class="page-right" style="line-height:40px">
+									<span >
+										<a class="btn btn-primary" id="btnPageJump2">
+											跳转至
+										</a>
+										<input type="text" id="pageNumId2" style="width:40px;display: inline;" class="form-control"/>
+										页
+									</span>
+									<span id="pageTotalInfo2" style="padding-left:10px"></span>
+								</div>
+							</section>
+						</section>
+						<!--原内容-->
+					</section>
+					<!--2-->
+				</section>
+				
+				<footer style="clear: both;" class="footer-style">
+					Copyright &copy; 2016 实想科技 All Rights Reserved
+				</footer>
+			</section>
+			
+			
+		</div>
+		<!--图表-->
+		<div class="modal fade" id="lanelModal" tabindex="-1" role="dialog" >
+		  <div class="modal-dialog" role="document" style="width: 700px;">
+		    <div class="modal-content" >
+		      <div class="modal-body" style="height:320px">
+		        <div style="width: 100%;height: 20px;">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        </div>
+		        <div style="width:680px;height: 270px;" id="chartContent">
+		        	
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--图表-->
+		<link rel="stylesheet" type="text/css" href="../../lib/datepicker/datepicker.css"/>
+		<script src="../../lib/new-loading/loading_em.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/tip-window/window-em.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script src="../../lib/bootstrap-datepicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/highcharts/highcharts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/highcharts/highcharts-more.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../lib/myHighCharts.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
